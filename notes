@@ -1,0 +1,89 @@
+Dashboard
+- Create Booking
+- Pending Booking
+- Approved Booking
+- Cancelled Booking
+- Customer Responded
+- Direct Email
+- Users 
+
+Booking
+- Pending Booking
+- Approved Booking
+- Cancel Booking
+
+Schedule
+- Google Calendar or Manual Calendar
+
+Activities
+- Create Activities Form
+ *Name
+ *Description
+ *Category
+ *Product Code
+ *Visibility
+ *Images & Videos
+* Additional Option or Description
+
+ *Schedule Date & Time
+ *Duration Hours & Minutes
+ *Buffer Time for Booking
+ *booking in advance (min:2hours max:6month before)
+ *call to book
+ * number of people booking (min & max)
+  - adult
+  - Small Children(5-7yrs)
+  - Child (8-12yrs)
+  - teenagers (13 - 17 yrs)
+* participants (multiple)
+* price per person
+* price per package
+* price per public
+* price per private
+* deposit (fix amount or percentage)
+* cancellation Fee(Mode: Rules and Policy)
+* Notice
+* type of resources (Court Blank,Court Grass, Coarch,Archery Range,Karaoke,Party,Extension,Scarcity,Public Space,Open Range)
+* Add Resouces
+* Message Received From Email (term & condition, confirmation message)
+
+
+
+* is Tax
+* Tax Description
+* Tax price
+
+
+
+ Users
+ - CSR
+ - Coaches
+ 
+
+- Create Categories
+-
+
+Customers
+- 
+
+General Statistics
+- Number of Visits 
+- Number of Visits (Book Online) 
+- Pending
+- Cancellation
+- Approved
+- Number of Participats
+- New Customer
+- Visits By Activity
+
+Resources
+-name
+-activities
+
+
+Settings
+- 
+
+
+
+
