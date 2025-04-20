@@ -8,6 +8,7 @@ import {
 import MenuDesktopSection from "./menu-desktop-section";
 import MenuMobileSection from "./menu-mobile-section";
 import moment from "moment";
+import { Link } from "@inertiajs/react";
 
 const navigation = {
     categories: [
@@ -157,12 +158,12 @@ export default function HomepageHeaderSection() {
 
                             <div className="ml-auto flex items-center">
                                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                                    <a
-                                        href="#"
+                                    <Link
+                                        href="/administrator/dashboard"
                                         className="text-sm font-medium text-gray-700 hover:text-gray-800"
                                     >
                                         Sign in
-                                    </a>
+                                    </Link>
                                     <span
                                         aria-hidden="true"
                                         className="h-6 w-px bg-gray-200"
