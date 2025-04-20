@@ -1,1 +1,0 @@
-import{j as r}from"./app-Cj9qpqRx.js";import t from"./layout-EzO2F7cH.js";import"./XMarkIcon-BTW2TYzr.js";import"./portal-BFjkXFEx.js";import"./MagnifyingGlassIcon-ByKuEP7P.js";import"./floating-DKVSGsyH.js";function n(){return r.jsx(t,{children:"Page"})}export{n as default};
