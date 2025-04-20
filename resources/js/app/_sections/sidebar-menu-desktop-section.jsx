@@ -1,6 +1,8 @@
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import DisclosureComponent from "../_components/disclosure";
+import { FcServices } from "react-icons/fc";
+import { Link } from "@inertiajs/react";
 
 export default function SidebarDesktopSection({
     navigation,
@@ -19,26 +21,19 @@ export default function SidebarDesktopSection({
                             {navigation.map((item, i) =>
                                 !item.children ? (
                                     <li key={item.name}>
-                                        <a
+                                        <Link
                                             href={item.href}
                                             className={classNames(
                                                 item.current
-                                                    ? "bg-blue-600 text-white"
-                                                    : "text-gray-700 hover:bg-gray-50 hover:text-blue-600",
+                                                    ? "bg-red-500 text-white"
+                                                    : "text-gray-700 hover:bg-gray-50 hover:text-red-500",
                                                 "group flex gap-x-3 rounded-md p-2 py-3 text-sm/6 font-semibold"
                                             )}
                                         >
-                                            <item.icon
-                                                aria-hidden="true"
-                                                className={classNames(
-                                                    item.current
-                                                        ? "text-white"
-                                                        : "text-gray-700 group-hover:text-blue-600",
-                                                    "size-6 shrink-0"
-                                                )}
-                                            />
+                                            
+                                            {item.icon}
                                             {item.name}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ) : (
                                     <li key={i}>
@@ -58,10 +53,7 @@ export default function SidebarDesktopSection({
                             href="#"
                             className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-black"
                         >
-                            <Cog6ToothIcon
-                                aria-hidden="true"
-                                className="size-6 shrink-0  hover:bg-blue-700"
-                            />
+                           <FcServices className="h-6 w-6"  />
                             Settings
                         </a>
                     </li>

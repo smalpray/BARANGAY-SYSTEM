@@ -1,6 +1,8 @@
 import React from "react";
 import DisclosureComponent from "../_components/disclosure";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
+import { FcServices } from "react-icons/fc";
+import { Link } from "@inertiajs/react";
 
 export default function SidebarMobileSection({
     navigation,
@@ -13,10 +15,10 @@ export default function SidebarMobileSection({
     return (
         <>
             <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-3 pb-4">
-                <div className="flex h-16 shrink-0 items-center">
+                <div className="flex h-16 justify-center p-3  items-center">
                     <img
-                        className="h-8 w-auto"
-                        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=blue&shade=600"
+                        className="h-full w-full"
+                        src="/images/logo.png"
                         alt="Your Company"
                     />
                 </div>
@@ -27,26 +29,27 @@ export default function SidebarMobileSection({
                                 {navigation.map((item, i) =>
                                     !item.children ? (
                                         <li key={item.name}>
-                                            <a
+                                            <Link
                                                 href={item.href}
                                                 className={classNames(
                                                     item.current
-                                                        ? "bg-blue-600 text-white"
-                                                        : "text-gray-700 hover:bg-gray-50 hover:text-blue-600",
+                                                        ? "bg-red-500 text-white"
+                                                        : "text-gray-700 hover:bg-gray-50 hover:text-red-500",
                                                     "group flex gap-x-3 rounded-md p-2 py-3 text-sm/6 font-semibold"
                                                 )}
                                             >
-                                                <item.icon
+                                                {/* <item.icon
                                                     aria-hidden="true"
                                                     className={classNames(
                                                         item.current
                                                             ? "text-white"
-                                                            : "text-gray-700 group-hover:text-blue-600",
+                                                            : "text-gray-700 group-hover:text-red-500",
                                                         "size-6 shrink-0"
                                                     )}
-                                                />
+                                                /> */}
+                                                {item.icon}
                                                 {item.name}
-                                            </a>
+                                            </Link>
                                         </li>
                                     ) : (
                                         <li key={i}>
@@ -66,10 +69,7 @@ export default function SidebarMobileSection({
                                 href="#"
                                 className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-black"
                             >
-                                <Cog6ToothIcon
-                                    aria-hidden="true"
-                                    className="size-6 shrink-0 text-white  hover:bg-blue-700"
-                                />
+                                <FcServices className="h-6 w-6" />
                                 Settings
                             </a>
                         </li>
