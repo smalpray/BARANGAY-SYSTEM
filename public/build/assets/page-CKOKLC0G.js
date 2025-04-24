@@ -1,5 +1,0 @@
-import{r as p,j as c}from"./app-CZLfV8cu.js";import m from"./layout-Bhg-n3SC.js";import"./XMarkIcon-DEvT1iLW.js";import"./portal-DRW3b664.js";import"./MagnifyingGlassIcon-ztOBfjzk.js";import"./floating-v6sHi1QK.js";var o={exports:{}};/*!
-	Copyright (c) 2018 Jed Watson.
-	Licensed under the MIT License (MIT), see
-	http://jedwatson.github.io/classnames
-*/var u;function l(){return u||(u=1,function(s){(function(){var i={}.hasOwnProperty;function n(){for(var t="",r=0;r<arguments.length;r++){var e=arguments[r];e&&(t=a(t,f(e)))}return t}function f(t){if(typeof t=="string"||typeof t=="number")return t;if(typeof t!="object")return"";if(Array.isArray(t))return n.apply(null,t);if(t.toString!==Object.prototype.toString&&!t.toString.toString().includes("[native code]"))return t.toString();var r="";for(var e in t)i.call(t,e)&&t[e]&&(r=a(r,e));return r}function a(t,r){return r?t?t+" "+r:t+r:t}s.exports?(n.default=n,s.exports=n):window.classNames=n})()}(o)),o.exports}l();function j(){const[s,i]=p.useState(!1);return c.jsx(m,{children:"Dashboard"})}export{j as default};

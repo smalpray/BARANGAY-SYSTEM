@@ -107,7 +107,7 @@ export default function HomepageHeaderSection() {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className="bg-white">
+        <div className="bg-white fixed w-full z-10">
             {/* Mobile menu */}
             <MenuMobileSection
                 setOpen={setOpen}
