@@ -1,8 +1,11 @@
 import React from 'react'
 import Layout from '../layout'
+import CalendarSection from './sections/calendar-section'
 
 export default function Page() {
   return (
-    <Layout>Page</Layout>
+    <Layout>
+      <CalendarSection />
+    </Layout>
   )
 }
