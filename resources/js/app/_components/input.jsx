@@ -14,7 +14,7 @@ export default function Input({
 }) {
     return (
         <div className="w-full">
-            <div className="relative">
+            <div className="relative ">
                 {/* Left Icon */}
                 {iconLeft && (
                     <div className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500">
@@ -42,7 +42,7 @@ export default function Input({
                 {/* Floating Label */}
                 <label
                     htmlFor={name}
-                    className={`ml-5 absolute left-2.5 px-2.5 transition-all bg-white text-sm -top-3
+                    className={` absolute left-2.5 px-2.5 transition-all bg-white text-sm -top-3
             peer-placeholder-shown:text-base
             peer-placeholder-shown:text-gray-500
             peer-placeholder-shown:top-2.5

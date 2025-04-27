@@ -44,8 +44,14 @@ Route::prefix('administrator')->group(function () {
     Route::get('schedules', function () {
         return Inertia::render('administrator/schedules/page');
     });
-    Route::get('activities', function () {
-        return Inertia::render('administrator/activities/page');
+
+    Route::prefix('activities')->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('administrator/activities/page');
+        });
+        Route::get('/create', function () {
+            return Inertia::render('administrator/activities/create/page');
+        });
     });
     Route::get('customers', function () {
         return Inertia::render('administrator/customers/page');
