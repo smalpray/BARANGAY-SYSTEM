@@ -116,9 +116,9 @@ export default function HomepageHeaderSection() {
             />
 
             <header className="relative bg-white">
-                <p className="flex h-10 items-center justify-center bg-red-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+                {/* <p className="flex h-10 items-center justify-center bg-red-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
                     Announcements: Hello World
-                </p>
+                </p> */}
 
                 <nav
                     aria-label="Top"

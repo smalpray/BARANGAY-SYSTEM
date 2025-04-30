@@ -96,16 +96,17 @@ const isCurrentSub = window.location.pathname.split('/')[3]
             current: isCurrentMain == 'customers',
         },
         {
-            name: "Resources",
-            href: "/administrator/resources",
-            icon: <FcTimeline className="h-6 w-6" />,
-            current: isCurrentMain == 'resources',
-        },
-        {
             name: "Emails",
             href: "/administrator/emails",
             icon: <FcFeedback className="h-6 w-6" />,
             current: isCurrentMain == 'emails',
+        },
+        
+        {
+            name: "Resources",
+            href: "/administrator/resources",
+            icon: <FcTimeline className="h-6 w-6" />,
+            current: isCurrentMain == 'resources',
         },
         {
             name: "General Statistics",
