@@ -1,1 +1,0 @@
-import{j as r}from"./app-Cpf6f3zh.js";import t from"./layout-DGcGcibC.js";import"./XMarkIcon-BIAHBgA-.js";import"./portal-Q-NQWycQ.js";import"./MagnifyingGlassIcon--G9cK7LF.js";import"./ChevronDownIcon-DlBuAINq.js";import"./floating-A6n1Vvjo.js";import"./use-inert-others-VothnCJC.js";function u(){return r.jsx(t,{children:"Page"})}export{u as default};

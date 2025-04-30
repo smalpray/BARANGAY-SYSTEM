@@ -24,7 +24,7 @@ export default function TextArea({
           required={required}
           disabled={disabled}
           rows={4}
-          className={`peer w-full px-5 pt-4 pb-2.5 text-black border border-gray-300 rounded-md bg-white placeholder-transparent focus:outline-none focus:border-blue-500 resize-none transition-all ${
+          className={`peer w-full px-5 pt-4 pb-2.5 text-black border border-gray-600 rounded-md bg-white placeholder-transparent focus:outline-none focus:border-blue-500 resize-none transition-all ${
             error ? "border-red-500" : ""
           } ${className}`}
           {...rest}

@@ -23,14 +23,14 @@ export default function ActivityCreateSection() {
         },
         {
             id: "02",
-            name: "Schedule",
+            name: "Book Schedule",
             description: "2nd Section",
             href: "#",
             status: "current",
         },
         {
             id: "03",
-            name: "Pricing",
+            name: "Book Pricing",
             description: "3rd Section",
             href: "#",
             status: "upcoming",
@@ -209,7 +209,7 @@ export default function ActivityCreateSection() {
             </div>
 
             <div className="min-h-[75vh] w-full flex flex-col items-center justify-between">
-                <div className="py-3 w-full items-center flex justify-center">
+                <div className="py-3 w-full items-center flex justify-center  lg:max-w-2xl">
                     {currentStep == 0 && <Section1 />}
                     {currentStep == 1 && <Section2 />}
                     {currentStep == 2 && <Section3 />}
