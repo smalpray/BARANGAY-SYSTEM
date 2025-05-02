@@ -7,7 +7,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('index/homepage/page');
-});
+})->name('homepage');
 
 
 // Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {

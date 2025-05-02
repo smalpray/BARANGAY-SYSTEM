@@ -3,7 +3,7 @@ const products = [
       id: 1,
       name: 'Zip Tote Basket',
       color: 'White and black',
-      href: '#',
+      href: '/api/auth/pay_card',
       imageSrc: '/equipments/equipments1.jpg',
       imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
       price: '$140',
@@ -12,7 +12,7 @@ const products = [
         id: 1,
         name: 'Zip Tote Basket',
         color: 'White and black',
-        href: '#',
+        href: '/api/auth/pay_card',
         imageSrc: '/equipments/equipments2.jpg',
         imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
         price: '$140',
@@ -21,7 +21,7 @@ const products = [
         id: 1,
         name: 'Zip Tote Basket',
         color: 'White and black',
-        href: '#',
+        href: '/api/auth/pay_card',
         imageSrc: '/equipments/equipments3.jpg',
         imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
         price: '$140',
@@ -30,7 +30,7 @@ const products = [
         id: 1,
         name: 'Zip Tote Basket',
         color: 'White and black',
-        href: '#',
+        href: '/api/auth/pay_card',
         imageSrc: '/equipments/equipments4.jpg',
         imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
         price: '$140',
@@ -65,6 +65,7 @@ const products = [
                 <div className="mt-6">
                   <a
                     href={product.href}
+                    target="_blank"
                     className="relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200"
                   >
                     Add to bag<span className="sr-only">, {product.name}</span>

@@ -6,9 +6,16 @@ import { router } from "@inertiajs/react";
 export default function Page() {
     return (
         <Layout>
-            <Button 
-            onClick={()=>router.visit('/administrator/activities/create')}
-            variant="danger">Create Activity</Button>
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <Button
+                    onClick={() =>
+                        router.visit("/administrator/activities/create")
+                    }
+                    variant="danger"
+                >
+                    Create Activity
+                </Button>
+            </div>
         </Layout>
     );
 }
