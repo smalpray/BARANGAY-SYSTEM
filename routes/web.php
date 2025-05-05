@@ -59,6 +59,9 @@ Route::prefix('administrator')->group(function () {
     Route::get('resources', function () {
         return Inertia::render('administrator/resources/page');
     });
+    Route::get('categories', function () {
+        return Inertia::render('administrator/categories/page');
+    });
     Route::get('emails', function () {
         return Inertia::render('administrator/emails/page');
     });

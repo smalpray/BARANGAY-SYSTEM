@@ -19,7 +19,7 @@ Activities
 - Create Activities Form
  *Name --done
  *Description--done
- *Category--done
+ *Category multiple 
  *Product Code--done
  *Visibility--done
  *Images & Videos --done
@@ -41,6 +41,8 @@ Activities
 * price per public
 * price per private
 * deposit (fix amount or percentage)
+
+
 * cancellation Fee(Mode: Rules and Policy)
 * Notice
 * type of resources (Court Blank,Court Grass, Coarch,Archery Range,Karaoke,Party,Extension,Scarcity,Public Space,Open Range)

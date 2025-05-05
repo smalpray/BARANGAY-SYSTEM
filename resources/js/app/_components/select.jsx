@@ -4,6 +4,7 @@ export default function Select({
     label,
     name,
     value,
+    register,
     onChange,
     options = [],
     disabled = false,
@@ -11,6 +12,7 @@ export default function Select({
     iconLeft,
     iconRight,
     error,
+    multiple = false, // NEW: support multiple selection
 }) {
     return (
         <div className="w-full">
@@ -24,21 +26,26 @@ export default function Select({
 
                 {/* Select */}
                 <select
+                    {...register}
+                    multiple={multiple}
                     disabled={disabled}
                     required={required}
                     value={value}
-                    onChange={(e) => onChange(e.target.value)}
+                    onChange={onChange}
                     id={name}
                     name={name}
                     className={`peer text-black placeholder-transparent w-full py-2.5 px-5 border bg-white rounded-md focus:outline-none transition-all appearance-none
-        ${iconLeft ? "pl-10" : ""}
-        ${iconRight ? "pr-10" : ""}
-        ${error ? "border-red-500" : ""}
-        `}
+                        ${iconLeft ? "pl-10" : ""}
+                        ${iconRight ? "pr-10" : ""}
+                        ${error ? "border-red-500" : ""}
+                        ${multiple ? "h-32" : ""}  // Optional: taller for multiple
+                    `}
                 >
-                    <option value="" disabled>
-                        {/* {label} */}
-                    </option>
+                    {!multiple && (
+                        <option value="" disabled>
+                            {/* Placeholder when not multiple */}
+                        </option>
+                    )}
                     {options.map((option) => (
                         <option key={option.value} value={option.value}>
                             {option.label}
@@ -50,13 +57,13 @@ export default function Select({
                 <label
                     htmlFor={name}
                     className={`absolute left-2.5 px-2.5 transition-all bg-white text-sm -top-3
-        peer-placeholder-shown:text-base
-        peer-placeholder-shown:text-gray-500
-        peer-placeholder-shown:top-2.5
-        peer-focus:-top-3
-        peer-focus:text-sm
-        peer-focus:text-blue-600
-        `}
+                        peer-placeholder-shown:text-base
+                        peer-placeholder-shown:text-gray-500
+                        peer-placeholder-shown:top-2.5
+                        peer-focus:-top-3
+                        peer-focus:text-sm
+                        peer-focus:text-blue-600
+                    `}
                 >
                     {label}
                 </label>

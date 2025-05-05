@@ -5,6 +5,10 @@ import Section1 from "./section1";
 import Section2 from "./section2";
 import Section3 from "./section3";
 import Section4 from "./section4";
+import { useForm } from "react-hook-form";
+import store from "@/app/store/store";
+import { create_activities_thunk } from "@/app/redux/activity-thunk";
+import Swal from "sweetalert2";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -12,6 +16,13 @@ function classNames(...classes) {
 
 export default function ActivityCreateSection() {
     const [currentStep, setCurrentStep] = useState(0); // start at second step (index 1)
+    const {
+        register,
+        handleSubmit,
+        control,
+        reset,
+        formState: { errors, isSubmitting },
+    } = useForm();
 
     const steps = [
         {
@@ -45,9 +56,11 @@ export default function ActivityCreateSection() {
     ];
 
     const handleNext = () => {
-        if (currentStep < steps.length - 1) {
-            setCurrentStep(currentStep + 1);
-        }
+        handleSubmit((data) => {
+            if (currentStep < steps.length - 1) {
+                setCurrentStep(currentStep + 1);
+            }
+        })();
     };
 
     const handleBack = () => {
@@ -61,6 +74,36 @@ export default function ActivityCreateSection() {
         if (idx === currentStep) return { ...step, status: "current" };
         return { ...step, status: "upcoming" };
     });
+
+    const onSubmit = async (data) => {
+        const formData = new FormData();
+
+        // Append regular fields
+        Object.entries(data).forEach(([key, value]) => {
+            if (key !== "files") {
+                if (Array.isArray(value)) {
+                    value.forEach((v) => formData.append(`${key}[]`, v));
+                } else {
+                    formData.append(key, value);
+                }
+            }
+        });
+
+        // Append uploaded files
+        data.files.forEach((file) => {
+            formData.append("files[]", file.originFileObj);
+        });
+        await store.dispatch(create_activities_thunk(formData));
+        await Swal.fire({
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+        reset();
+        setCurrentStep(0);
+    };
+    console.log("errors", errors);
 
     return (
         <div>
@@ -209,33 +252,66 @@ export default function ActivityCreateSection() {
             </div>
 
             <div className="min-h-[75vh] w-full flex flex-col items-center justify-between">
-                <div className="py-3 w-full items-center flex justify-center  lg:max-w-2xl">
-                    {currentStep == 0 && <Section1 />}
-                    {currentStep == 1 && <Section2 />}
-                    {currentStep == 2 && <Section3 />}
-                    {currentStep == 3 && <Section4 />}
-                </div>
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="py-3 w-full items-center gap-5 flex-col flex justify-center  lg:max-w-2xl"
+                >
+                    <div className="w-full">
+                        {currentStep == 0 && (
+                            <Section1
+                                register={register}
+                                errors={errors}
+                                control={control}
+                            />
+                        )}
+                        {currentStep == 1 && (
+                            <Section2 register={register} errors={errors} />
+                        )}
+                        {currentStep == 2 && (
+                            <Section3 register={register} errors={errors} />
+                        )}
+                        {currentStep == 3 && (
+                            <Section4
+                                register={register}
+                                errors={errors}
+                                control={control}
+                            />
+                        )}
+                    </div>
 
-                <div className="flex w-full items-center justify-between gap-3">
-                    <div>
-                        <Button
-                            variant="danger"
-                            onClick={handleBack}
-                            disabled={currentStep === 0}
-                        >
-                            BACK
-                        </Button>
+                    <div className="flex w-full items-center justify-between gap-3">
+                        <div>
+                            <Button
+                                variant="danger"
+                                onClick={handleBack}
+                                disabled={currentStep === 0}
+                            >
+                                BACK
+                            </Button>
+                        </div>
+                        <div>
+                            {currentStep != steps.length - 1 && (
+                                <Button
+                                    variant="danger"
+                                    type="button"
+                                    onClick={handleNext}
+                                    disabled={currentStep === steps.length - 1}
+                                >
+                                    NEXT
+                                </Button>
+                            )}
+                            {currentStep == steps.length - 1 && (
+                                <Button
+                                    variant="danger"
+                                    type="submit"
+                                    loading={isSubmitting}
+                                >
+                                    SUBMIT
+                                </Button>
+                            )}
+                        </div>
                     </div>
-                    <div>
-                        <Button
-                            variant="danger"
-                            onClick={handleNext}
-                            disabled={currentStep === steps.length - 1}
-                        >
-                            NEXT
-                        </Button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     );

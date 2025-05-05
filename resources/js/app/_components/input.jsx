@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Input({
     label,
+    register,
     name,
     value,
     onChange,
@@ -24,6 +25,7 @@ export default function Input({
 
                 {/* Input */}
                 <input
+                    {...register}
                     disabled={disabled}
                     required={required}
                     value={value}

@@ -3,6 +3,7 @@ import React from "react";
 export default function TextArea({
   label,
   name,
+  register,
   value,
   onChange,
   placeholder = "",
@@ -18,6 +19,7 @@ export default function TextArea({
         <textarea
           id={name}
           name={name}
+          {...register}
           value={value}
           onChange={onChange}
           placeholder=" "

@@ -16,6 +16,7 @@ import {
     FcPrivacy,
     FcTemplate,
     FcTimeline,
+    FcTreeStructure,
 } from "react-icons/fc";
 
 
@@ -101,7 +102,12 @@ const isCurrentSub = window.location.pathname.split('/')[3]
             icon: <FcFeedback className="h-6 w-6" />,
             current: isCurrentMain == 'emails',
         },
-        
+        {
+            name: "Categories",
+            href: "/administrator/categories",
+            icon: <FcTreeStructure className="h-6 w-6" />,
+            current: isCurrentMain == 'categories',
+        },
         {
             name: "Resources",
             href: "/administrator/resources",

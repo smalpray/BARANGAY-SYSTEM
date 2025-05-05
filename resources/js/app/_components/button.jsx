@@ -38,11 +38,11 @@ export default function Button({
         <button
             type={type}
             className={finalClass}
-            disabled={disabled}
+            disabled={disabled || loading}
             onClick={onClick}
         >
             {loading ? (
-                <div className="flex gap-1">
+                <div className="flex gap-1 py-2">
                     <span className="relative flex size-2 duration-1000 animate-bounce [animation-delay:0ms]">
                         <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                         <span className="relative inline-flex size-2 rounded-full bg-white"></span>
