@@ -22,7 +22,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::prefetch(concurrency: 3);
-        
+
         Schema::defaultStringLength(191);
+    }
+
+    protected function redirectTo()
+    {
+        return '/administrator/dashboard';
     }
 }
