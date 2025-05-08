@@ -18,10 +18,10 @@ export function get_categories_service() {
     }
 }
 
-// export async function get_categories_by_id_service(id) {
-//     const res = await axios.get('/api/categories/' + id)
-//     return res.data
-// }
+export async function get_categories_by_id_service(id) {
+    const res = await axios.get('/api/categories/' + id)
+    return res.data
+}
 
 export function delete_categories_service(id) {
     try {

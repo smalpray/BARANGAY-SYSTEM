@@ -47,7 +47,7 @@ return new class extends Migration
             $table->string('isTax')->nullable();//
             $table->longText('tax_description')->nullable();//
             $table->string('tax_price')->nullable();//
-            $table->string('cancellation')->nullable();
+            $table->longText('cancellation')->nullable();
             $table->longText('email_message')->nullable();
             $table->timestamps();
         });

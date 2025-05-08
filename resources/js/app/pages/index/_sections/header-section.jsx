@@ -9,103 +9,50 @@ import MenuDesktopSection from "./menu-desktop-section";
 import MenuMobileSection from "./menu-mobile-section";
 import moment from "moment";
 import { Link } from "@inertiajs/react";
-
-const navigation = {
-    categories: [
-        {
-            id: "Features",
-            name: "Features",
-            featured: [],
-            sections: [
-                {
-                    id: "Kid Camps",
-                    name: "Kid Camps " + moment().format("Y"),
-                    items: [
-                        {
-                            name: "Summer Camps " + moment().format("Y"),
-                            href: "#",
-                        },
-                    ],
-                },
-                {
-                    id: "Activities",
-                    name: "Activities",
-                    items: [
-                        { name: "Archery lessons", href: "#" },
-                        { name: "Archery Open Range", href: "#" },
-                        { name: "Combat Archery", href: "#" },
-                        { name: "Nerf Branded Blaster Wars", href: "#" },
-                        { name: "Bubble Soccer", href: "#" },
-                        { name: "Saber Wars", href: "#" },
-                        { name: "Watch", href: "#" },
-                        { name: "Waiver", href: "#" },
-                    ],
-                },
-                {
-                    id: "Small Group Options",
-                    name: "Small Group Options (1-9ppl)",
-                    items: [
-                        { name: "Public Activities", href: "#" },
-                        { name: "Public Combat Archery (8 yo+)", href: "#" },
-                        {
-                            name: "Nerf Branded Blaster Wars (6 yo+)",
-                            href: "#",
-                        },
-                        { name: "Archery lessons", href: "#" },
-                        { name: "Couple/Date Night", href: "#" },
-                        { name: "Fun with Friends & Family", href: "#" },
-                    ],
-                },
-                {
-                    id: "Large Group Package",
-                    name: "Large Group Package (10ppl+)",
-                    items: [
-                        { name: "Private Activities", href: "#" },
-                        { name: "Karaoke Room Party", href: "#" },
-                        { name: "Kids Birthday Party", href: "#" },
-                        {
-                            name: "Bachelor-(ette) & Birthday Parties",
-                            href: "#",
-                        },
-                        { name: "Corporate & Team Building", href: "#" },
-                        { name: "Facility Bookout", href: "#" },
-                        { name: "External Events", href: "#" },
-                    ],
-                },
-                {
-                    id: "Arena Fitness",
-                    name: "Arena Fitness",
-                    items: [
-                        { name: "Gym Rental", href: "#" },
-                        { name: "Arena Fitness", href: "#" },
-                    ],
-                },
-                {
-                    id: "Store",
-                    name: "Store",
-                    items: [
-                        { name: "Archery Games Equipments", href: "#" },
-                        { name: "Archery Bow & Gears", href: "#" },
-                        { name: "Sabers", href: "#" },
-                        { name: "Clothes", href: "#" },
-                        { name: "Merch", href: "#" },
-                    ],
-                },
-            ],
-        },
-    ],
-    pages: [
-        { name: "Archers Arena", href: "#" },
-        { name: "Careers", href: "#" },
-        { name: "Blogs", href: "#" },
-        { name: "FAQ", href: "#" },
-        { name: "Contact Us", href: "#" },
-    ],
-};
+import { useSelector } from "react-redux";
 
 export default function HomepageHeaderSection() {
     const [open, setOpen] = useState(false);
+    const { categories } = useSelector((store) => store.categories);
+    console.log(
+        "categories",
+        categories.map((res, i) => ({
+            id: i,
+            name: res.name,
+            items: res.activity_categories.map((ress, ii) => ({
+                id: ii,
+                name: ress?.activity?.name,
+                href: "/auth/login",
+            })),
+        }))
+    );
 
+    const list_of_category = categories.map((res, i) => ({
+        id: i,
+        name: res.name,
+        items: res.activity_categories.map((ress, ii) => ({
+            id: ii,
+            name: ress?.activity?.name,
+            href: `/category/${ress.category_id}`,
+        })),
+    }));
+    const navigation = {
+        categories: [
+            {
+                id: "Features",
+                name: "Features",
+                featured: [],
+                sections: list_of_category,
+            },
+        ],
+        pages: [
+            { name: "Archers Arena", href: "#" },
+            { name: "Careers", href: "#" },
+            { name: "Blogs", href: "#" },
+            { name: "FAQ", href: "#" },
+            { name: "Contact Us", href: "#" },
+        ],
+    };
     return (
         <div className="bg-white fixed w-full z-10">
             {/* Mobile menu */}

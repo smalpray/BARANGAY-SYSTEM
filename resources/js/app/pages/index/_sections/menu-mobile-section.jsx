@@ -17,6 +17,7 @@ import {
     PlayCircleIcon,
     XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "@inertiajs/react";
 
 export default function MenuMobileSection({ navigation, open, setOpen }) {
     return (
@@ -115,12 +116,12 @@ export default function MenuMobileSection({ navigation, open, setOpen }) {
                                                         key={item.name}
                                                         className="flow-root"
                                                     >
-                                                        <a
+                                                        <Link
                                                             href={item.href}
                                                             className="-m-2 block p-2 text-gray-500"
                                                         >
                                                             {item.name}
-                                                        </a>
+                                                        </Link>
                                                     </li>
                                                 ))}
                                             </ul>

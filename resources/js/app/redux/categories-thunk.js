@@ -1,4 +1,4 @@
-import { create_categories_service, get_categories_service, update_categories_service } from "../services/categories-service";
+import { create_categories_service, get_categories_by_id_service, get_categories_service, update_categories_service } from "../services/categories-service";
 import { categoriesSlice } from "./categories-slice";
 
 
@@ -18,7 +18,8 @@ export function create_categories_thunk(data) {
 
 export function get_categories_by_id_thunk(id) {
     return async function (dispatch, getState) {
-        return ''
+        const res = await get_categories_by_id_service(id)
+        dispatch(categoriesSlice.actions.setCategory(res));
     };
 }
 

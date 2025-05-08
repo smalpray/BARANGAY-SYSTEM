@@ -10,7 +10,7 @@ class CategoryController extends Controller
     // List all categories
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::with(['activity_categories'])->get();
         return response()->json($categories);
     }
 
@@ -28,8 +28,10 @@ class CategoryController extends Controller
     }
 
     // Show single category
-    public function show(Category $category)
+    public function show($id)
     {
+
+        $category = Category::where('category_id',$id)->with(['activity_categories'])->first();
         return response()->json($category);
     }
 
