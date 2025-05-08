@@ -1,23 +1,30 @@
-
 import TextArea from "@/app/_components/textarea";
+import Wysiwyg from "@/app/_components/wysiwyg";
 import { Select } from "antd";
 import React from "react";
 import { Controller } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 export default function Section4({ register, errors, control }) {
-    
     const { resources } = useSelector((store) => store.resources);
     return (
         <div className="flex flex-col w-full gap-3">
-            <TextArea
-                label="Cancellation Fee (Mode: Rules and Policy)"
+            <Controller
                 name="cancellation"
-                register={register("cancellation", {
-                    required: "Rules and Policy is required",
-                })}
-                placeholder="Write a cancellation"
-                error={errors.cancellation?.message}
+                control={control}
+                rules={{
+                    required:
+                        "Cancellation Fee (Mode: Rules and Policy) is required",
+                }}
+                render={({ field, fieldState }) => (
+                    <Wysiwyg
+                        label="Cancellation Fee (Mode: Rules and Policy)"
+                        name="cancellation"
+                        value={field.value}
+                        onChange={field.onChange}
+                        error={fieldState.error?.message}
+                    />
+                )}
             />
 
             {/* FIXED: Controlled Select with Controller */}
@@ -36,22 +43,35 @@ export default function Section4({ register, errors, control }) {
                             value: res.resource_id,
                             label: res.name,
                         }))}
-                        className={`border rounded-lg ${errors.resources ? "border-red-500" : "border-gray-900"}`}
+                        className={`border rounded-lg ${
+                            errors.resources
+                                ? "border-red-500"
+                                : "border-gray-900"
+                        }`}
                     />
                 )}
             />
             {errors.resources && (
-                <span className="text-red-500 text-sm">{errors.resources.message}</span>
+                <span className="text-red-500 text-sm">
+                    {errors.resources.message}
+                </span>
             )}
 
-            <TextArea
-                label="Message Received From Email (terms & conditions, confirmation message)"
+            <Controller
                 name="email_message"
-                register={register("email_message", {
+                control={control}
+                rules={{
                     required: "Message Received From Email is required",
-                })}
-                error={errors.email_message?.message}
-                placeholder="Write Message Received From Email"
+                }}
+                render={({ field, fieldState }) => (
+                    <Wysiwyg
+                        label="Message Received From Email (terms & conditions, confirmation message)"
+                        name="email_message"
+                        value={field.value}
+                        onChange={field.onChange}
+                        error={fieldState.error?.message}
+                    />
+                )}
             />
         </div>
     );

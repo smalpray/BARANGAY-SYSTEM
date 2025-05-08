@@ -1,9 +1,11 @@
 import Checkbox from "@/app/_components/checkbox";
 import Input from "@/app/_components/input";
 import TextArea from "@/app/_components/textarea";
+import Wysiwyg from "@/app/_components/wysiwyg";
 import React from "react";
+import { Controller } from "react-hook-form";
 
-export default function Section3({ register, errors }) {
+export default function Section3({ register, errors, control }) {
     return (
         <>
             <div className="flex flex-col w-full gap-3">
@@ -73,7 +75,7 @@ export default function Section3({ register, errors }) {
                     error={errors.isTax?.message}
                 />
 
-                <TextArea
+                {/* <TextArea
                     label="Tax Description"
                     name="tax_description"
                     register={{
@@ -84,6 +86,20 @@ export default function Section3({ register, errors }) {
                     placeholder="Write tax description "
                     className=""
                     error={errors.tax_description?.message}
+                /> */}
+                <Controller
+                    name="tax_description"
+                    control={control}
+                    rules={{ required: "Tax Description is required" }}
+                    render={({ field, fieldState }) => (
+                        <Wysiwyg
+                            label="Additional Description"
+                            name="tax_description"
+                            value={field.value}
+                            onChange={field.onChange}
+                            error={fieldState.error?.message}
+                        />
+                    )}
                 />
                 <Input
                     label="Tax Price"

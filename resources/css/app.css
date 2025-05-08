@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Force DraftJS editor to behave as LTR */
+.custom-rtl-editor .DraftEditor-root {
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: plaintext !important;
+  }
+  
+  /* Optionally center it in the block visually */
+  .custom-rtl-editor {
+    text-align: right;
+  }
+  

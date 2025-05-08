@@ -2,6 +2,7 @@ import Button from "@/app/_components/button";
 import Checkbox from "@/app/_components/checkbox";
 import Input from "@/app/_components/input";
 import TextArea from "@/app/_components/textarea";
+import Wysiwyg from "@/app/_components/wysiwyg";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { Select, Upload } from "antd";
 import React from "react";
@@ -10,7 +11,7 @@ import { useSelector } from "react-redux";
 
 export default function Section1({ register, errors, control }) {
     const { categories } = useSelector((store) => store.categories);
-  
+
     return (
         <div className="w-full flex flex-col gap-5">
             <div className="flex gap-3 w-full">
@@ -37,19 +38,20 @@ export default function Section1({ register, errors, control }) {
                     error={errors.product_code?.message}
                 />
             </div>
-            <TextArea
-                label="Description"
+            <Controller
                 name="description1"
-                register={{
-                    ...register("description1", {
-                        required: "Description is required",
-                    }),
-                }}
-                placeholder="Write a description"
-                className=""
-                error={errors.description1?.message}
+                control={control}
+                rules={{ required: "Description is required" }}
+                render={({ field, fieldState }) => (
+                    <Wysiwyg
+                        label="Description"
+                        name="description1"
+                        value={field.value}
+                        onChange={field.onChange}
+                        error={fieldState.error?.message}
+                    />
+                )}
             />
-
             <Controller
                 name="categories"
                 control={control}
@@ -132,17 +134,19 @@ export default function Section1({ register, errors, control }) {
                 )}
             />
 
-            <TextArea
-                label="Additional Description"
+            <Controller
                 name="description2"
-                error={errors.description2?.message}
-                register={{
-                    ...register("description2", {
-                        required: "Additional Description is required",
-                    }),
-                }}
-                placeholder="Write an additional description"
-                className=""
+                control={control}
+                rules={{ required: "Additional Description is required" }}
+                render={({ field, fieldState }) => (
+                    <Wysiwyg
+                        label="Additional Description"
+                        name="description2"
+                        value={field.value}
+                        onChange={field.onChange}
+                        error={fieldState.error?.message}
+                    />
+                )}
             />
         </div>
     );

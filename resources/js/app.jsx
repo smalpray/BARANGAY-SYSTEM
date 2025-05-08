@@ -8,6 +8,7 @@ import store from "./app/store/store";
 import { Provider } from "react-redux";
 
 const appName = import.meta.env.VITE_APP_NAME || "Archers Arena";
+window.global = window;
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

@@ -268,7 +268,11 @@ export default function ActivityCreateSection() {
                             <Section2 register={register} errors={errors} />
                         )}
                         {currentStep == 2 && (
-                            <Section3 register={register} errors={errors} />
+                            <Section3
+                                register={register}
+                                control={control}
+                                errors={errors}
+                            />
                         )}
                         {currentStep == 3 && (
                             <Section4

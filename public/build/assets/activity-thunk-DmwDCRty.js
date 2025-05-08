@@ -1,0 +1,1 @@
+import{e as c,f as a}from"./app-B5mw41i2.js";function s(t){try{return c.post("/api/activities",t)}catch{}}function r(){try{return c.get("/api/activities")}catch{}}function o(){return async function(t,i){const e=await r();t(a.actions.setActivities(e.data))}}function u(t){return async function(i,e){await s(t)}}export{u as c,o as g};
