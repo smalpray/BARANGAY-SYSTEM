@@ -1,26 +1,34 @@
 import Button from "@/app/_components/button";
+import { setCarts } from "@/app/redux/app-slice";
 import { Badge, Card, Image } from "antd";
-import { useSelector } from "react-redux";
-
-const products = [
-    {
-        id: 1,
-        name: "Zip Tote Basket",
-        color: "White and black",
-        href: "#",
-        imageSrc:
-            "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-related-product-01.jpg",
-        imageAlt:
-            "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
-        price: "$140",
-    },
-    // More products...
-];
+import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export default function BookSection() {
     const { category } = useSelector((store) => store.categories);
+    const { carts } = useSelector((store) => store.app);
+    const dispatch = useDispatch();
 
-    console.log("categorycategory", category);
+    function add_to_book(value) {
+        const isExist = carts.find((res) => res.id == value.id);
+        if (!isExist) {
+            dispatch(setCarts([...carts, value]));
+            Swal.fire({
+                icon: "success",
+                title: "Book added to the cart",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }else{
+            Swal.fire({
+                icon: "warning",
+                title: "The activity already exists",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            
+        }
+    }
     return (
         <div className="bg-white">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -67,7 +75,11 @@ export default function BookSection() {
                                             ))}
                                     </Image.PreviewGroup>
 
-                                    <Button variant="danger" className="w-full">
+                                    <Button
+                                        onClick={() => add_to_book(category)}
+                                        variant="danger"
+                                        className="w-full"
+                                    >
                                         BOOK NOW
                                     </Button>
                                 </Card>

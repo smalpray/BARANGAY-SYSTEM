@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\ActivityCategory;
+use App\Models\ActivityNumberOfBooking;
 use App\Models\ActivityResource;
 use App\Models\ActivityUpload;
 use Illuminate\Http\Request;
@@ -29,19 +30,20 @@ class ActivityController extends Controller
             'email_message' => 'nullable|string',
             'cancellation' => 'nullable|string',
             'tax_description' => 'nullable|string',
-            'age_group' => 'required|string|in:adult,child,senior', // adjust as needed
+            // 'age_group' => 'required|string|in:adult,child,senior', // adjust as needed
             'advance_from' => 'required|string',
             'advance_to' => 'required|string',
             'duration' => 'required|string',
-            'buffer_time' => 'required|string',
+            'buffer_time_from' => 'required|string',
+            'buffer_time_to' => 'required|string',
             'deposit' => 'required|numeric',
             'tax_price' => 'required|numeric',
             'per_person' => 'required|numeric',
             'per_package' => 'required|numeric',
             'per_private' => 'required|numeric',
             'per_public' => 'required|numeric',
-            'minimum' => 'required|integer|min:1',
-            'maximum' => 'required|integer|min:1',
+            // 'minimum' => 'required|integer|min:1',
+            // 'maximum' => 'required|integer|min:1',
             'isTax' => 'nullable',
             'isVisible' => 'nullable',
             'monday_from' => 'required|string',
@@ -60,6 +62,19 @@ class ActivityController extends Controller
             'sunday_to' => 'required|string',
         ]);
         $activity = Activity::create($validated);
+
+        $ageGroups = $request->input('age_groups');
+        if ($ageGroups && is_array($ageGroups)) {
+            foreach ($ageGroups as $group) {
+                ActivityNumberOfBooking::create([
+                    'activity_id' => $activity->id,
+                    'age_group' => $group['name'],
+                    'min' => $group['min'],
+                    'max' => $group['max'],
+                ]);
+            }
+        }
+
         $this->handleFileUploads($request, 'files', $activity);
         if ($request->resources) {
             foreach ($request->resources as $key => $value) {
@@ -79,7 +94,9 @@ class ActivityController extends Controller
         }
 
 
-        return response()->json($activity, 200);
+
+
+        return response()->json('success', 200);
     }
 
     private function handleFileUploads(Request $request, string $fileType, Activity $activity)

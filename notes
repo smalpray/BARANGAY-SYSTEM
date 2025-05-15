@@ -1,3 +1,28 @@
+activity
+-Number of People per booking should dynamic data --done
+-code should auto generated --done
+-buffer time and booking in advance has 00 starting time (date hours minutes)--done
+-deposite has percentage or fixed value
+- tax price should percentage
+
+add product page in admin
+
+
+book stepper
+- book now
+
+1nd page calendar
+- full view calendar
+- select a time morning, afternoon, evening
+2nd add ons
+3rd page Order Review
+4th checkout
+- fname and lname 
+- email
+- phone #
+- notes
+
+
 Dashboard
 - Create Booking
 - Pending Booking

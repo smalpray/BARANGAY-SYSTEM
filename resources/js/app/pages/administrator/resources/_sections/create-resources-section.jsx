@@ -6,6 +6,7 @@ import {
     get_resources_thunk,
 } from "@/app/redux/resources-thunk";
 import store from "@/app/store/store";
+import moment from "moment";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -24,7 +25,10 @@ export default function CreateResourcesSection() {
     const onSubmit = async (data) => {
         console.log("Form Data:", data);
         try {
-            await store.dispatch(create_resources_thunk(data));
+            await store.dispatch(create_resources_thunk({
+                ...data,
+                resource_id: `RSC${moment().format('MMDDYYYYHHmmss')}`
+            }));
             await store.dispatch(get_resources_thunk());
             Swal.fire({
                 icon: "success",
@@ -73,15 +77,7 @@ export default function CreateResourcesSection() {
                     onSubmit={handleSubmit(onSubmit)}
                     className="flex w-full flex-col gap-5"
                 >
-                    <Input
-                        label="Resources ID"
-                        name="resource_id"
-                        register={register("resource_id", {
-                            required: "Resource ID is required",
-                        })}
-                        type="text"
-                        error={errors.resource_id?.message}
-                    />
+                  
                     <Input
                         label="Resources Name"
                         name="name"

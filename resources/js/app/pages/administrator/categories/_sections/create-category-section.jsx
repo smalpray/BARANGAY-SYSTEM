@@ -6,6 +6,7 @@ import {
     get_categories_thunk,
 } from "@/app/redux/categories-thunk";
 import store from "@/app/store/store";
+import moment from "moment";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -24,7 +25,12 @@ export default function CreateCategorySection() {
     const onSubmit = async (data) => {
         console.log("Form Data:", data);
         try {
-            await store.dispatch(create_categories_thunk(data));
+            await store.dispatch(
+                create_categories_thunk({
+                    ...data,
+                    category_id: `CGY${moment().format("MMDDYYYYHHmmss")}`,
+                })
+            );
             await store.dispatch(get_categories_thunk());
             Swal.fire({
                 icon: "success",
@@ -74,15 +80,6 @@ export default function CreateCategorySection() {
                     className="flex w-full flex-col gap-5"
                 >
                     <Input
-                        label="Category ID"
-                        name="category_id"
-                        register={register("category_id", {
-                            required: "Category ID is required",
-                        })}
-                        type="text"
-                        error={errors.category_id?.message}
-                    />
-                    <Input
                         label="Category Name"
                         name="name"
                         register={register("name", {
@@ -97,7 +94,7 @@ export default function CreateCategorySection() {
                         variant="danger"
                         type="submit"
                     >
-                       Submit
+                        Submit
                     </Button>
                 </form>
             </Modal>

@@ -1,1 +1,0 @@
-import{R as n}from"./app-BiOzrmA9.js";const l=["blue","purple","cyan","green","magenta","pink","red","orange","yellow","volcano","geekblue","lime","gold"];function i(e){return e&&n.isValidElement(e)&&e.type===n.Fragment}const o=(e,t,r)=>n.isValidElement(e)?n.cloneElement(e,typeof r=="function"?r(e.props||{}):r):t;function u(e,t){return o(e,e,t)}export{l as P,u as c,i};

@@ -11,7 +11,8 @@ import { useSelector } from "react-redux";
 
 export default function Section1({ register, errors, control }) {
     const { categories } = useSelector((store) => store.categories);
-
+    const { resources } = useSelector((store) => store.resources);
+    
     return (
         <div className="w-full flex flex-col gap-5">
             <div className="flex gap-3 w-full">
@@ -26,17 +27,7 @@ export default function Section1({ register, errors, control }) {
                     type="text"
                     error={errors.name?.message}
                 />
-                <Input
-                    register={{
-                        ...register("product_code", {
-                            required: "Product Code is required",
-                        }),
-                    }}
-                    label="Product Code"
-                    name="product_code"
-                    type="text"
-                    error={errors.product_code?.message}
-                />
+             
             </div>
             <Controller
                 name="description1"
@@ -70,6 +61,30 @@ export default function Section1({ register, errors, control }) {
                         }))}
                         className={`border rounded-lg ${
                             errors.categories
+                                ? "border-red-500"
+                                : "border-gray-900"
+                        }`}
+                    />
+                )}
+            />
+
+            <Controller
+                name="resources"
+                control={control}
+                rules={{ required: "Please select at least one resource" }}
+                render={({ field }) => (
+                    <Select
+                        {...field}
+                        mode="multiple"
+                        allowClear
+                        size="large"
+                        placeholder="Please select resources"
+                        options={resources.map((res) => ({
+                            value: res.resource_id,
+                            label: res.name,
+                        }))}
+                        className={`border rounded-lg ${
+                            errors.resources
                                 ? "border-red-500"
                                 : "border-gray-900"
                         }`}

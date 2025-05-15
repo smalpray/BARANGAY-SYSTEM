@@ -8,12 +8,14 @@ import {
 import MenuDesktopSection from "./menu-desktop-section";
 import MenuMobileSection from "./menu-mobile-section";
 import moment from "moment";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { useSelector } from "react-redux";
+import { RiShoppingCartFill } from "react-icons/ri";
 
 export default function HomepageHeaderSection() {
     const [open, setOpen] = useState(false);
     const { categories } = useSelector((store) => store.categories);
+    const { carts } = useSelector((store) => store.app);
     console.log(
         "categories",
         categories.map((res, i) => ({
@@ -104,50 +106,21 @@ export default function HomepageHeaderSection() {
                             <MenuDesktopSection navigation={navigation} />
 
                             <div className="ml-auto flex items-center">
-                                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                                    <Link
-                                        href="/auth/login"
-                                        className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                                    >
-                                        Sign in
-                                    </Link>
-                                    <span
-                                        aria-hidden="true"
-                                        className="h-6 w-px bg-gray-200"
-                                    />
-                                </div>
-
-                                {/* Search */}
-                                <div className="flex lg:ml-6">
-                                    <a
-                                        href="#"
-                                        className="p-2 text-gray-400 hover:text-gray-500"
-                                    >
-                                        <span className="sr-only">Search</span>
-                                        <MagnifyingGlassIcon
-                                            aria-hidden="true"
-                                            className="size-6"
-                                        />
-                                    </a>
-                                </div>
-
                                 {/* Cart */}
                                 <div className="ml-4 flow-root lg:ml-6">
-                                    <a
-                                        href="#"
-                                        className="group -m-2 flex items-center p-2"
+                                    <button
+                                        disabled={carts.length == 0}
+                                        onClick={() => router.visit("/my_book")}
+                                        className="group -m-2 flex bg-red-500 items-center p-2 rounded-full hover:bg-red-600"
                                     >
-                                        <ShoppingBagIcon
-                                            aria-hidden="true"
-                                            className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
-                                        />
-                                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                                            0
+                                        <RiShoppingCartFill className="size-6 shrink-0 text-white " />
+                                        <span className="ml-2  text-sm font-medium text-white ">
+                                            {carts.length}
                                         </span>
                                         <span className="sr-only">
                                             items in cart, view bag
                                         </span>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>

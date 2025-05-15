@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import store from "@/app/store/store";
 import { create_activities_thunk } from "@/app/redux/activity-thunk";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -78,10 +79,20 @@ export default function ActivityCreateSection() {
     const onSubmit = async (data) => {
         const formData = new FormData();
 
+        formData.append(
+            "product_code",
+            `PRODC${moment().format("MMDDYYYYHHmmss")}`
+        );
         // Append regular fields
         Object.entries(data).forEach(([key, value]) => {
             if (key !== "files") {
-                if (Array.isArray(value)) {
+                if (Array.isArray(value) && key === "age_groups") {
+                    value.forEach((v, index) => {
+                        formData.append(`age_groups[${index}][name]`, v.name);
+                        formData.append(`age_groups[${index}][min]`, v.min);
+                        formData.append(`age_groups[${index}][max]`, v.max);
+                    });
+                } else if (Array.isArray(value)) {
                     value.forEach((v) => formData.append(`${key}[]`, v));
                 } else {
                     formData.append(key, value);
@@ -265,7 +276,8 @@ export default function ActivityCreateSection() {
                             />
                         )}
                         {currentStep == 1 && (
-                            <Section2 register={register} errors={errors} />
+                            <Section2 register={register} errors={errors}
+                            control={control} />
                         )}
                         {currentStep == 2 && (
                             <Section3

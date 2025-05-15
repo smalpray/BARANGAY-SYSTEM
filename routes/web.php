@@ -27,6 +27,10 @@ Route::get('/category/{id}', function () {
     return Inertia::render('index/category/page');
 });
 
+Route::get('/my_book', function () {
+    return Inertia::render('index/my_book/page');
+});
+
 Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('administrator/dashboard/page');

@@ -4,7 +4,8 @@ export const appSlice = createSlice({
     name: "app",
     initialState: {
         user: {},
-        sidebarOpen:false
+        sidebarOpen:false,
+        carts:[]
     },
     reducers: {
         setUser: (state, action) => {
@@ -13,9 +14,12 @@ export const appSlice = createSlice({
          setSidebarOpen: (state, action) => {
             state.sidebarOpen = action.payload;
         },
+        setCarts: (state, action) => {
+            state.carts = action.payload;
+        },
     },
 });
-export const { setUser,setSidebarOpen } =
+export const { setUser,setSidebarOpen,setCarts } =
     appSlice.actions;
 
 export default appSlice.reducer;

@@ -3,9 +3,11 @@ import { DatePicker, Space, TimePicker } from "antd";
 import Select from "@/app/_components/select";
 import Input from "@/app/_components/input";
 
+import dayjs from "dayjs";
+import { Controller } from "react-hook-form";
 const { RangePicker } = DatePicker;
 
-export default function Section2({ register, errors }) {
+export default function Section2({ register, errors, control }) {
     return (
         <div className=" w-full">
             <div className="flex gap-3 flex-col w-full">
@@ -203,28 +205,57 @@ export default function Section2({ register, errors }) {
                         ]}
                     />
                 </div>
-                <div className="flex w-full  flex-col py-1">
-                    <Select
-                        label="Buffer Time"
+                <div>Buffer Time</div>
+                <div className="flex w-full  flex-row gap-3">
+                    <Controller
+                        name="buffer_time_from"
+                        control={control}
+                        rules={{
+                            required: "Buffer Time From is required",
+                        }}
+                        render={({ field, fieldState }) => (
+                            <TimePicker
+                                {...field}
+                                size="large"
+                                className="w-full border-gray-600"
+                                format="HH:mm:ss"
+                                use12Hours={false}
+                                defaultOpenValue={dayjs("00:00:00", "HH:mm:ss")}
+                                status={fieldState.invalid ? "error" : ""}
+                            />
+                        )}
+                    />
+
+                    <Controller
+                        name="buffer_time_to"
+                        control={control}
+                        rules={{
+                            required: "Buffer Time To is required",
+                        }}
+                        render={({ field, fieldState }) => (
+                            <TimePicker
+                                {...field}
+                                size="large"
+                                className="w-full border-gray-600"
+                                format="HH:mm:ss"
+                                use12Hours={false}
+                                defaultOpenValue={dayjs("00:00:00", "HH:mm:ss")}
+                                status={fieldState.invalid ? "error" : ""}
+                            />
+                        )}
+                    />
+
+                    {/* <Input
                         register={{
-                            ...register("buffer_time", {
-                                required: "Buffer Time is required",
+                            ...register("buffer_time_to", {
+                                required: "Buffer Time To is required",
                             }),
                         }}
-                        error={errors.buffer_time?.message}
-                        options={[
-                            { label: "1 hour", value: "1h" },
-                            { label: "1 hour 30 minutes", value: "1h30m" },
-                            { label: "2 hours", value: "2h" },
-                            { label: "2 hours 30 minutes", value: "2h30m" },
-                            { label: "3 hours", value: "3h" },
-                            { label: "3 hours 30 minutes", value: "3h30m" },
-                            { label: "4 hours", value: "4h" },
-                            { label: "4 hours 30 minutes", value: "4h30m" },
-                            { label: "5 hours", value: "5h" },
-                        ]}
-                        name="buffer_time"
-                    />
+                        label="Buffer Time"
+                        name="buffer_time_to"
+                        type="time"
+                        error={errors.buffer_time_to?.message}
+                    /> */}
                 </div>
                 <div className="flex w-full  flex-col">
                     <div>Booking in advance</div>
@@ -284,97 +315,78 @@ export default function Section2({ register, errors }) {
 
                 <div className="flex w-full  flex-col">
                     <div>Number of people booking</div>
-                    <div className="flex gap-3 mt-3">
-                        <Select
-                            label="Age Group"
-                            name="age_group"
-                            error={errors.age_group?.message}
-                            register={{
-                                ...register("age_group", {
-                                    required: "Age Group is required",
-                                }),
-                            }}
-                            // value=""
-                            options={[
-                                { value: "adult", label: "adult" },
-                                {
-                                    value: "Small",
-                                    label: "Small Children(5-7yrs)",
-                                },
-                                { value: "Child", label: "Child (8-12yrs)" },
-                                {
-                                    value: "teenagers",
-                                    label: "teenagers (13 - 17 yrs)",
-                                },
-                            ]}
-                        />
-                        <Select
-                            label="Minimum"
-                            name="minimum"
-                            error={errors.minimum?.message}
-                            register={{
-                                ...register("minimum", {
-                                    required: "Minimum is required",
-                                }),
-                            }}
-                            // value=""
-                            options={[
-                                { value: "1", label: "1" },
-                                { value: "2", label: "2" },
-                                { value: "3", label: "3" },
-                                { value: "4", label: "4" },
-                                { value: "5", label: "5" },
-                                { value: "6", label: "6" },
-                                { value: "7", label: "7" },
-                                { value: "8", label: "8" },
-                                { value: "9", label: "9" },
-                                { value: "10", label: "10" },
-                                { value: "11", label: "11" },
-                                { value: "12", label: "12" },
-                                { value: "13", label: "13" },
-                                { value: "14", label: "14" },
-                                { value: "15", label: "15" },
-                                { value: "16", label: "16" },
-                                { value: "17", label: "17" },
-                                { value: "18", label: "18" },
-                                { value: "19", label: "19" },
-                                { value: "20", label: "20" },
-                            ]}
-                        />
-
-                        <Select
-                            label="Maximum"
-                            name="maximum"
-                            error={errors.maximum?.message}
-                            register={{
-                                ...register("maximum", {
-                                    required: "Maximum is required",
-                                }),
-                            }}
-                            // value=""
-                            options={[
-                                { value: "1", label: "1" },
-                                { value: "2", label: "2" },
-                                { value: "3", label: "3" },
-                                { value: "4", label: "4" },
-                                { value: "5", label: "5" },
-                                { value: "6", label: "6" },
-                                { value: "7", label: "7" },
-                                { value: "8", label: "8" },
-                                { value: "9", label: "9" },
-                                { value: "10", label: "10" },
-                                { value: "11", label: "11" },
-                                { value: "12", label: "12" },
-                                { value: "13", label: "13" },
-                                { value: "14", label: "14" },
-                                { value: "15", label: "15" },
-                                { value: "16", label: "16" },
-                                { value: "17", label: "17" },
-                                { value: "18", label: "18" },
-                                { value: "19", label: "19" },
-                                { value: "20", label: "20" },
-                            ]}
-                        />
+                    <div className="flex flex-col gap-3 mt-3">
+                        {[
+                            { value: "adult", label: "Adult" },
+                            {
+                                value: "small",
+                                label: "Small Children (5-7yrs)",
+                            },
+                            { value: "child", label: "Child (8-12yrs)" },
+                            {
+                                value: "teenagers",
+                                label: "Teenagers (13-17 yrs)",
+                            },
+                        ].map((group, idx) => (
+                            <div key={group.value} className="flex gap-3">
+                                <Input
+                                    label={group.label}
+                                    register={register(
+                                        `age_groups.${idx}.name`,
+                                        {
+                                            required: "Group name is required",
+                                        }
+                                    )}
+                                    value={group.value}
+                                    readOnly
+                                    type="text"
+                                    error={
+                                        errors?.age_groups?.[idx]?.name?.message
+                                    }
+                                    name={`age_groups.${idx}.name`}
+                                />
+                                <Select
+                                    label="Minimum"
+                                    name={`age_groups.${idx}.min`}
+                                    error={
+                                        errors?.age_groups?.[idx]?.min?.message
+                                    }
+                                    register={register(
+                                        `age_groups.${idx}.min`,
+                                        {
+                                            required: "Minimum is required",
+                                        }
+                                    )}
+                                    options={Array.from(
+                                        { length: 20 },
+                                        (_, i) => ({
+                                            value: `${i + 1}`,
+                                            label: `${i + 1}`,
+                                        })
+                                    )}
+                                />
+                                <Select
+                                    label="Maximum"
+                                    name={`age_groups.${idx}.max`}
+                                    error={
+                                        errors?.age_groups?.[idx]?.max?.message
+                                    }
+                                    register={register(
+                                        `age_groups.${idx}.max`,
+                                        {
+                                            required: "Maximum is required",
+                                        }
+                                    )}
+                                    options={Array.from(
+                                        { length: 20 },
+                                        (_, i) => ({
+                                            value: `${i + 1}`,
+                                            label: `${i + 1}`,
+                                        })
+                                    )}
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

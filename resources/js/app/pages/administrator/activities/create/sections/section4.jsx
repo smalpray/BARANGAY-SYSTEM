@@ -6,7 +6,6 @@ import { Controller } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 export default function Section4({ register, errors, control }) {
-    const { resources } = useSelector((store) => store.resources);
     return (
         <div className="flex flex-col w-full gap-3">
             <Controller
@@ -28,29 +27,7 @@ export default function Section4({ register, errors, control }) {
             />
 
             {/* FIXED: Controlled Select with Controller */}
-            <Controller
-                name="resources"
-                control={control}
-                rules={{ required: "Please select at least one resource" }}
-                render={({ field }) => (
-                    <Select
-                        {...field}
-                        mode="multiple"
-                        allowClear
-                        size="large"
-                        placeholder="Please select resources"
-                        options={resources.map((res) => ({
-                            value: res.resource_id,
-                            label: res.name,
-                        }))}
-                        className={`border rounded-lg ${
-                            errors.resources
-                                ? "border-red-500"
-                                : "border-gray-900"
-                        }`}
-                    />
-                )}
-            />
+          
             {errors.resources && (
                 <span className="text-red-500 text-sm">
                     {errors.resources.message}

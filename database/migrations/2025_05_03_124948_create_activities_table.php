@@ -33,12 +33,13 @@ return new class extends Migration
             $table->string('saturday_from')->nullable();//done
             $table->string('saturday_to')->nullable();//done
             $table->string('duration')->nullable();//done
-            $table->string('buffer_time')->nullable();//done
+            $table->string('buffer_time_from')->nullable();//done
+            $table->string('buffer_time_to')->nullable();//done
             $table->string('advance_from')->nullable();//done
             $table->string('advance_to')->nullable();//done
-            $table->string('age_group')->nullable();//done
-            $table->string('minimum')->nullable();//    
-            $table->string('maximum')->nullable();//
+            // $table->string('age_group')->nullable();//
+            // $table->string('minimum')->nullable();//    
+            // $table->string('maximum')->nullable();//
             $table->string('per_person')->nullable();// 
             $table->string('per_package')->nullable();//
             $table->string('per_public')->nullable();//

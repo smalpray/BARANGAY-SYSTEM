@@ -12,6 +12,7 @@ export default function Input({
     iconLeft,
     iconRight,
     error,
+    readOnly = false,
 }) {
     return (
         <div className="w-full">
@@ -25,6 +26,7 @@ export default function Input({
 
                 {/* Input */}
                 <input
+                    readOnly={readOnly}
                     {...register}
                     disabled={disabled}
                     required={required}
