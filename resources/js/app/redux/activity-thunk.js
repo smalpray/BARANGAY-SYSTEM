@@ -1,5 +1,6 @@
 import {
     create_activities_service,
+    get_activities_by_id_service,
     get_activities_service,
     update_activities_service,
 } from "../services/activities-service";
@@ -18,9 +19,10 @@ export function create_activities_thunk(data) {
     };
 }
 
-export function get_activities_by_id_thunk(id) {
+export function get_activities_by_id_thunk(product_code,date) {
     return async function (dispatch, getState) {
-        return "";
+        const res = await get_activities_by_id_service(product_code,date);
+        dispatch(activitiesSlice.actions.setActivity(res.data));
     };
 }
 

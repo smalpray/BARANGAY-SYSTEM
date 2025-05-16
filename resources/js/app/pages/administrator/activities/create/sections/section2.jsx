@@ -193,16 +193,17 @@ export default function Section2({ register, errors, control }) {
                         }}
                         error={errors.duration?.message}
                         options={[
-                            { label: "1 hour", value: "1h" },
-                            { label: "1 hour 30 minutes", value: "1h30m" },
-                            { label: "2 hours", value: "2h" },
-                            { label: "2 hours 30 minutes", value: "2h30m" },
-                            { label: "3 hours", value: "3h" },
-                            { label: "3 hours 30 minutes", value: "3h30m" },
-                            { label: "4 hours", value: "4h" },
-                            { label: "4 hours 30 minutes", value: "4h30m" },
-                            { label: "5 hours", value: "5h" },
+                            { label: "1 hour", value: "60" },
+                            { label: "1 hour 30 minutes", value: "90" },
+                            { label: "2 hours", value: "120" },
+                            { label: "2 hours 30 minutes", value: "150" },
+                            { label: "3 hours", value: "180" },
+                            { label: "3 hours 30 minutes", value: "210" },
+                            { label: "4 hours", value: "240" },
+                            { label: "4 hours 30 minutes", value: "270" },
+                            { label: "5 hours", value: "300" },
                         ]}
+                        
                     />
                 </div>
                 <div>Buffer Time</div>

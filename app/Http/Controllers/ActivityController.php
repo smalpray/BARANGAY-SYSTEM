@@ -7,6 +7,7 @@ use App\Models\ActivityCategory;
 use App\Models\ActivityNumberOfBooking;
 use App\Models\ActivityResource;
 use App\Models\ActivityUpload;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -117,11 +118,65 @@ class ActivityController extends Controller
         }
     }
     // GET /activities/{id}
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $activity = Activity::findOrFail($id);
-        return response()->json($activity);
+        $activity = Activity::where('product_code', '=', $id)->first();
+
+        $date = Carbon::createFromFormat('m-d-Y', $request->date);
+        $day = strtolower($date->format('l'));
+
+        $from = Carbon::createFromFormat('H:i', $activity[$day . '_from']);
+        $to = Carbon::createFromFormat('H:i', $activity[$day . '_to']);
+
+
+        $start = Carbon::parse($activity->buffer_time_from, 'GMT');
+        $end = Carbon::parse($activity->buffer_time_to, 'GMT');
+
+        $buffer  = $start->diffInMinutes($end);
+
+        if ($to->lessThan($from)) {
+            $to->addDay(); // Handle overnight shifts
+        }
+
+        $slots = [
+            'morning' => [],
+            'afternoon' => [],
+            'evening' => [],
+        ];
+
+        $duration = (int) $activity->duration;
+
+
+        $current = $from->copy();
+        while ($current < $to) {
+            $sessionEnd = $current->copy()->addMinutes($duration);
+
+            // If session end goes beyond available time, stop
+            if ($sessionEnd > $to) {
+                break;
+            }
+
+            $hour = (int) $current->format('H');
+
+            if ($hour >= 5 && $hour < 12) {
+                $slots['morning'][] = $current->format('H:i') . ' - ' . $sessionEnd->format('H:i');
+            } elseif ($hour >= 12 && $hour < 17) {
+                $slots['afternoon'][] = $current->format('H:i') . ' - ' . $sessionEnd->format('H:i');
+            } elseif ($hour >= 17 && $hour < 21) {
+                $slots['evening'][] = $current->format('H:i') . ' - ' . $sessionEnd->format('H:i');
+            }
+            $slots['buffer_time']=$buffer;
+            // Move to the next slot start (add session + buffer)
+            $current = $sessionEnd->copy()->addMinutes($buffer);
+        }
+
+        return response()->json($slots);
     }
+
+
+
+
+
 
     // PUT /activities/{id}
     public function update(Request $request, $id)
