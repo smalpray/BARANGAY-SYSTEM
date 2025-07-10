@@ -20,7 +20,7 @@ export default function DisclosureComponent({
             <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 className={classNames(
-                    item.current ? "bg-red-500 text-white" : "hover:bg-gray-50",
+                    item.current ? "bg-blue-500 text-white" : "hover:bg-gray-50",
                     "group flex w-full items-center gap-x-3 rounded-md p-2 py-3 text-left text-sm/6 font-semibold text-gray-700"
                 )}
             >
@@ -56,7 +56,7 @@ export default function DisclosureComponent({
                                 href={subItem.href}
                                 className={classNames(
                                     subItem.current
-                                        ? "bg-red-100"
+                                        ? "bg-blue-100"
                                         : "hover:bg-gray-50",
                                     "block rounded-md py-2 pr-2 pl-4 text-sm/6 text-gray-700"
                                 )}

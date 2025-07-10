@@ -2,143 +2,106 @@ import SidebarSection from "@/app/_sections/sidebar-section";
 import TopbarSection from "@/app/_sections/topbar-section";
 import {
     FcAssistant,
-    FcBusinesswoman,
-    FcCancel,
-    FcCheckmark,
-    FcClock,
-    FcComboChart,
-    FcContacts,
-    FcFeedback,
-    FcMms,
-    FcOk,
-    FcOvertime,
+    FcConferenceCall,
+    FcHome,
+    FcLibrary,
+    FcOrganization,
     FcPortraitMode,
     FcPrivacy,
     FcTemplate,
-    FcTimeline,
-    FcTreeStructure,
 } from "react-icons/fc";
-
-
+import FloatingButtonSection from "./_sections/floating-button-section";
 
 export default function Layout({ children }) {
-const isCurrentMain = window.location.pathname.split('/')[2]
-const isCurrentSub = window.location.pathname.split('/')[3]
+    const isCurrentMain = window.location.pathname.split("/")[2];
+    const isCurrentSub = window.location.pathname.split("/")[3];
     const navigation = [
         {
             name: "Dashboard",
             href: "/administrator/dashboard",
             icon: <FcTemplate className="h-6 w-6" />,
-            current: isCurrentMain == 'dashboard',
+            current: isCurrentMain == "dashboard",
         },
-        {
-            name: "Bookings",
-            href: "#",
-            icon: <FcContacts className="h-6 w-6" />,
-            current: isCurrentMain == 'bookings',
-            children: [
-                {
-                    name: "Pending",
-                    href: "/administrator/bookings/pending",
-                    icon: <FcClock className="h-6 w-6" />,
-                    current: isCurrentSub == 'pending',
-                },
-                {
-                    name: "Approved",
-                    href: "/administrator/bookings/approved",
-                    icon: <FcOk className="h-6 w-6" />,
-                    current: isCurrentSub == 'approved',
-                },
-                {
-                    name: "Cancelled",
-                    href: "/administrator/bookings/cancelled",
-                    icon: <FcCancel className="h-6 w-6" />,
-                    current: isCurrentSub == 'cancelled',
-                },
-            ],
-        },
+
         {
             name: "Users",
             href: "#",
-            icon: <FcPrivacy className="h-6 w-6" />,
-            current: isCurrentMain == 'users',
+            icon: <FcConferenceCall className="h-6 w-6" />,
+            current: isCurrentMain == "users",
             children: [
                 {
-                    name: "CSR",
-                    
-                    href: "/administrator/users/csr",
-                    icon: <FcAssistant className="h-6 w-6" />,
-                    current: isCurrentSub == 'csr',
+                    name: "Leaders",
+                    href: "/administrator/users/leaders",
+                    icon: <FcPortraitMode className="h-6 w-6" />,
+                    current: isCurrentSub == "leaders",
                 },
                 {
-                    name: "Coaches",
-                    href: "/administrator/users/coaches",
+                    name: "Engagement",
+                    href: "/administrator/users/engagement",
                     icon: <FcPortraitMode className="h-6 w-6" />,
-                    current: isCurrentSub == 'coaches',
+                    current: isCurrentSub == "engagement",
+                },
+                {
+                    name: "IT Department",
+
+                    href: "/administrator/users/it_department",
+                    icon: <FcPortraitMode className="h-6 w-6" />,
+                    current: isCurrentSub == "it_department",
+                },
+
+                {
+                    name: "HR Department",
+                    href: "/administrator/users/hr_department",
+                    icon: <FcPortraitMode className="h-6 w-6" />,
+                    current: isCurrentSub == "hr_department",
+                },
+
+                {
+                    name: "Accounting Department",
+                    href: "/administrator/users/accounting_department",
+                    icon: <FcPortraitMode className="h-6 w-6" />,
+                    current: isCurrentSub == "accounting_department",
                 },
             ],
         },
+
         {
-            name: "Schedules",
-            href: "/administrator/schedules",
-            icon: <FcOvertime className="h-6 w-6" />,
-            current: isCurrentMain == 'schedules',
-        },
-        {
-            name: "Activities",
-            href: "/administrator/activities",
-            icon: <FcMms className="h-6 w-6" />,
-            current: isCurrentMain == 'activities',
-        },
-        {
-            name: "Customers",
-            href: "/administrator/customers",
-            icon: <FcBusinesswoman className="h-6 w-6" />,
-            current: isCurrentMain == 'customers',
-        },
-        {
-            name: "Emails",
-            href: "/administrator/emails",
-            icon: <FcFeedback className="h-6 w-6" />,
-            current: isCurrentMain == 'emails',
-        },
-        {
-            name: "Categories",
-            href: "/administrator/categories",
-            icon: <FcTreeStructure className="h-6 w-6" />,
-            current: isCurrentMain == 'categories',
-        },
-        {
-            name: "Resources",
-            href: "/administrator/resources",
-            icon: <FcTimeline className="h-6 w-6" />,
-            current: isCurrentMain == 'resources',
-        },
-        {
-            name: "General Statistics",
-            href: "/administrator/general_statistics",
-            icon: <FcComboChart className="h-6 w-6" />,
-            current: isCurrentMain == 'general_statistics',
+            name: "Locations",
+            href: "#",
+            icon: <FcOrganization className="h-6 w-6" />,
+            current: isCurrentMain == "ticketing",
+            children: [
+                {
+                    name: "Carcar",
+
+                    href: "/administrator/ticketing/carcar/tickets",
+                    icon: <FcHome className="h-6 w-6" />,
+                    current: isCurrentSub == "carcar",
+                },
+                {
+                    name: "San Carlos",
+                    href: "/administrator/ticketing/san_carlos/tickets",
+                    icon: <FcHome className="h-6 w-6" />,
+                    current: isCurrentSub == "san_carlos",
+                },
+            ],
         },
     ];
-    
+
     const userNavigation = [
         { name: "Your profile", href: "#" },
         { name: "Sign out", href: "#" },
     ];
     return (
         <>
-            <div>
-                <SidebarSection navigation={navigation} />
-                <div className="lg:pl-72">
-                    <TopbarSection userNavigation={userNavigation} />
+            <SidebarSection navigation={navigation} />
+            <div className="lg:pl-72">
+                <TopbarSection userNavigation={userNavigation} />
 
-                    <main className="py-4">
-                        <div>
-                            {children}
-                        </div>
-                    </main>
-                </div>
+                <main className="p-3">
+                    <div>{children}</div>
+                    <FloatingButtonSection />
+                </main>
             </div>
         </>
     );

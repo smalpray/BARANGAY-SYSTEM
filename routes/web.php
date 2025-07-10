@@ -10,79 +10,48 @@ Route::get('/', function () {
     if (Auth::check()) {
         return redirect('/administrator/dashboard');
     }
-    return Inertia::render('index/homepage/page');
-})->name('homepage');
-
-
-Route::get('/auth/login', function () {
-    if (Auth::check()) {
-        return redirect('/administrator/dashboard');
-    }
     return Inertia::render('auth/login/page');
 })->name('login');
 
-
-
-Route::get('/category/{id}', function () {
-    return Inertia::render('index/category/page');
-});
-
-Route::get('/my_book', function () {
-    return Inertia::render('index/my_book/page');
-});
 
 Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('administrator/dashboard/page');
     })->name('dashboard');
 
-    Route::prefix('bookings')->group(function () {
-        Route::get('pending', function () {
-            return Inertia::render('administrator/bookings/pending/page');
-        });
-        Route::get('approved', function () {
-            return Inertia::render('administrator/bookings/approved/page');
-        });
-        Route::get('cancelled', function () {
-            return Inertia::render('administrator/bookings/cancelled/page');
-        });
-    });
-
     Route::prefix('users')->group(function () {
-        Route::get('csr', function () {
-            return Inertia::render('administrator/users/csr/page');
+        Route::get('it_department', function () {
+            return Inertia::render('administrator/users/it_department/page');
         });
-        Route::get('coaches', function () {
-            return Inertia::render('administrator/users/coaches/page');
+        Route::get('hr_department', function () {
+            return Inertia::render('administrator/users/hr_department/page');
         });
-    });
-    Route::get('schedules', function () {
-        return Inertia::render('administrator/schedules/page');
+        Route::get('accounting_department', function () {
+            return Inertia::render('administrator/users/accounting_department/page');
+        });
+        Route::get('engagement', function () {
+            return Inertia::render('administrator/users/engagement/page');
+        });
+        Route::get('leaders', function () {
+            return Inertia::render('administrator/users/leaders/page');
+        });
     });
 
-    Route::prefix('activities')->group(function () {
-        Route::get('/', function () {
-            return Inertia::render('administrator/activities/page');
+    Route::prefix('ticketing/{slug}')->group(function () {
+        Route::get('tickets', function () {
+            return Inertia::render('administrator/ticketing/slug/tickets/page');
         });
-        Route::get('/create', function () {
-            return Inertia::render('administrator/activities/create/page');
+        Route::get('dashboard', function () {
+            return Inertia::render('administrator/ticketing/slug/dashboard/page');
+        });
+        Route::get('stats', function () {
+            return Inertia::render('administrator/ticketing/slug/stats/page');
+        });
+        Route::get('users', function () {
+            return Inertia::render('administrator/ticketing/slug/users/page');
         });
     });
-    Route::get('customers', function () {
-        return Inertia::render('administrator/customers/page');
-    });
-    Route::get('resources', function () {
-        return Inertia::render('administrator/resources/page');
-    });
-    Route::get('categories', function () {
-        return Inertia::render('administrator/categories/page');
-    });
-    Route::get('emails', function () {
-        return Inertia::render('administrator/emails/page');
-    });
-    Route::get('general_statistics', function () {
-        return Inertia::render('administrator/general_statistics/page');
-    });
+
     Route::get('settings', function () {
         return Inertia::render('administrator/settings/page');
     });

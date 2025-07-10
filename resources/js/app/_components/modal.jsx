@@ -2,7 +2,7 @@ import React from "react";
 import { Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export default function Modal({ isOpen, onClose, title, children }) {
+export default function Modal({ isOpen, onClose, title, children,width="" }) {
     return (
         <Transition show={isOpen} as={Fragment}>
             <div as="div" className="relative z-50" onClose={onClose}>
@@ -30,7 +30,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
                         leaveFrom="opacity-100 scale-100 translate-y-0"
                         leaveTo="opacity-0 scale-95 translate-y-2"
                     >
-                        <div className="w-full max-w-md transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                        <div className={`w-full ${width} transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all`}>
                             {/* Title */}
                             {title && (
                                 <div
@@ -47,7 +47,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
                             {/* Close button (optional) */}
                             <button
                                 onClick={()=>onClose(false)}
-                                className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl"
+                                className="absolute top-3 right-3 text-4xl text-red-600 hover:text-red-700 "
                             >
                                 &times;
                             </button>

@@ -64,11 +64,11 @@ export default function SidebarSection({ navigation }) {
                                 </div>
 
                                 {/* Sidebar content */}
-                              <SidebarMobileSection 
-                              setOpenIndex={setOpenIndex}
-                              openIndex={openIndex}
-                              navigation={navigation}
-                              />
+                                <SidebarMobileSection
+                                    setOpenIndex={setOpenIndex}
+                                    openIndex={openIndex}
+                                    navigation={navigation}
+                                />
                             </div>
                         </Transition.Child>
                     </div>
@@ -78,17 +78,18 @@ export default function SidebarSection({ navigation }) {
             {/* Desktop sidebar */}
             <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
                 <div className="flex grow flex-col border-r border-gray-300 bg-white px-1.5 pb-4 shadow-md">
-                    <div className="flex h-16 justify-center p-3  items-center">
+                    <div className="flex h-20 justify-center p-3  items-center">
                         <img
                             className="h-full w-full"
                             src="/images/logo.png"
                             alt="Your Company"
                         />
                     </div>
-                   <SidebarDesktopSection
-                   setOpenIndex={setOpenIndex}
-                   openIndex={openIndex}
-                   navigation={navigation}/>
+                    <SidebarDesktopSection
+                        setOpenIndex={setOpenIndex}
+                        openIndex={openIndex}
+                        navigation={navigation}
+                    />
                 </div>
             </div>
         </>

@@ -42,7 +42,7 @@ export default function Select({
                     `}
                 >
                     {!multiple && (
-                        <option value="" disabled>
+                        <option value="" selected disabled>
                             {/* Placeholder when not multiple */}
                         </option>
                     )}

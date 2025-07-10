@@ -8,23 +8,12 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 export default function Wysiwyg({ label, name, value, onChange, error }) {
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-    // useEffect(() => {
-    //     if (value) {
-    //         const blocksFromHtml = htmlToDraft(value);
-    //         const { contentBlocks, entityMap } = blocksFromHtml;
-    //         const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-    //         setEditorState(EditorState.createWithContent(contentState));
-    //     } else {
-    //         setEditorState(EditorState.createEmpty());
-    //     }
-    // }, [value]);
-
     const onEditorStateChange = (state) => {
         setEditorState(state);
         const html = draftToHtml(convertToRaw(state.getCurrentContent()));
-        if(html == '<p></p>\n'){
-            onChange('');
-        }else{
+        if (html == "<p></p>\n") {
+            onChange("");
+        } else {
             onChange(html);
         }
         // Push updated HTML to the form
@@ -36,7 +25,7 @@ export default function Wysiwyg({ label, name, value, onChange, error }) {
             <Editor
                 editorState={editorState}
                 wrapperClassName="border rounded"
-                editorClassName="p-2 min-h-[150px] custom-rtl-editor"
+                editorClassName="p-2 min-h-[150px] max-h-[150px] overflow-y-auto custom-rtl-editor"
                 onEditorStateChange={onEditorStateChange}
             />
 
