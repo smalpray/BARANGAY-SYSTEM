@@ -5,10 +5,12 @@ import {
     FcConferenceCall,
     FcHome,
     FcLibrary,
+    FcList,
     FcOrganization,
     FcPortraitMode,
     FcPrivacy,
     FcTemplate,
+    FcTimeline,
 } from "react-icons/fc";
 import FloatingButtonSection from "./_sections/floating-button-section";
 
@@ -23,54 +25,68 @@ export default function Layout({ children }) {
             current: isCurrentMain == "dashboard",
         },
 
+       
         {
-            name: "Users",
+            name: "Departments",
             href: "#",
             icon: <FcConferenceCall className="h-6 w-6" />,
             current: isCurrentMain == "users",
             children: [
                 {
-                    name: "Leaders",
-                    href: "/administrator/users/leaders",
-                    icon: <FcPortraitMode className="h-6 w-6" />,
-                    current: isCurrentSub == "leaders",
-                },
-                {
-                    name: "Engagement",
-                    href: "/administrator/users/engagement",
-                    icon: <FcPortraitMode className="h-6 w-6" />,
-                    current: isCurrentSub == "engagement",
-                },
-                {
                     name: "IT Department",
 
-                    href: "/administrator/users/it_department",
+                    href: "/administrator/users/IT_Department",
                     icon: <FcPortraitMode className="h-6 w-6" />,
-                    current: isCurrentSub == "it_department",
+                    current: isCurrentSub == "IT_Department",
                 },
 
                 {
                     name: "HR Department",
-                    href: "/administrator/users/hr_department",
+                    href: "/administrator/users/HR_Department",
                     icon: <FcPortraitMode className="h-6 w-6" />,
-                    current: isCurrentSub == "hr_department",
+                    current: isCurrentSub == "HR_Department",
+                },
+                {
+                    name: "QA Department",
+                    href: "/administrator/users/QA_Department",
+                    icon: <FcPortraitMode className="h-6 w-6" />,
+                    current: isCurrentSub == "QA_Department",
+                },
+                {
+                    name: "Operations Department",
+                    href: "/administrator/users/Operations_Department",
+                    icon: <FcPortraitMode className="h-6 w-6" />,
+                    current: isCurrentSub == "Operations_Department",
+                },
+
+                {
+                    name: "Engagement Department",
+                    href: "/administrator/users/Engagement_Department",
+                    icon: <FcPortraitMode className="h-6 w-6" />,
+                    current: isCurrentSub == "Engagement_Department",
                 },
 
                 {
                     name: "Accounting Department",
-                    href: "/administrator/users/accounting_department",
+                    href: "/administrator/users/Accounting_Department",
                     icon: <FcPortraitMode className="h-6 w-6" />,
-                    current: isCurrentSub == "accounting_department",
+                    current: isCurrentSub == "Accounting_Department",
                 },
             ],
         },
 
         {
-            name: "Locations",
+            name: "Ticketing",
             href: "#",
             icon: <FcOrganization className="h-6 w-6" />,
             current: isCurrentMain == "ticketing",
             children: [
+                 {
+                    name: "Categories",
+                    href: "/administrator/ticketing/categories?department=IT Department",
+                    icon: <FcTimeline className="h-6 w-6" />,
+                    current: isCurrentSub == "categories",
+                },
                 {
                     name: "Carcar",
 
@@ -86,6 +102,27 @@ export default function Layout({ children }) {
                 },
             ],
         },
+        //  {
+        //     name: "Inventory",
+        //     href: "#",
+        //     icon: <FcOrganization className="h-6 w-6" />,
+        //     current: isCurrentMain == "ticketing",
+        //     children: [
+        //         {
+        //             name: "Carcar",
+
+        //             href: "/administrator/ticketing/carcar/tickets",
+        //             icon: <FcHome className="h-6 w-6" />,
+        //             current: isCurrentSub == "carcar",
+        //         },
+        //         {
+        //             name: "San Carlos",
+        //             href: "/administrator/ticketing/san_carlos/tickets",
+        //             icon: <FcHome className="h-6 w-6" />,
+        //             current: isCurrentSub == "san_carlos",
+        //         },
+        //     ],
+        // },
     ];
 
     const userNavigation = [
@@ -100,7 +137,7 @@ export default function Layout({ children }) {
 
                 <main className="p-3">
                     <div>{children}</div>
-                    <FloatingButtonSection />
+                    {/* <FloatingButtonSection /> */}
                 </main>
             </div>
         </>

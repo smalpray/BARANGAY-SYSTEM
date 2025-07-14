@@ -1,118 +1,16 @@
-activity
--Number of People per booking should dynamic data --done
--code should auto generated --done
--buffer time and booking in advance has 00 starting time (date hours minutes)--done
--deposite has percentage or fixed value
-- tax price should percentage
-
-add product page in admin
+in itcket table remove the
+- scsite
+- site
 
 
-book stepper
-- book now
+add column table in file
+-files_from
+add column table in user
+-location
 
-1nd page calendar
-- full view calendar
-- select a time morning, afternoon, evening
-2nd add ons
-3rd page Order Review
-4th checkout
-- fname and lname 
-- email
-- phone #
-- notes
+UPDATE `users` SET `location`='Carcar' WHERE `site_id`='2'
+UPDATE `users` SET `location`='San Carlos' WHERE `site_id`='1'
 
 
-Dashboard
-- Create Booking
-- Pending Booking
-- Approved Booking
-- Cancelled Booking
-- Customer Responded
-- Direct Email
-- Users 
-
-Booking
-- Pending Booking
-- Approved Booking
-- Cancel Booking
-
-Schedule
-- Google Calendar or Manual Calendar
-
-Activities
-- Create Activities Form
- *Name --done
- *Description--done
- *Category multiple 
- *Product Code--done
- *Visibility--done
- *Images & Videos --done
-* Additional Option or Description
-
- *Schedule Date & Time
- *Duration Hours & Minutes
- *Buffer Time for Booking
- *booking in advance (min:2hours max:6month before)
- *call to book
- * number of people booking (min & max)
-  - adult
-  - Small Children(5-7yrs)
-  - Child (8-12yrs)
-  - teenagers (13 - 17 yrs)
-* participants (multiple)
-* price per person
-* price per package
-* price per public
-* price per private
-* deposit (fix amount or percentage)
-
-
-* cancellation Fee(Mode: Rules and Policy)
-* Notice
-* type of resources (Court Blank,Court Grass, Coarch,Archery Range,Karaoke,Party,Extension,Scarcity,Public Space,Open Range)
-* Add Resouces
-* Message Received From Email (term & condition, confirmation message)
-
-
-
-* is Tax
-* Tax Description
-* Tax price
-
-
-
- Users
- - CSR
- - Coaches
- 
-
-- Create Categories
--
-
-Customers
-- 
-
-General Statistics
-- Number of Visits 
-- Number of Visits (Book Online) 
-- Pending
-- Cancellation
-- Approved
-- Number of Participats
-- New Customer
-- Visits By Activity
-
-Resources
--name
--activities
-
-
-Settings
-- 
-
-
-
-
-
-Event Essentials: Festival Event Management App Software ...
+UPDATE `tickets` SET `location`='Carcar' WHERE `site_id`='2'
+UPDATE `tickets` SET `location`='San Carlos' WHERE `site_id`='1'

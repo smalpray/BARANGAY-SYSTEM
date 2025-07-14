@@ -11,13 +11,18 @@ import Select from "@/app/_components/select";
 import Input from "@/app/_components/input";
 import Wysiwyg from "@/app/_components/wysiwyg";
 import moment from "moment";
+import { useSelector } from "react-redux";
+import store from "@/app/store/store";
+import { create_tickets_thunk } from "@/app/redux/ticket-thunk";
+import { department_data } from "@/app/lib/department-lib";
 
 const { Dragger } = Upload;
 const { RangePicker } = DatePicker;
 
 export default function CreateTicketSection() {
     const [open, setOpen] = useState(false);
-
+    const { categories } = useSelector((store) => store.categories);
+    const { sites } = useSelector((store) => store.sites);
     const {
         register,
         handleSubmit,
@@ -54,26 +59,27 @@ export default function CreateTicketSection() {
 
         // Append dates separately
         formData.append(
-            "start_date",
+            "start",
             startDate ? moment(startDate.toISOString()).format("LLL") : ""
         );
         formData.append(
-            "end_date",
+            "end",
             endDate ? moment(endDate.toISOString()).format("LLL") : ""
         );
 
         try {
             // send via axios or fetch
-            await axios.post("/api/tickets", formData);
+            await store.dispatch(create_tickets_thunk(formData));
 
             alert("Ticket created!");
-            // reset();
+            reset();
             setOpen(false);
         } catch (err) {
             console.error("Submit error:", err);
         }
     }
 
+    console.log("sites", sites);
     return (
         <>
             <Button onClick={() => setOpen(true)}>Create Ticket</Button>
@@ -89,72 +95,42 @@ export default function CreateTicketSection() {
                 >
                     <div className="flex gap-4">
                         <div className="flex-1 flex flex-col gap-4">
+
+                             <Select
+                                label="Department"
+                                name="department"
+                                options={department_data}
+                                error={errors?.department?.message}
+                                register={register("department", {
+                                    required: "This field is required",
+                                })}
+                            />
                             <Select
                                 label="Category"
                                 name="category_id"
-                                options={[
-                                    { label: "Sample Category", value: "1" },
-                                ]}
+                                options={categories.map((res) => ({
+                                    label: res.name,
+                                    value: res.id,
+                                }))}
                                 error={errors?.category_id?.message}
                                 register={register("category_id", {
                                     required: "This field is required",
                                 })}
                             />
 
-                            <div>
-                                <Controller
-                                    control={control}
-                                    name="date_range"
-                                    rules={{
-                                        required: "Please select a date range",
-                                    }}
-                                    render={({ field }) => (
-                                        <RangePicker
-                                            size="large"
-                                            className="w-full border border-gray-900"
-                                            showTime
-                                            onChange={field.onChange}
-                                            value={field.value}
-                                        />
-                                    )}
-                                />
-                                {errors?.date_range && (
-                                    <p className="text-sm text-red-600 mt-1">
-                                        {errors.date_range.message}
-                                    </p>
-                                )}
-                            </div>
+                           
 
-                            {/* <Input
-                                label="Site"
-                                type="number"
-                                name="site_id"
-                                error={errors?.site_id?.message}
-                                register={register("site_id", {
-                                    required: "This field is required",
-                                })}
-                            /> */}
                             <Select
                                 label="Site"
                                 name="site_id"
-                                options={[
-                                    {
-                                        label: "Carcar 1st Site",
-                                        value: "Carcar 1st Site",
-                                    },
-                                    {
-                                        label: "San Carlos 2nd Site",
-                                        value: "San Carlos 2nd Site",
-                                    },
-                                    {
-                                        label: "San Carlos 3rd Site",
-                                        value: "San Carlos 3rd Site",
-                                    },
-                                    {
-                                        label: "San Carlos 4th Site",
-                                        value: "San Carlos 4th Site",
-                                    },
-                                ]}
+                                options={[...sites]
+                                    .sort((a, b) =>
+                                        a.name.localeCompare(b.name)
+                                    )
+                                    .map((res) => ({
+                                        label: res.name,
+                                        value: res.id,
+                                    }))}
                                 error={errors?.site_id?.message}
                                 register={register("site_id", {
                                     required: "This field is required",
@@ -183,6 +159,39 @@ export default function CreateTicketSection() {
                                     required: "This field is required",
                                 })}
                             />
+
+                            <Input
+                                label="Station/Room etc."
+                                type="text"
+                                name="station"
+                                error={errors?.station?.message}
+                                register={register("station", {
+                                    required: "This field is required",
+                                })}
+                            />
+                            <div>
+                                <Controller
+                                    control={control}
+                                    name="date_range"
+                                    rules={{
+                                        required: "Please select a date range",
+                                    }}
+                                    render={({ field }) => (
+                                        <RangePicker
+                                            size="large"
+                                            className="w-full border border-gray-900"
+                                            showTime
+                                            onChange={field.onChange}
+                                            value={field.value}
+                                        />
+                                    )}
+                                />
+                                {errors?.date_range && (
+                                    <p className="text-sm text-red-600 mt-1">
+                                        {errors.date_range.message}
+                                    </p>
+                                )}
+                            </div>
                         </div>
 
                         <div className="flex-1 flex flex-col">

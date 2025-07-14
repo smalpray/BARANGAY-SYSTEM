@@ -46,13 +46,13 @@ export default function Input({
                 {/* Floating Label */}
                 <label
                     htmlFor={name}
-                    className={` absolute left-2.5 px-2.5 transition-all bg-white text-sm -top-3
+                    className={` absolute left-2.5 px-2.5 transition-all bg-white rounded-md text-sm -top-3
             peer-placeholder-shown:text-base
             peer-placeholder-shown:text-gray-500
             peer-placeholder-shown:top-2.5
             peer-focus:-top-3
             peer-focus:text-sm
-            peer-focus:text-blue-600 
+            peer-focus:text-black
           `}
                 >
                     {label}

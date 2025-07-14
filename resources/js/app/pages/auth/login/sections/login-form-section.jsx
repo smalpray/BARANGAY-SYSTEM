@@ -24,16 +24,19 @@ export default function LoginFormSection() {
           <body class="h-full">
           ```
         */}
-            <div className="flex h-screen flex-1">
-                <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+            <div className="flex bg-[url('/images/login_background.gif')] bg-cover bg-left md:bg-center h-screen flex-1">
+                <div className="flex flex-1 border-2 shadow-xl border-white my-3 rounded-lg m-5 p-2 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
                     <div className="mx-auto w-full max-w-sm lg:w-96">
                         <div>
-                            <img
-                                alt="Your Company"
-                                src="/images/logo.png"
-                                className="h-18 w-auto"
-                            />
-                            <h2 className="mt-8 text-2xl/9 font-bold tracking-tight text-gray-900">
+                            <div className="text-2xl font-black border-4 p-2 px-10 rounded-tr-3xl rounded-bl-3xl">
+                                <img
+                                    alt="Your Company"
+                                    src="/images/logo.png"
+                                    className="h-18 w-auto"
+                                />
+                            </div>
+
+                            <h2 className="mt-8 text-2xl/9 text-center font-bold tracking-tight text-white">
                                 Sign in to your account
                             </h2>
                         </div>
@@ -93,7 +96,7 @@ export default function LoginFormSection() {
                                             </div>
                                             <label
                                                 htmlFor="remember-me"
-                                                className="block text-sm/6 text-gray-900"
+                                                className="block text-sm/6 text-white"
                                             >
                                                 Remember me
                                             </label>
@@ -167,19 +170,18 @@ export default function LoginFormSection() {
                                             Google
                                         </span>
                                     </a>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="relative hidden w-0 flex-1 lg:block">
+                {/* <div className="relative hidden w-0 flex-1 lg:block">
                     <img
                         alt=""
                        src="/images/login_background.gif"
                         className="absolute inset-0 h-full"
                     />
-                </div>
+                </div> */}
             </div>
         </>
     );

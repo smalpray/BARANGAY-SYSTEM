@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +13,10 @@ Route::get('/user', function (Request $request) {
 
 
 Route::resource('tickets', TicketController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('sites', SiteController::class);
+Route::resource('accounts', AccountController::class);
+Route::get('get_account_by_department', [AccountController::class, 'get_account_by_department']);
 
 
 // Route::post('/chat', function (Request $request) {

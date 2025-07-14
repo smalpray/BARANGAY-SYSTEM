@@ -9,9 +9,9 @@ export function create_categories_service(data) {
     }
 }
 
-export function get_categories_service() {
+export function get_categories_service(department) {
     try {
-        const result = axios.get('/api/categories')
+        const result = axios.get('/api/categories?'+ new URLSearchParams(department).toString())
         return result
     } catch (error) {
 

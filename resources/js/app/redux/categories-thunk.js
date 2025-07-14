@@ -2,9 +2,9 @@ import { create_categories_service, get_categories_by_id_service, get_categories
 import { categoriesSlice } from "./categories-slice";
 
 
-export function get_categories_thunk() {
+export function get_categories_thunk(department) {
     return async function (dispatch, getState) {
-        const res = await get_categories_service()
+        const res = await get_categories_service(department)
         dispatch(categoriesSlice.actions.setCategories(res.data));
     };
 }

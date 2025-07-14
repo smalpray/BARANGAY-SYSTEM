@@ -19,24 +19,17 @@ Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
         return Inertia::render('administrator/dashboard/page');
     })->name('dashboard');
 
+
     Route::prefix('users')->group(function () {
-        Route::get('it_department', function () {
-            return Inertia::render('administrator/users/it_department/page');
-        });
-        Route::get('hr_department', function () {
-            return Inertia::render('administrator/users/hr_department/page');
-        });
-        Route::get('accounting_department', function () {
-            return Inertia::render('administrator/users/accounting_department/page');
-        });
-        Route::get('engagement', function () {
-            return Inertia::render('administrator/users/engagement/page');
-        });
-        Route::get('leaders', function () {
-            return Inertia::render('administrator/users/leaders/page');
+        Route::get('{type}', function () {
+            return Inertia::render('administrator/users/slug/page');
         });
     });
 
+    Route::get('ticketing/categories', function () {
+        return Inertia::render('administrator/ticketing/categories/page');
+    })->name('categories');
+    
     Route::prefix('ticketing/{slug}')->group(function () {
         Route::get('tickets', function () {
             return Inertia::render('administrator/ticketing/slug/tickets/page');
