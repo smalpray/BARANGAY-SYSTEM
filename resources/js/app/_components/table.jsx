@@ -20,7 +20,7 @@ const Table = ({ columns, data }) => {
           {data?.map((row, rowIndex) => (
             <tr key={rowIndex} className="hover:bg-gray-50">
               {columns.map((col, colIndex) => (
-                <td key={colIndex} className="px-6 py-4 text-sm text-gray-800">
+                <td key={colIndex} className="px-6 py-3 text-sm text-gray-800">
                   {row[col.accessor]}
                 </td>
               ))}

@@ -29,10 +29,13 @@ Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
     Route::get('ticketing/categories', function () {
         return Inertia::render('administrator/ticketing/categories/page');
     })->name('categories');
-    
+
     Route::prefix('ticketing/{slug}')->group(function () {
         Route::get('tickets', function () {
             return Inertia::render('administrator/ticketing/slug/tickets/page');
+        });
+        Route::get('{id}/details', function () {
+            return Inertia::render('administrator/ticketing/slug/details/page');
         });
         Route::get('dashboard', function () {
             return Inertia::render('administrator/ticketing/slug/dashboard/page');

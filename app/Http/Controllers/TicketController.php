@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Storage;
 
 class TicketController extends Controller
 {
+
+    public function show($ticket_id)
+    {
+        $ticket = Ticket::where('ticket_id', $ticket_id)->with(['assigned_to', 'user', 'category', 'site', 'activities','notes'])->first();
+        return response()->json($ticket, 200);
+    }
+
+
     public function index(Request $request)
     {
         $search = $request->query('search');

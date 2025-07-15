@@ -11,8 +11,6 @@ export default function CategoryTableSection() {
         { header: "Created At", accessor: "created_at" },
     ];
 
-    console.log("categories", categories);
-
     return (
         <>
             <Table

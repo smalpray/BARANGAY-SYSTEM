@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import store from "@/app/store/store";
 import { create_tickets_thunk } from "@/app/redux/ticket-thunk";
 import { department_data } from "@/app/lib/department-lib";
+import { get_categories_thunk } from "@/app/redux/categories-thunk";
 
 const { Dragger } = Upload;
 const { RangePicker } = DatePicker;
@@ -23,6 +24,7 @@ export default function CreateTicketSection() {
     const [open, setOpen] = useState(false);
     const { categories } = useSelector((store) => store.categories);
     const { sites } = useSelector((store) => store.sites);
+
     const {
         register,
         handleSubmit,
@@ -36,6 +38,14 @@ export default function CreateTicketSection() {
             date_range: null,
         },
     });
+
+    function select_department(value) {
+        store.dispatch(
+            get_categories_thunk({
+                department: value,
+            })
+        );
+    }
     async function submit_data(data) {
         const formData = new FormData();
 
@@ -79,7 +89,7 @@ export default function CreateTicketSection() {
         }
     }
 
-    console.log("sites", sites);
+    console.log("categories", categories);
     return (
         <>
             <Button onClick={() => setOpen(true)}>Create Ticket</Button>
@@ -95,8 +105,7 @@ export default function CreateTicketSection() {
                 >
                     <div className="flex gap-4">
                         <div className="flex-1 flex flex-col gap-4">
-
-                             <Select
+                            <Select
                                 label="Department"
                                 name="department"
                                 options={department_data}
@@ -104,6 +113,9 @@ export default function CreateTicketSection() {
                                 register={register("department", {
                                     required: "This field is required",
                                 })}
+                                onChange={(e) =>
+                                    select_department(e.target.value)
+                                }
                             />
                             <Select
                                 label="Category"
@@ -117,8 +129,6 @@ export default function CreateTicketSection() {
                                     required: "This field is required",
                                 })}
                             />
-
-                           
 
                             <Select
                                 label="Site"

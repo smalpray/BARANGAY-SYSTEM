@@ -12,6 +12,12 @@ export function department_slug(params) {
             .replace("_", " ");
 }
 
+
+export function ticket_id(params) {
+    return window.location.pathname
+            .split("/")[4];
+}
+
 export function department(params) {
     return queryParams.get("department")??'';
 }

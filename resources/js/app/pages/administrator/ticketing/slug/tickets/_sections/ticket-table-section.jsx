@@ -1,6 +1,9 @@
 import Table from "@/app/_components/table";
+import { department_slug } from "@/app/lib/search-lib";
+import { Link } from "@inertiajs/react";
 import moment from "moment";
 import React from "react";
+import { FcFinePrint } from "react-icons/fc";
 import { useSelector } from "react-redux";
 
 export default function TicketTableSection() {
@@ -21,12 +24,21 @@ export default function TicketTableSection() {
                 columns={columns}
                 data={tickets?.data?.map((res) => ({
                     requestor: res?.user?.name ?? "NONE",
-                    location:res.location,
+                    location: res.location,
                     date_created: moment(res.created_at).format("LLL"),
                     assigned_to: res?.assigned_to?.name ?? "NONE",
                     ticket_no: res.ticket_id,
                     status: res.status,
-                    action: <>Procceed</>,
+                    action: (
+                        <Link
+                            href={`/administrator/ticketing/${department_slug().replace(
+                                " ",
+                                "_"
+                            )}/${res.ticket_id}/details`}
+                        >
+                            <FcFinePrint className="h-6 w-6" />
+                        </Link>
+                    ),
                 }))}
             />
         </>

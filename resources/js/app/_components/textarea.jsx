@@ -11,6 +11,7 @@ export default function TextArea({
   disabled = false,
   error,
   className = "",
+  rows=4,
   ...rest
 }) {
   return (
@@ -25,7 +26,7 @@ export default function TextArea({
           placeholder=" "
           required={required}
           disabled={disabled}
-          rows={4}
+          rows={rows}
           className={`peer w-full px-5 pt-4 pb-2.5 text-black border border-gray-600 rounded-md bg-white placeholder-transparent focus:outline-none focus:border-blue-500 resize-none transition-all ${
             error ? "border-red-500" : ""
           } ${className}`}
