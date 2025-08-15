@@ -19,7 +19,7 @@ export default function Page() {
 
 
 function RecordsTable() {
-  
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -27,13 +27,13 @@ function RecordsTable() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
 
           {/* Header */}
-    <NewRecordSection/>
+          <NewRecordSection />
           {/* Controls */}
           <SearchSection />
           {/* Table */}
           <TableSection />
           {/* Footer */}
-          <DeleteButtonSection/>
+          <DeleteButtonSection />
         </div>
       </div>
     </div>

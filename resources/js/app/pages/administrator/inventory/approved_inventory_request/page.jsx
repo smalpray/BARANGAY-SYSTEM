@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CheckCircle, XCircle, Package, Filter, Eye, ArrowLeft } from 'lucide-react';
 import Layout from '../../layout';
+import InventoryTabsSection from './sections/inventory-tabs-section';
 export default function Page() {
   return (
     <Layout>
@@ -10,7 +11,6 @@ export default function Page() {
 }
 
 const BorrowRequestsManager = () => {
-  const [selectedFilter, setSelectedFilter] = useState('Pending');
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [declineReason, setDeclineReason] = useState('');
   const [returnCondition, setReturnCondition] = useState('Good');
@@ -67,8 +67,6 @@ const BorrowRequestsManager = () => {
       borrowDate: '2024-08-01'
     }
   ]);
-
-  const filteredRequests = requests.filter(request => request.status === selectedFilter);
 
   const handleApprove = (requestId) => {
     setRequests(requests.map(request => 
@@ -313,84 +311,8 @@ const BorrowRequestsManager = () => {
       {/* Filter Tabs */}
       <div className="mb-6">
         <div className="flex flex-wrap gap-2">
-          {['Pending', 'Approved', 'Declined', 'Returned'].map((status) => (
-            <button
-              key={status}
-              onClick={() => setSelectedFilter(status)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-                selectedFilter === status
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
-              }`}
-            >
-              <Filter size={16} />
-              {status}
-              <span className="bg-opacity-20 bg-white px-2 py-1 rounded-full text-xs">
-                {requests.filter(r => r.status === status).length}
-              </span>
-            </button>
-          ))}
+          <InventoryTabsSection />
         </div>
-      </div>
-
-      {/* Requests List */}
-      <div className="space-y-4">
-        {filteredRequests.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-lg border">
-            <Package size={48} className="mx-auto text-gray-400 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No {selectedFilter.toLowerCase()} requests</h3>
-            <p className="text-gray-600">There are currently no requests with {selectedFilter.toLowerCase()} status.</p>
-          </div>
-        ) : (
-          filteredRequests.map((request) => (
-            <div key={request.id} className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow">
-              <div className="p-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-lg font-medium text-gray-900">{request.residentName}</h3>
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(request.status)}`}>
-                        {request.status}
-                      </span>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600 mb-4">
-                      <div>
-                        <span className="font-medium">Item:</span> {request.itemName}
-                      </div>
-                      <div>
-                        <span className="font-medium">Quantity:</span> {request.quantity}
-                      </div>
-                      <div>
-                        <span className="font-medium">Date Needed:</span> {request.dateNeeded}
-                      </div>
-                    </div>
-                    
-                    <p className="text-gray-700 text-sm">
-                      <span className="font-medium">Reason:</span> {request.reason}
-                    </p>
-                  </div>
-                  
-                  <button 
-                    onClick={() => setSelectedRequest(request)}
-                    className="flex items-center gap-2 px-4 py-2 text-blue-600 border border-blue-200 rounded-lg hover:bg-blue-50 font-medium ml-4"
-                  >
-                    <Eye size={16} />
-                    View Details
-                  </button>
-                </div>
-                
-                {request.status === 'Pending' && request.availableStock < request.quantity && (
-                  <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-red-800 text-sm font-medium">
-                      ⚠️ Insufficient stock: {request.availableStock} available, {request.quantity} requested
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))
-        )}
       </div>
     </div>
   );

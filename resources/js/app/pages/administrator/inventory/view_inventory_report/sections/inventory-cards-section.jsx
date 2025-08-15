@@ -1,13 +1,4 @@
-import React, { useState } from "react";
-import Layout from "../layout";
-import Button from "@/app/_components/button";
-import Input from "@/app/_components/input";
-import { H1Icon, UserCircleIcon } from "@heroicons/react/24/outline";
-import TextArea from "@/app/_components/textarea";
-import Radio from "@/app/_components/radio";
-import Modal from "@/Components/Modal";
-import DashboardCardSection from "./sections/dashboard-card-section";
-import Card from "@/app/_components/card";
+import React, { useState } from 'react'
 import {
     Package,
     FileText,
@@ -20,14 +11,11 @@ import {
     Download,
     BarChart3
 } from 'lucide-react';
+import Card from '@/app/_components/card';
 
-export default function Page() {
-    const [open, setOpen] = useState(false);
+export default function InventoryCardsSection() {
     return (
-        <Layout>
-            <Button variant="primary" outline>
-                click me
-            </Button>
+        <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
 
                 <Card
@@ -60,6 +48,6 @@ export default function Page() {
 
 
             </div>
-        </Layout>
-    );
+        </>
+    )
 }
