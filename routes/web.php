@@ -14,39 +14,120 @@ Route::get('/', function () {
 })->name('login');
 
 
+// Register Route
+Route::get('/auth/register', function () {
+    return Inertia::render('auth/register/page');
+})->name('register');
+
 Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('administrator/dashboard/page');
     })->name('dashboard');
 
 
-    Route::prefix('users')->group(function () {
+    Route::prefix('barangay_official')->group(function () {
+        Route::get('new_official', function () {
+            return Inertia::render('administrator/barangay_official/new_official/page');
+        });
+          Route::get('list_of_official', function () {
+            return Inertia::render('administrator/barangay_official/list_of_official/page');
+        });
+         Route::get('official_end_term', function () {
+            return Inertia::render('administrator/barangay_official/official_end_term/page');
+        });
+    });
+    
+    Route::prefix('resident')->group(function () {
+        Route::get('archive_resident', function () {
+            return Inertia::render('administrator/resident/archive_resident/page');
+        });
+          Route::get('list_of_resident', function () {
+            return Inertia::render('administrator/resident/list_of_resident/page');
+        });
+         Route::get('new_resident', function () {
+            return Inertia::render('administrator/resident/new_resident/page');
+        });
+    });
+
+    Route::prefix('certificate')->group(function () {
+        Route::get('certificate_layout', function () {
+            return Inertia::render('administrator/certificate/certificate_layout/page');
+        });
+          Route::get('certificate_pending', function () {
+            return Inertia::render('administrator/certificate/certificate_pending/page');
+        });
+        
+    });
+
+
+     Route::prefix('users')->group(function () {
         Route::get('{type}', function () {
             return Inertia::render('administrator/users/slug/page');
         });
     });
 
-    Route::get('ticketing/categories', function () {
-        return Inertia::render('administrator/ticketing/categories/page');
-    })->name('categories');
-
-    Route::prefix('ticketing/{slug}')->group(function () {
-        Route::get('tickets', function () {
-            return Inertia::render('administrator/ticketing/slug/tickets/page');
+    Route::prefix('user')->group(function () {
+        Route::get('administrator_user', function () {
+            return Inertia::render('administrator/user/administrator_user/page');
         });
-        Route::get('{id}/details', function () {
-            return Inertia::render('administrator/ticketing/slug/details/page');
-        });
-        Route::get('dashboard', function () {
-            return Inertia::render('administrator/ticketing/slug/dashboard/page');
-        });
-        Route::get('stats', function () {
-            return Inertia::render('administrator/ticketing/slug/stats/page');
-        });
-        Route::get('users', function () {
-            return Inertia::render('administrator/ticketing/slug/users/page');
+          Route::get('resident_user', function () {
+            return Inertia::render('administrator/user/resident_user/page');
         });
     });
+
+     Route::prefix('family_profile')->group(function () {
+        Route::get('create_new_family', function () {
+            return Inertia::render('administrator/family_profile/create_new_family/page');
+        });
+          Route::get('add_family_members', function () {
+            return Inertia::render('administrator/family_profile/add_family_members/page');
+        });
+         Route::get('household_details', function () {
+            return Inertia::render('administrator/family_profile/household_details/page');
+        });
+    });
+
+
+
+    Route::get('position', function () {
+       return Inertia::render('administrator/position/page');
+        });
+
+        Route::get('blotter_record', function () {
+       return Inertia::render('administrator/blotter_record/page');
+        });
+
+        Route::get('reports', function () {
+       return Inertia::render('administrator/reports/page');
+
+        });
+
+       Route::prefix('inventory')->group(function () {
+        Route::get('list_of_inventory', function () {
+            return Inertia::render('administrator/inventory/list_of_inventory/page');
+        });
+          Route::get('approved_inventory_request', function () {
+            return Inertia::render('administrator/inventory/approved_inventory_request/page');
+        });
+         Route::get('view_inventory_report', function () {
+            return Inertia::render('administrator/inventory/view_inventory_report/page');
+        });
+
+    });
+         Route::get('system_logs', function () {
+       return Inertia::render('administrator/system_logs/page');
+        });
+
+        Route::get('backup_reports', function () {
+       return Inertia::render('administrator/backup_reports/page');
+        });
+
+
+
+
+
+
+   
 
     Route::get('settings', function () {
         return Inertia::render('administrator/settings/page');

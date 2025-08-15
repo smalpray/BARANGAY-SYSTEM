@@ -17,8 +17,8 @@ export default function SidebarMobileSection({
             <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-3 pb-4">
                 <div className="flex h-16 justify-center p-3  items-center">
                     <img
-                        className="h-full w-full"
-                        src="/images/logo.png"
+                        className="h-auto w-max"
+                        src="/images/Blogo.png"
                         alt="Your Company"
                     />
                 </div>
@@ -33,7 +33,7 @@ export default function SidebarMobileSection({
                                                 href={item.href}
                                                 className={classNames(
                                                     item.current
-                                                        ? "bg-red-500 text-white"
+                                                        ? "bg-blue-500 text-white"
                                                         : "text-gray-700 hover:bg-gray-50 hover:text-red-500",
                                                     "group flex gap-x-3 rounded-md p-2 py-3 text-sm/6 font-semibold"
                                                 )}
