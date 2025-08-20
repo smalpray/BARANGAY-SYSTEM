@@ -1,11 +1,17 @@
+import Button from '@/app/_components/button';
+import TextArea from '@/app/_components/textarea';
 import { ArrowLeft, Eye } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-export default function InventoryTableDetailsSection({ data }) {
+export default function InventoryTableDetailsSection({ data, tab }) {
     const [selectedRequest, setSelectedRequest] = useState('');
     const [show, setShow] = useState(false)
     const [showDeclineModal, setShowDeclineModal] = useState(false);
     const [showReturnModal, setShowReturnModal] = useState(false);
+
+    useEffect(() => {
+        setShow(false)
+    }, [tab])
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -22,8 +28,8 @@ export default function InventoryTableDetailsSection({ data }) {
                 !show && <div className="flex-1 w-full">
                     <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-lg font-medium text-gray-900">{data.residentName}</h3>
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(data.status)}`}>
-                            {data.status}
+                        <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(tab)}`}>
+                            {tab}
                         </span>
                     </div>
 
@@ -69,11 +75,25 @@ export default function InventoryTableDetailsSection({ data }) {
 
                     {/* Request Details */}
                     <div className="bg-white border rounded-lg shadow-sm">
-                        <div className="border-b px-6 py-4">
-                            <h2 className="text-xl font-semibold text-gray-900">Request Details</h2>
-                            <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium border mt-2 ${getStatusColor(selectedRequest.status)}`}>
-                                {selectedRequest.status}
-                            </span>
+                        <div className="flex items-center justify-between border-b px-6 py-4">
+                            <div>
+                                <h2 className="text-xl font-semibold text-gray-900">Request Details</h2>
+                                <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium border mt-2 ${getStatusColor(selectedRequest.status)}`}>
+                                    {tab}
+                                </span>
+                            </div>
+                            <div>
+                                {
+                                    tab == "Pending" && <Button
+                                        variant='success'
+                                        size='lg'
+                                        onClick={() => alert()}
+                                    >
+                                        APRROVED
+                                    </Button>
+                                }
+
+                            </div>
                         </div>
 
                         <div className="p-6 space-y-4">
@@ -100,12 +120,29 @@ export default function InventoryTableDetailsSection({ data }) {
                                 <p className="text-gray-700"><span className="font-medium">Date Needed:</span> {selectedRequest.dateNeeded}</p>
                             </div>
 
-                            {selectedRequest.declineReason && (
-                                <div>
-                                    <h3 className="font-medium text-gray-900 mb-2">Decline Reason</h3>
-                                    <p className="text-red-700">{selectedRequest.declineReason}</p>
+                            {
+                                tab == 'Pending' && <div>
+                                    <div className='flex w-full gap-3 items-center justify-end'>
+                                        <TextArea
+                                            rows={2}
+                                            label="Write reason to decline"
+
+                                        />
+                                    </div>
+
+                                    <div className='flex items-center justify-end'>
+                                        <Button
+                                            variant='danger'
+                                            size='lg'
+                                            className='w-1/4'
+                                            onClick={() => alert()}
+                                        >
+                                            Decline Reason
+                                        </Button>
+                                    </div>
                                 </div>
-                            )}
+                            }
+
                         </div>
 
                         {/* Action Buttons */}

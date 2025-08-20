@@ -2,7 +2,7 @@ import { Eye, Package } from 'lucide-react'
 import React, { useState } from 'react'
 import InventoryTableDetailsSection from './inventory-table-details-section';
 
-export default function InventoryPendingTableSection() {
+export default function InventoryTableSection({ tab }) {
     const [selectedFilter, setSelectedFilter] = useState('Pending');
     const [requests, setRequests] = useState([
         {
@@ -77,8 +77,10 @@ export default function InventoryPendingTableSection() {
                     <div key={request.id} className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow">
                         <div className="p-6">
                             <div className="flex items-start justify-between">
-                                
-                                <InventoryTableDetailsSection data={request}/>
+
+                                <InventoryTableDetailsSection
+                                    tab={tab}
+                                    data={request} />
                             </div>
 
                             {request.status === 'Pending' && request.availableStock < request.quantity && (

@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-    Package,
-    FileText,
-    Users,
-    AlertTriangle,
-    TrendingDown,
-    Clock,
-    Wrench,
-    History,
-    Download,
-    BarChart3
-} from 'lucide-react';
+
 
 export default function Card({ icon, label, value, color }) {
 

@@ -131,15 +131,15 @@ export default function Layout({ children }) {
             children: [
                 {
                     name: "Resident",
-                    href: "/administrator/user/administrator_user",
+                    href: "/administrator/user/resident_user",
                     icon: <FcReadingEbook  className="h-6 w-6" />,
-                    current: isCurrentSub == "administrator_user",
+                    current: isCurrentSub == "resident_user",
                 },
                  {
                     name: "Administrator",
-                    href: "/administrator/user/resident_user",
+                    href: "/administrator/user/administrator_user",
                     icon: <FcCustomerSupport  className="h-6 w-6" />,
-                    current: isCurrentSub == "resident_user",
+                    current: isCurrentSub == "administrator_user",
                 },
             ]
         },

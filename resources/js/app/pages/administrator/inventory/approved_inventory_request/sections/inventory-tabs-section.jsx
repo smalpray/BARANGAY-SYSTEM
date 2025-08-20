@@ -1,6 +1,6 @@
 import { Eye, Filter } from 'lucide-react';
 import React, { useState } from 'react'
-import InventoryPendingTableSection from './inventory-pending-table-section';
+import InventoryTableSection from './inventory-table-section';
 
 export default function InventoryTabsSection() {
   const [selectedFilter, setSelectedFilter] = useState('Pending');
@@ -75,10 +75,9 @@ export default function InventoryTabsSection() {
             </button>
           ))}
         </div>
-        {
-          selectedFilter == 'Pending' && <InventoryPendingTableSection />
-        }
-
+        <InventoryTableSection
+          tab={selectedFilter}
+        />
       </div>
 
     </>

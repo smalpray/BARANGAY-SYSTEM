@@ -4,10 +4,10 @@ import Button from '@/app/_components/button';
 import Input from '@/app/_components/input';
 import { Plus, User, Home, MapPin, Hash, Users } from 'lucide-react';
 import CreateFamSection from './sections/create-fam-section';
-import FamHoldSection from './sections/fam-hold-section';
-import HeadFamSection from './sections/head-fam-section';
-import AddressSection from './sections/address-section';
-import OwnershipSection from './sections/ownership-section';
+// import FamHoldSection from './sections/fam-hold-section';
+// import HeadFamSection from './sections/head-fam-section';
+// import AddressSection from './sections/address-section';
+// import OwnershipSection from './sections/ownership-section';
 import moment from 'moment';
 
 
