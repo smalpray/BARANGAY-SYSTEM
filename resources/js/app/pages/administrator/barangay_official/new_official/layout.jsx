@@ -2,7 +2,7 @@ import Input from '@/app/_components/input'
 import Select from '@/app/_components/select'
 import React, { useState } from 'react'
 
-export default function NewOfficialLayout({ children }) {
+export default function NewOfficialLayout({ children, register, errors }) {
 
     const [formData, setFormData] = useState({
         // Basic Info
@@ -52,7 +52,7 @@ export default function NewOfficialLayout({ children }) {
     return (
 
         <>
-          
+
             <div className="lg:col-span-1 space-y-6">
                 <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
                     <div className="w-24 h-24 bg-gray-100 rounded-lg mx-auto mb-4 flex items-center justify-center border border-gray-200">
@@ -63,10 +63,10 @@ export default function NewOfficialLayout({ children }) {
                 </div>
                 <div className="space-y-2">
                     <Select
+                        register={register("position", { required: "Field is required" })}
                         name="position"
                         label="Position"
-                        value={formData.position}
-                        onChange={handleInputChange}
+                        error={errors?.position?.message}
                         options={[
                             { value: "barangay-captain", label: "Barangay Captain" },
                             { value: "barangay-kagawad", label: "Barangay Kagawad" },
@@ -82,28 +82,31 @@ export default function NewOfficialLayout({ children }) {
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                         <Input
+                            register={register("startDate", { required: "Field is required" })}
+                            error={errors?.startDate?.message}
                             label="Start"
                             placeholder="Start date"
                             type="date"
                             name="startDate"
-                            value={formData.startDate}
-                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="space-y-2">
                         <Input
+                            register={register("endDate", { required: "Field is required" })}
+                            error={errors?.endDate?.message}
                             label="End"
                             placeholder="End date"
                             type="date"
                             name="endDate"
-                            value={formData.endDate}
-                            onChange={handleInputChange}
+
                         />
                     </div>
                 </div>
 
                 <div className="space-y-2">
                     <Select
+                        register={register("voters", { required: "Field is required" })}
+                        error={errors?.voters?.message}
                         name="voters"
                         label="Voters Status"
                         value={formData.voters}
@@ -116,10 +119,11 @@ export default function NewOfficialLayout({ children }) {
                 </div>
                 <div className="space-y-2">
                     <Input
+                        register={register("dateOfBirth", { required: "Field is required" })}
+                        error={errors?.dateOfBirth?.message}
                         type="date"
                         name="dateOfBirth"
-                        value={formData.dateOfBirth}
-                        onChange={handleInputChange}
+
                         label="Date of Birth"
                     />
                 </div>
@@ -127,31 +131,34 @@ export default function NewOfficialLayout({ children }) {
 
                 <div className="w-full">
                     <Input
+                        register={register("placeOfBirth", { required: "Field is required" })}
+                        error={errors?.placeOfBirth?.message}
                         label="Place of Birth"
                         placeholder="Enter Place of Birth"
                         type="text"
                         name="placeOfBirth"
-                        value={formData.placeOfBirth}
-                        onChange={handleInputChange}
+
                     />
                 </div>
 
                 <div className="w-full">
                     <Input
+                        register={register("pwd", { required: "Field is required" })}
+                        error={errors?.pwd?.message}
                         label="PWD"
                         placeholder="Enter PWD"
                         type="text"
                         name="pwd"
-                        value={formData.pwd}
-                        onChange={handleInputChange}
+
                     />
                 </div>
                 <div className="space-y-2">
                     <Select
+                        register={register("singleParent", { required: "Field is required" })}
+                        error={errors?.singleParent?.message}
                         name="singleParent"
                         label="Single Parent"
-                        value={formData.singleParent}
-                        onChange={handleInputChange}
+
                         options={[
                             { value: "", label: "Select Status" },
                             { value: "yes", label: "Yes" },

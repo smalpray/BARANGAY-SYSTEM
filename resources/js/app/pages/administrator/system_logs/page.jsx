@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '../layout';
 import { FileText, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import SearchSystemLogsSection from './sections/search-system-logs-section';
+import TableSystemLogsSection from './sections/table-system-logs-section';
+import PaginationSystemLogsSection from './sections/pagination-system-logs-section';
 
 export default function Page() {
   return (
@@ -98,7 +101,7 @@ const SystemLogs = () => {
   const generatePageNumbers = () => {
     const pages = [];
     const maxVisiblePages = 5;
-    
+
     if (totalPages <= maxVisiblePages) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
@@ -146,7 +149,7 @@ const SystemLogs = () => {
           <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <span className="text-gray-700">Rows per page:</span>
-              <select 
+              <select
                 value={rowsPerPage}
                 onChange={(e) => {
                   setRowsPerPage(Number(e.target.value));
@@ -160,116 +163,17 @@ const SystemLogs = () => {
                 <option value={100}>100</option>
               </select>
             </div>
-
-            <div className="flex items-center gap-2">
-              <span className="text-gray-700">SEARCH:</span>
-              <div className="relative">
-                <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="border border-gray-300 rounded pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Search logs..."
-                />
-              </div>
-            </div>
+            <SearchSystemLogsSection />
           </div>
 
           {/* Table */}
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-blue-50 border-b border-gray-200">
-                <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-blue-900 cursor-pointer hover:bg-blue-100 transition-colors w-20">
-                    # ↕️
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-blue-900 cursor-pointer hover:bg-blue-100 transition-colors">
-                    Message ↕️
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-blue-900 cursor-pointer hover:bg-blue-100 transition-colors w-48">
-                    Date ↕️
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {currentLogs.map((log, index) => {
-                  const messageType = getMessageType(log.message);
-                  const messageColor = getMessageColor(messageType);
-                  
-                  return (
-                    <tr key={log.id} className={`hover:bg-blue-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                      <td className="px-6 py-4 text-gray-900 font-medium">
-                        {log.id}
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className={`px-2 py-1 rounded text-sm font-medium ${messageColor}`}>
-                          {log.message}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-gray-700 font-mono text-sm">
-                        {log.date}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <TableSystemLogsSection />
           </div>
 
           {/* Footer */}
           <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center">
-            <div className="text-sm text-gray-700">
-              Showing {startIndex + 1} to {endIndex} of {totalEntries} entries
-            </div>
-            <div className="flex items-center gap-1">
-              <button 
-                onClick={() => setCurrentPage(1)}
-                disabled={currentPage === 1}
-                className="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronsLeft size={16} />
-              </button>
-              <button 
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronLeft size={16} />
-              </button>
-              
-              {generatePageNumbers().map((page, index) => (
-                <button
-                  key={index}
-                  onClick={() => typeof page === 'number' && setCurrentPage(page)}
-                  className={`px-3 py-1 text-sm transition-colors ${
-                    page === currentPage
-                      ? 'bg-blue-600 text-white rounded'
-                      : page === '...'
-                      ? 'text-gray-400 cursor-default'
-                      : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded'
-                  }`}
-                  disabled={page === '...'}
-                >
-                  {page}
-                </button>
-              ))}
-              
-              <button 
-                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-                className="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronRight size={16} />
-              </button>
-              <button 
-                onClick={() => setCurrentPage(totalPages)}
-                disabled={currentPage === totalPages}
-                className="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronsRight size={16} />
-              </button>
-            </div>
+            <PaginationSystemLogsSection />
           </div>
         </div>
       </div>

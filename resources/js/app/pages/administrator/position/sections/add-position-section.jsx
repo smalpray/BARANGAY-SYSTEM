@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
 import { Plus, X } from "lucide-react";
+import Button from '@/app/_components/button';
 
-// Mock Button component since we can't import the actual one
-const Button = ({ children, onClick, className, type = "button", ...props }) => (
-  <button 
-    type={type}
-    onClick={onClick} 
-    className={className}
-    {...props}
-  >
-    {children}
-  </button>
-);
+
 
 // Modal Component
 const AddPositionModal = ({ isOpen, onClose, onSubmit }) => {
@@ -159,7 +150,8 @@ export default function AddPositionSection() {
       <div className="flex justify-end items-center">
         <Button
           onClick={handleAddPosition}
-          className="flex items-center gap-2 bg-blue-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
+          className="flex items-center gap-2  py-2 px-4 rounded-md transition-colors duration-200 "
+          variant="primary"
         >
           <Plus size={16} />
           ADD POSITION

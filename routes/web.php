@@ -8,10 +8,20 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect('/administrator/dashboard');
+        $user = Auth::user(); // ✅ Get the logged-in user
+
+        if ($user->role === 'admin') {
+            return redirect('/administrator/dashboard');
+        } elseif ($user->role === 'resident') {
+            return redirect('/resident-portal/dashboard');
+        }
     }
+
+    // If not logged in → go to login page
     return Inertia::render('auth/login/page');
 })->name('login');
+
+
 
 
 // Register Route

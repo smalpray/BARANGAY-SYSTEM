@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layers, Filter, RotateCcw, Printer, ChevronLeft, ChevronRight } from 'lucide-react';
 import Layout from '../layout';
+import SearchReportSection from './sections/search-report-section';
 
 export default function Page() {
   return (
@@ -56,128 +57,12 @@ function ResidentReport() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="">
         {/* Header */}
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Resident Report</h1>
         
         {/* Filter Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            
-            {/* VOTERS */}
-            <div className="flex items-center gap-3">
-              <label className="bg-blue-600 text-white px-4 py-2 rounded font-medium min-w-fit">
-                VOTERS
-              </label>
-              <select 
-                className="flex-1 border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={filters.voters}
-                onChange={(e) => handleFilterChange('voters', e.target.value)}
-              >
-                <option value="">--SELECT VOTERS--</option>
-                <option value="YES">YES</option>
-                <option value="NO">NO</option>
-              </select>
-            </div>
-
-            {/* AGE */}
-            <div className="flex items-center gap-3">
-              <label className="bg-blue-600 text-white px-4 py-2 rounded font-medium min-w-fit">
-                AGE
-              </label>
-              <input 
-                type="text"
-                placeholder="Enter age"
-                className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={filters.age}
-                onChange={(e) => handleFilterChange('age', e.target.value)}
-              />
-            </div>
-
-            {/* STATUS */}
-            <div className="flex items-center gap-3">
-              <label className="bg-blue-600 text-white px-4 py-2 rounded font-medium min-w-fit">
-                STATUS
-              </label>
-              <select 
-                className="flex-1 border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={filters.status}
-                onChange={(e) => handleFilterChange('status', e.target.value)}
-              >
-                <option value="">--SELECT STATUS--</option>
-                <option value="ACTIVE">ACTIVE</option>
-                <option value="INACTIVE">INACTIVE</option>
-              </select>
-            </div>
-
-            {/* PWD */}
-            <div className="flex items-center gap-3">
-              <label className="bg-blue-600 text-white px-4 py-2 rounded font-medium min-w-fit">
-                PWD
-              </label>
-              <select 
-                className="flex-1 border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={filters.pwd}
-                onChange={(e) => handleFilterChange('pwd', e.target.value)}
-              >
-                <option value="">--SELECT PWD--</option>
-                <option value="YES">YES</option>
-                <option value="NO">NO</option>
-              </select>
-            </div>
-
-            {/* SINGLE PARENT */}
-            <div className="flex items-center gap-3">
-              <label className="bg-blue-600 text-white px-4 py-2 rounded font-medium min-w-fit">
-                SINGLE PARENT
-              </label>
-              <select 
-                className="flex-1 border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={filters.singleParent}
-                onChange={(e) => handleFilterChange('singleParent', e.target.value)}
-              >
-                <option value="">--SELECT PARENT STATUS--</option>
-                <option value="YES">YES</option>
-                <option value="NO">NO</option>
-              </select>
-            </div>
-
-            {/* SENIOR */}
-            <div className="flex items-center gap-3">
-              <label className="bg-blue-600 text-white px-4 py-2 rounded font-medium min-w-fit">
-                SENIOR
-              </label>
-              <select 
-                className="flex-1 border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={filters.senior}
-                onChange={(e) => handleFilterChange('senior', e.target.value)}
-              >
-                <option value="">--SELECT SENIOR--</option>
-                <option value="YES">YES</option>
-                <option value="NO">NO</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Filter Buttons */}
-          <div className="flex gap-4 justify-center">
-            <button 
-              onClick={handleFilter}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded flex items-center gap-2 transition-colors"
-            >
-              <Filter size={16} />
-              FILTER
-            </button>
-            <button 
-              onClick={handleReset}
-              className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded flex items-center gap-2 transition-colors"
-            >
-              <RotateCcw size={16} />
-              RESET
-            </button>
-          </div>
-        </div>
-
+        <SearchReportSection/>
         {/* Print Button */}
         <div className="mb-4">
           <button 

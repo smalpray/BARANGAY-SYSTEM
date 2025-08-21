@@ -71,15 +71,15 @@ function PositionManagementTable() {
 
   return (
     <div className="bg-gray-50 min-h-screen p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className=" space-y-6">
         {/* Header */}
-        <AddPositionSection/>
+        <AddPositionSection />
 
         {/* Search */}
-        
-<SearchPosiSection/>
+
+        <SearchPosiSection />
         {/* Table */}
-        <TableSection1/>
+        <TableSection1 />
       </div>
     </div>
   );

@@ -12,21 +12,48 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('barangay_officials', function (Blueprint $table) {
-            $table->id();
-            $table->string('id')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('middle_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('email_verified_at')->nullable();
+             $table->id();
+
+            // Basic Info
+            $table->string('position')->nullable();
+            $table->date('startDate')->nullable();
+            $table->date('endDate')->nullable();
+            $table->string('voters')->nullable();
+            $table->date('dateOfBirth')->nullable();
+            $table->string('placeOfBirth')->nullable();
+            $table->boolean('pwd')->nullable();
+            $table->boolean('singleParent')->nullable();
+            $table->string('firstName')->nullable();
+            $table->string('middleName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('suffix')->nullable();
+            $table->string('gender')->default('Male')->nullable();
+            $table->string('civilStatus')->default('Single')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('nationality')->nullable();
+
+            // Other Info (Address)
+            $table->string('municipality')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('barangay')->nullable();
+            $table->string('houseNumber')->nullable();
+            $table->string('street')->nullable();
+            $table->string('address')->nullable();
+            $table->string('contactNumber')->nullable();
+            $table->string('emailAddress')->nullable();
+
+            // Guardian
+            $table->string('fatherName')->nullable();
+            $table->string('motherName')->nullable();
+            $table->string('guardianName')->nullable();
+            $table->string('guardianContact')->nullable();
+
+            // Account
             $table->string('username')->nullable();
-            $table->string('user_type')->nullable();
-            $table->string('contact')->nullable();
-            $table->string('image')->nullable();
             $table->string('password')->nullable();
-            $table->string('remember_token')->nullable();
-            $table->string('create_at')->nullable();
-            $table->string('updated_at')->nullable();
+            $table->string('confirmPassword')->nullable();
+
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

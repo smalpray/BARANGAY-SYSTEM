@@ -44,7 +44,7 @@ export default function Layout({ children }) {
 
        
         {
-            name: "Barangay Officials",
+            name: "Barangay Residents",
             href: "#",
             icon: <FcConferenceCall className="h-6 w-6" />,
             current: isCurrentMain == "barangay_official",
@@ -69,15 +69,6 @@ export default function Layout({ children }) {
                     icon: <FcDataRecovery className="h-6 w-6" />,
                     current: isCurrentSub == "official_end_term",
                 },
-            ],
-        },
-
-         {
-            name: "Residents",
-            href: "#",
-            icon: <FcHome className="h-6 w-6" />,
-            current: isCurrentMain == "resident",
-            children: [
                 {
                     name: "New Resident",
                     href: "/administrator/resident/new_resident",
@@ -99,6 +90,8 @@ export default function Layout({ children }) {
                 },
             ],
         },
+
+         
 
        {
                 name: "Certificate",

@@ -1,22 +1,25 @@
-import React, { useState } from 'react'
-import BasicInfoSection from './basic-info-section';
-import NewOfficialLayout from '../layout';
-import OtherInfoSection from './other-info-section';
-import GuardianSection from './guardian-section';
-import AccountSection from './account-section';
-import CreateNewOfficialSection from './create-new-official-section';
+import React, { useState } from "react";
+import BasicInfoSection from "./basic-info-section";
+import NewOfficialLayout from "../layout";
+import OtherInfoSection from "./other-info-section";
+import GuardianSection from "./guardian-section";
+import AccountSection from "./account-section";
+import { useForm } from "react-hook-form";
 
 export default function TabsSection() {
-
-    const [activeTab, setActiveTab] = useState('basic');
+    const [activeTab, setActiveTab] = useState("basic");
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const tabs = [
-        { id: 'basic', label: 'Basic Info' },
-        { id: 'other', label: 'Other Info' },
-        { id: 'guardian', label: 'Guardian' },
-        { id: 'account', label: 'Account' }
+        { id: "basic", label: "Basic Info" },
+        { id: "other", label: "Other Info" },
+        { id: "guardian", label: "Guardian" },
+        { id: "account", label: "Account" },
     ];
-
 
     // const renderContent = () => {
     //   switch (activeTab) {
@@ -32,32 +35,81 @@ export default function TabsSection() {
     //       return renderBasicInfo();
     //   }
     // };
+
+    const onSubmit = (data) => {
+        console.log("Submitted Data:", data);
+        // send to API/backend here
+    };
     return (
-        <div className={`min-h-screen p-6 ${activeTab !== 'basic' ? 'bg-white-800' : 'bg-white-50'}`}>
-            <div className="max-w-7xl mx-auto">
+        <div
+            className={`min-h-screen p-6 ${
+                activeTab !== "basic" ? "bg-white-800" : "bg-white-50"
+            }`}
+        >
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="max-w-7xl mx-auto"
+            >
                 <div className="flex mb-8">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`px-6 py-3 text-sm font-medium ${activeTab === tab.id
-                                ? 'bg-blue-600 text-white'
-                                : 'bg-white-600 text-white-300 hover:bg-white-500 border border-white-500'
-                                } ${tab.id === 'basic' ? 'rounded-l-lg' : ''
-                                } ${tab.id === 'account' ? 'rounded-r-lg' : ''
-                                }`}
+                            className={`px-6 py-3 text-sm font-medium ${
+                                activeTab === tab.id
+                                    ? "bg-blue-600 text-white"
+                                    : "bg-white-600 text-white-300 hover:bg-white-500 border border-white-500"
+                            } ${tab.id === "basic" ? "rounded-l-lg" : ""} ${
+                                tab.id === "account" ? "rounded-r-lg" : ""
+                            }`}
                         >
                             {tab.label}
                         </button>
                     ))}
                 </div>
-                <CreateNewOfficialSection />
+                <div className="py-6 flex items-center justify-end">
+                    <button
+                        type="submit"
+                        className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center space-x-2"
+                    >
+                        <span className="text-lg">+</span>
+                        <span>ADD NEW OFFICIAL</span>
+                    </button>
+                </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <NewOfficialLayout>
-                        {activeTab === 'basic' && <><BasicInfoSection /></>}
-                        {activeTab === 'other' && <><OtherInfoSection /></>}
-                        {activeTab === 'guardian' && <><GuardianSection /></>}
-                        {activeTab === 'account' && <><AccountSection /></>}
+                    <NewOfficialLayout errors={errors} register={register}>
+                        {activeTab === "basic" && (
+                            <>
+                                <BasicInfoSection
+                                    errors={errors}
+                                    register={register}
+                                />
+                            </>
+                        )}
+                        {activeTab === "other" && (
+                            <>
+                                <OtherInfoSection
+                                    errors={errors}
+                                    register={register}
+                                />
+                            </>
+                        )}
+                        {activeTab === "guardian" && (
+                            <>
+                                <GuardianSection
+                                    errors={errors}
+                                    register={register}
+                                />
+                            </>
+                        )}
+                        {activeTab === "account" && (
+                            <>
+                                <AccountSection
+                                    errors={errors}
+                                    register={register}
+                                />
+                            </>
+                        )}
                     </NewOfficialLayout>
                 </div>
                 {/* {activeTab !== 'basic' && (
@@ -70,7 +122,7 @@ export default function TabsSection() {
                         </button>
                     </div>
                 )} */}
-            </div>
+            </form>
         </div>
-    )
+    );
 }
