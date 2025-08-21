@@ -5,12 +5,16 @@ import OtherInfoSection from "./other-info-section";
 import GuardianSection from "./guardian-section";
 import AccountSection from "./account-section";
 import { useForm } from "react-hook-form";
+import { create_barangay_information_service } from "@/app/services/barangay-information-service";
+import Swal from "sweetalert2";
 
 export default function TabsSection() {
     const [activeTab, setActiveTab] = useState("basic");
     const {
         register,
         handleSubmit,
+        isSubmitting,
+        reset,
         formState: { errors },
     } = useForm();
 
@@ -36,9 +40,17 @@ export default function TabsSection() {
     //   }
     // };
 
-    const onSubmit = (data) => {
-        console.log("Submitted Data:", data);
-        // send to API/backend here
+    const onSubmit = async (data) => {
+        try {
+            await create_barangay_information_service(data);
+            await Swal.fire({
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            reset();
+        } catch (error) {}
     };
     return (
         <div
@@ -69,11 +81,14 @@ export default function TabsSection() {
                 </div>
                 <div className="py-6 flex items-center justify-end">
                     <button
+                        disabled={isSubmitting}
                         type="submit"
                         className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center space-x-2"
                     >
                         <span className="text-lg">+</span>
-                        <span>ADD NEW OFFICIAL</span>
+                        <span>
+                            {isSubmitting ? "Saving..." : "Save Official"}
+                        </span>
                     </button>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

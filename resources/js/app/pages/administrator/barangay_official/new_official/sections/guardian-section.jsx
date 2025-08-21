@@ -88,8 +88,6 @@ export default function GuardianSection({ register, errors }) {
                             label="Guardian Name"
                             type="text"
                             name="guardian"
-                            value={formData.guardian}
-                            onChange={handleInputChange}
                             className="w-full px-3 py-2"
                         />
                     </div>
@@ -102,8 +100,6 @@ export default function GuardianSection({ register, errors }) {
                             label="Contact"
                             type="tel"
                             name="contact"
-                            value={formData.contact}
-                            onChange={handleInputChange}
                             className="w-full px-3 py-2"
                         />
                     </div>

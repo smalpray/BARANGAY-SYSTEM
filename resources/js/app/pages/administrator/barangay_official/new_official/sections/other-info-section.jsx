@@ -2,51 +2,8 @@ import Input from "@/app/_components/input";
 import React, { useState } from "react";
 
 export default function OtherInfoSection({ register, errors }) {
-    const [formData, setFormData] = useState({
-        // Basic Info
-        position: "",
-        startDate: "",
-        endDate: "",
-        voters: "",
-        dateOfBirth: "",
-        placeOfBirth: "",
-        pwd: "",
-        singleParent: "",
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        suffix: "",
-        gender: "Male",
-        civilStatus: "Single",
-        religion: "",
-        nationality: "",
-        // Other Info (Address)
-        municipality: "",
-        zip: "",
-        barangay: "",
-        houseNumber: "",
-        street: "",
-        address: "",
-        contactNumber: "",
-        emailAddress: "",
-        // Guardian
-        fatherName: "",
-        motherName: "",
-        guardianName: "",
-        guardianContact: "",
-        // Account
-        username: "",
-        password: "",
-        confirmPassword: "",
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
+ 
+   
     return (
         <>
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">

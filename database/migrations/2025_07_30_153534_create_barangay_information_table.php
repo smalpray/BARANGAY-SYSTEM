@@ -16,13 +16,13 @@ return new class extends Migration
 
             // Basic Info
             $table->string('position')->nullable();
-            $table->date('startDate')->nullable();
-            $table->date('endDate')->nullable();
+            $table->string('startDate')->nullable();
+            $table->string('endDate')->nullable();
             $table->string('voters')->nullable();
-            $table->date('dateOfBirth')->nullable();
+            $table->string('dateOfBirth')->nullable();
             $table->string('placeOfBirth')->nullable();
-            $table->boolean('pwd')->nullable();
-            $table->boolean('singleParent')->nullable();
+            $table->string('pwd')->nullable();
+            $table->string('singleParent')->nullable();
             $table->string('firstName')->nullable();
             $table->string('middleName')->nullable();
             $table->string('lastName')->nullable();

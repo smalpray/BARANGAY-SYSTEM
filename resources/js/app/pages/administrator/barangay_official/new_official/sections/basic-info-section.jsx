@@ -91,8 +91,8 @@ export default function BasicInfoSection({register, errors }) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <Input
-                                    register={register("Religion", { required: "Field is required" })}
-                                    error={errors?.Religion?.message}
+                                    register={register("religion", { required: "Field is required" })}
+                                    error={errors?.religion?.message}
                                     label="Religion"
                                     type="text"
                                     name="religion"
