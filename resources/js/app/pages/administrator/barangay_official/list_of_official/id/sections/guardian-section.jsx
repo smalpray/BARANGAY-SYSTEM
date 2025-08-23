@@ -1,10 +1,12 @@
 import Input from "@/app/_components/input";
 import React, { useState } from "react";
 
-export default function GuardianResidentSection({ register, errors }) {
+export default function GuardianSection({ register, errors }) {
     const [formData, setFormData] = useState({
         // Basic Info
-
+        position: "",
+        startDate: "",
+        endDate: "",
         voters: "",
         dateOfBirth: "",
         placeOfBirth: "",
@@ -98,8 +100,6 @@ export default function GuardianResidentSection({ register, errors }) {
                             label="Contact"
                             type="tel"
                             name="contact"
-                            value={formData.contact}
-                            onChange={handleInputChange}
                             className="w-full px-3 py-2"
                         />
                     </div>

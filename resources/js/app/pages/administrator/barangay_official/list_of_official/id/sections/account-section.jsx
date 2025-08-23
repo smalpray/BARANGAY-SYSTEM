@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 
-export default function AccountResidentSection() {
+export default function AccountSection() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [formData, setFormData] = useState({
         // Basic Info
-        
+        position: '',
+        startDate: '',
+        endDate: '',
         voters: '',
         dateOfBirth: '',
         placeOfBirth: '',

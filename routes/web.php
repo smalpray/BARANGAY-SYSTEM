@@ -13,7 +13,7 @@ Route::get('/', function () {
         if ($user->role === 'admin') {
             return redirect('/administrator/dashboard');
         } elseif ($user->role === 'resident') {
-            return redirect('/resident-portal/dashboard');
+            return redirect('/resident-portal/dashboard/');
         }
     }
 
@@ -42,6 +42,9 @@ Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
           Route::get('list_of_official', function () {
             return Inertia::render('administrator/barangay_official/list_of_official/page');
         });
+         Route::get('list_of_official/{id}', function () {
+            return Inertia::render('administrator/barangay_official/list_of_official/id/page');
+        });
          Route::get('official_end_term', function () {
             return Inertia::render('administrator/barangay_official/official_end_term/page');
         });
@@ -54,9 +57,7 @@ Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
           Route::get('list_of_resident', function () {
             return Inertia::render('administrator/resident/list_of_resident/page');
         });
-         Route::get('new_resident', function () {
-            return Inertia::render('administrator/resident/new_resident/page');
-        });
+      
     });
 
     Route::prefix('certificate')->group(function () {

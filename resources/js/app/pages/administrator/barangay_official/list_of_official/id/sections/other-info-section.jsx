@@ -1,50 +1,9 @@
 import Input from "@/app/_components/input";
 import React, { useState } from "react";
 
-export default function OtherInfoResidentSection({ register, errors }) {
-    const [formData, setFormData] = useState({
-        // Basic Info
-
-        voters: "",
-        dateOfBirth: "",
-        placeOfBirth: "",
-        pwd: "",
-        singleParent: "",
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        suffix: "",
-        gender: "Male",
-        civilStatus: "Single",
-        religion: "",
-        nationality: "",
-        // Other Info (Address)
-        municipality: "",
-        zip: "",
-        barangay: "",
-        houseNumber: "",
-        street: "",
-        address: "",
-        contactNumber: "",
-        emailAddress: "",
-        // Guardian
-        fatherName: "",
-        motherName: "",
-        guardianName: "",
-        guardianContact: "",
-        // Account
-        username: "",
-        password: "",
-        confirmPassword: "",
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
+export default function OtherInfoSection({ register, errors }) {
+ 
+   
     return (
         <>
             <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
@@ -68,11 +27,13 @@ export default function OtherInfoResidentSection({ register, errors }) {
                         </div>
                         <div className="space-y-2">
                             <Input
+                                register={register("zip", {
+                                    required: "Field is required",
+                                })}
+                                error={errors?.zip?.message}
                                 label="Zip Code"
                                 type="text"
                                 name="zip"
-                                value={formData.zip}
-                                onChange={handleInputChange}
                                 className="w-full px-3 py-2"
                             />
                         </div>
@@ -80,10 +41,10 @@ export default function OtherInfoResidentSection({ register, errors }) {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                             <Input
-                                register={register("municipality", {
+                                register={register("barangay", {
                                     required: "Field is required",
                                 })}
-                                error={errors?.municipality?.message}
+                                error={errors?.barangay?.message}
                                 label="Barangay"
                                 type="text"
                                 name="barangay"

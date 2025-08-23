@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import Layout from '../../layout';
+import Layout from '../../../layout';
 import Input from '@/app/_components/input';
 import Select from '@/app/_components/select';
-import TabsResidentSection from './sections/tabs-resident-section';
+import TabsSection from './sections/tabs-section';
+import Button from '@/app/_components/button';
 
-function ProfileResidentForm () {
+function ProfileForm() {
   const [formData, setFormData] = useState({
     // Basic Info
-    
+    position: '',
+    startDate: '',
+    endDate: '',
     voters: '',
     dateOfBirth: '',
     placeOfBirth: '',
@@ -60,11 +63,11 @@ function ProfileResidentForm () {
 }
 
 export default function Page() {
+   
   return (
+   
     <Layout>
-      <TabsResidentSection />
+      <TabsSection />
     </Layout>
   );
 }
-
-      

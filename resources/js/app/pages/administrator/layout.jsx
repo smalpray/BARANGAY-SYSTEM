@@ -50,7 +50,7 @@ export default function Layout({ children }) {
             current: isCurrentMain == "barangay_official",
             children: [
                 {
-                    name: "New Official",
+                    name: "New Resident",
 
                     href: "/administrator/barangay_official/new_official",
                     icon: <FcBusinessman className="h-6 w-6" />,
@@ -68,12 +68,6 @@ export default function Layout({ children }) {
                     href: "/administrator/barangay_official/official_end_term",
                     icon: <FcDataRecovery className="h-6 w-6" />,
                     current: isCurrentSub == "official_end_term",
-                },
-                {
-                    name: "New Resident",
-                    href: "/administrator/resident/new_resident",
-                    icon: <FcPortraitMode className="h-6 w-6" />,
-                    current: isCurrentSub == "new_resident",
                 },
                 {
                     name: "List of Residents",

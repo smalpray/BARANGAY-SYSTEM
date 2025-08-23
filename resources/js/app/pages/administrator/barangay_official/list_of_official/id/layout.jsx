@@ -2,10 +2,13 @@ import Input from "@/app/_components/input";
 import Select from "@/app/_components/select";
 import React, { useState } from "react";
 
-export default function NewResidentLayout({ children, register, errors }) {
+export default function NewOfficialLayout({ children, register, errors }) {
+    const [isOfficial, setIsOfficial] = useState(false);
     const [formData, setFormData] = useState({
         // Basic Info
-
+        position: "",
+        startDate: "",
+        endDate: "",
         voters: "",
         dateOfBirth: "",
         placeOfBirth: "",
@@ -56,6 +59,91 @@ export default function NewResidentLayout({ children, register, errors }) {
                         </div>
                     </div>
                 </div>
+                <div class="flex items-center mb-4">
+                    <input
+                        onChange={() => setIsOfficial(!isOfficial)}
+                        id="default-checkbox"
+                        type="checkbox"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 "
+                    />
+                    <label
+                        for="default-checkbox"
+                        class="ms-2 text-sm font-medium text-gray-900 "
+                    >
+                        Is Official
+                    </label>
+                </div>
+                {isOfficial && (
+                    <div className="flex gap-3">
+                        <div className="space-y-2">
+                            <Select
+                                register={register("position", {
+                                    required: "Field is required",
+                                })}
+                                name="position"
+                                label="Position"
+                                error={errors?.position?.message}
+                                options={[
+                                    {
+                                        value: "barangay-captain",
+                                        label: "Barangay Captain",
+                                    },
+                                    {
+                                        value: "barangay-kagawad",
+                                        label: "Barangay Kagawad",
+                                    },
+                                    {
+                                        value: "barangay-sk-chairman",
+                                        label: "Barangay SK Chairman",
+                                    },
+                                    {
+                                        value: "barangay-sk-kagawad",
+                                        label: "Barangay SK Kagawad",
+                                    },
+                                    {
+                                        value: "barangay-secretary",
+                                        label: "Barangay Secretary",
+                                    },
+                                    {
+                                        value: "barangay-staff",
+                                        label: "Barangay Staff",
+                                    },
+                                    {
+                                        value: "barangay-security-personnel",
+                                        label: "Barangay Security Personnel",
+                                    },
+                                ]}
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <Input
+                                    register={register("startDate", {
+                                        required: "Field is required",
+                                    })}
+                                    error={errors?.startDate?.message}
+                                    label="Start"
+                                    placeholder="Start date"
+                                    type="date"
+                                    name="startDate"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Input
+                                    register={register("endDate", {
+                                        required: "Field is required",
+                                    })}
+                                    error={errors?.endDate?.message}
+                                    label="End"
+                                    placeholder="End date"
+                                    type="date"
+                                    name="endDate"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <div className="space-y-2">
                     <Select
@@ -65,6 +153,8 @@ export default function NewResidentLayout({ children, register, errors }) {
                         error={errors?.voters?.message}
                         name="voters"
                         label="Voters Status"
+                        value={formData.voters}
+                        onChange={handleInputChange}
                         options={[
                             { value: "registered", label: "Registered" },
                             { value: "unregistered", label: "Unregistered" },
