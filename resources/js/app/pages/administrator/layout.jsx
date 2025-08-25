@@ -27,8 +27,20 @@ import {
 } from "react-icons/fc";
 import FloatingButtonSection from "./_sections/floating-button-section";
 import { LiaLandmarkSolid } from "react-icons/lia";
-import { Boxes, BoxIcon, CheckCircle, FileText, HomeIcon, List, Package, UserPlus2Icon, UserPlusIcon, UsersIcon, Warehouse } from "lucide-react";
-import { GiFamilyHouse, GiFamilyTree, } from 'react-icons/gi';
+import {
+    Boxes,
+    BoxIcon,
+    CheckCircle,
+    FileText,
+    HomeIcon,
+    List,
+    Package,
+    UserPlus2Icon,
+    UserPlusIcon,
+    UsersIcon,
+    Warehouse,
+} from "lucide-react";
+import { GiFamilyHouse, GiFamilyTree } from "react-icons/gi";
 import { PiCertificateDuotone } from "react-icons/pi";
 
 export default function Layout({ children }) {
@@ -42,7 +54,6 @@ export default function Layout({ children }) {
             current: isCurrentMain == "dashboard",
         },
 
-       
         {
             name: "Barangay Residents",
             href: "#",
@@ -63,7 +74,7 @@ export default function Layout({ children }) {
                     icon: <FcViewDetails className="h-6 w-6" />,
                     current: isCurrentSub == "list_of_official",
                 },
-                 {
+                {
                     name: "Officials End Term",
                     href: "/administrator/barangay_official/official_end_term",
                     icon: <FcDataRecovery className="h-6 w-6" />,
@@ -74,9 +85,8 @@ export default function Layout({ children }) {
                     href: "/administrator/resident/list_of_resident",
                     icon: <FcList className="h-6 w-6" />,
                     current: isCurrentSub == "list_of_resident",
-                    
                 },
-                 {
+                {
                     name: "Archive of Residents",
                     href: "/administrator/resident/archive_resident",
                     icon: <FcDataConfiguration className="h-6 w-6" />,
@@ -85,14 +95,12 @@ export default function Layout({ children }) {
             ],
         },
 
-         
-
-       {
-                name: "Certificate",
-                    href: "#",
-                    icon: <FcRatings className="h-6 w-6" />,
-                    current: isCurrentMain == "certificate",
-                    children: [
+        {
+            name: "Certificate",
+            href: "#",
+            icon: <FcRatings className="h-6 w-6" />,
+            current: isCurrentMain == "certificate",
+            children: [
                 {
                     name: "Certificate layout",
                     href: "/administrator/certificate/certificate_layout",
@@ -102,98 +110,89 @@ export default function Layout({ children }) {
                 {
                     name: "Certificate Request",
                     href: "/administrator/certificate/certificate_pending",
-                    icon: <FcPrint  className="h-6 w-6" />,
+                    icon: <FcPrint className="h-6 w-6" />,
                     current: isCurrentSub == "certificate_pending",
-                    
                 },
-                 
             ],
         },
 
         {
             name: "User",
             href: "#",
-            icon: <FcPortraitMode  className="h-6 w-6 " />,
+            icon: <FcPortraitMode className="h-6 w-6 " />,
             current: isCurrentMain == "user",
             children: [
                 {
                     name: "Resident",
                     href: "/administrator/user/resident_user",
-                    icon: <FcReadingEbook  className="h-6 w-6" />,
+                    icon: <FcReadingEbook className="h-6 w-6" />,
                     current: isCurrentSub == "resident_user",
                 },
-                 {
+                {
                     name: "Administrator",
                     href: "/administrator/user/administrator_user",
-                    icon: <FcCustomerSupport  className="h-6 w-6" />,
+                    icon: <FcCustomerSupport className="h-6 w-6" />,
                     current: isCurrentSub == "administrator_user",
                 },
-            ]
+            ],
         },
         {
             name: "Family Profile",
             href: "#",
-            icon: <GiFamilyTree  className="h-6 w-6  text-yellow-600" />,
+            icon: <GiFamilyTree className="h-6 w-6  text-yellow-600" />,
             current: isCurrentMain == "family_profile",
             children: [
                 {
                     name: "Create New Family",
                     href: "/administrator/family_profile/create_new_family",
-                    icon: < UserPlus2Icon  className="h-6 w-6  text-blue-600" />,
+                    icon: <UserPlus2Icon className="h-6 w-6  text-blue-600" />,
                     current: isCurrentSub == "create_new_family",
                 },
-                 {
+                {
                     name: "Add Family Members",
                     href: "/administrator/family_profile/add_family_members",
-                    icon: <UsersIcon   className="h-6 w-6 text-blue-600" />,
+                    icon: <UsersIcon className="h-6 w-6 text-blue-600" />,
                     current: isCurrentSub == "add_family_members",
                 },
-                 {
+                {
                     name: "Household Details",
                     href: "/administrator/family_profile/household_details",
-                    icon: <HomeIcon  className="h-6 w-6  text-blue-600" />,
+                    icon: <HomeIcon className="h-6 w-6  text-blue-600" />,
                     current: isCurrentSub == "household_details",
                 },
-            ]
+            ],
         },
-         {
-             name: "Inventory",
+        {
+            name: "Inventory",
             href: "#",
-            icon: <Package  className="h-6 w-6  text-yellow-600" />,
+            icon: <Package className="h-6 w-6  text-yellow-600" />,
             current: isCurrentMain == "inventory",
             children: [
                 {
                     name: "List of Inventory",
                     href: "/administrator/inventory/list_of_inventory",
-                    icon: < List  className="h-6 w-6  text-blue-600" />,
+                    icon: <List className="h-6 w-6  text-blue-600" />,
                     current: isCurrentSub == "list_of_inventory",
                 },
-                 {
+                {
                     name: "Approved Inventory Request",
                     href: "/administrator/inventory/approved_inventory_request",
-                    icon: <  CheckCircle   className="h-6 w-6 text-blue-600" />,
+                    icon: <CheckCircle className="h-6 w-6 text-blue-600" />,
                     current: isCurrentSub == "approved_inventory_request",
                 },
                 {
                     name: "View Inventory Report",
                     href: "/administrator/inventory/view_inventory_report",
-                    icon: <FileText   className="h-6 w-6 text-blue-600" />,
+                    icon: <FileText className="h-6 w-6 text-blue-600" />,
                     current: isCurrentSub == "view_inventory_report",
                 },
-            ]
+            ],
         },
-
-
-
-
-
-
-
 
         {
             name: "Position",
             href: "/administrator/position",
-            icon: <FcDepartment  className="h-6 w-6" />,
+            icon: <FcDepartment className="h-6 w-6" />,
             current: isCurrentMain == "position",
         },
         {
@@ -208,7 +207,6 @@ export default function Layout({ children }) {
             icon: <FcOpenedFolder className="h-6 w-6" />,
             current: isCurrentMain == "reports",
         },
-        
 
         {
             name: "System Logs",

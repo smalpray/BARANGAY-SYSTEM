@@ -3,14 +3,15 @@ import { Plus, X } from "lucide-react";
 import Button from "@/app/_components/button";
 import { useForm } from "react-hook-form";
 import { create_positions_service } from "@/app/services/positions-service";
+import Swal from "sweetalert2"; // ✅ Added import
 
 // Modal Component
-const AddPositionModal = ({ isOpen, onClose, onSubmit }) => {
+const AddPositionModal = ({ isOpen, onClose }) => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
         reset,
+        formState: { errors, isSubmitting }, // ✅ Correctly placed isSubmitting here
     } = useForm({
         defaultValues: {
             position: "",
@@ -20,9 +21,24 @@ const AddPositionModal = ({ isOpen, onClose, onSubmit }) => {
     });
 
     const submitForm = async (data) => {
-        await create_positions_service(data);
-        reset();
-        onClose();
+        try {
+            await create_positions_service(data);
+            await Swal.fire({
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            reset();
+            onClose(); // ✅ Close modal after success
+        } catch (error) {
+            console.error("Error saving position:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong",
+                text: "Please try again later",
+            });
+        }
     };
 
     const handleCancel = () => {
@@ -36,7 +52,7 @@ const AddPositionModal = ({ isOpen, onClose, onSubmit }) => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
                 <form
-                    onSubmit={handleSubmit(submitForm)}
+                    onSubmit={handleSubmit(submitForm)} // ✅ fixed here
                     className="max-w-7xl mx-auto"
                 >
                     {/* Modal Header */}
@@ -62,8 +78,7 @@ const AddPositionModal = ({ isOpen, onClose, onSubmit }) => {
                                     htmlFor="position"
                                     className="block text-sm font-medium text-gray-700 mb-2"
                                 >
-                                    Position{" "}
-                                    <span className="text-red-500">*</span>
+                                    Position <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     {...register("position", {
@@ -91,8 +106,7 @@ const AddPositionModal = ({ isOpen, onClose, onSubmit }) => {
                                     htmlFor="limit"
                                     className="block text-sm font-medium text-gray-700 mb-2"
                                 >
-                                    Limit{" "}
-                                    <span className="text-red-500">*</span>
+                                    Limit <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     {...register("limit", {
@@ -147,10 +161,14 @@ const AddPositionModal = ({ isOpen, onClose, onSubmit }) => {
                                 Cancel
                             </Button>
                             <Button
+                                disabled={isSubmitting}
                                 type="submit"
-                                className="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors duration-200"
+                                className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center space-x-2"
                             >
-                                Add Position
+                                <span className="text-lg">+</span>
+                                <span>
+                                    {isSubmitting ? "Saving..." : "Save Position"}
+                                </span>
                             </Button>
                         </div>
                     </div>
@@ -172,12 +190,6 @@ export default function AddPositionSection() {
         setIsModalOpen(false);
     };
 
-    const handleSubmitPosition = (positionData) => {
-        console.log("New position data:", positionData);
-        // Here you would typically send the data to your backend or update your state
-        alert(`Position "${positionData.position}" added successfully!`);
-    };
-
     return (
         <div>
             <div className="flex justify-end items-center">
@@ -194,7 +206,6 @@ export default function AddPositionSection() {
             <AddPositionModal
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
-                onSubmit={handleSubmitPosition}
             />
         </div>
     );

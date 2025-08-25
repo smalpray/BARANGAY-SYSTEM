@@ -15,6 +15,7 @@ import {
     MessageSquare,
 } from "lucide-react";
 import { create_blotters_service } from "@/app/services/blotter-service";
+import Swal from "sweetalert2";
 
 // Moved components outside to prevent redefinition on every render
 const EnhancedModal = ({ isOpen, onClose, children }) => {
@@ -161,25 +162,24 @@ export default function NewRecordSection() {
             checked ? [...prev, id] : prev.filter((item) => item !== id)
         );
     };
-
-    const onSubmit = async (data) => {
+    const submitForm = async (data) => {
         try {
-            // Use the actual blotter service
             await create_blotters_service(data);
-            console.log("Form submitted:", data);
-
-            // Show success message (you'll need to import Swal)
-            // await Swal.fire({
-            //     icon: "success",
-            //     title: "Your work has been saved",
-            //     showConfirmButton: false,
-            //     timer: 1500,
-            // });
-
+            await Swal.fire({
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500,
+            });
             reset();
-            setShowModal(false);
+            onClose(); // ✅ Close modal after success
         } catch (error) {
-            console.error("Error submitting form:", error);
+            console.error("Error saving position:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong",
+                text: "Please try again later",
+            });
         }
     };
 
@@ -223,7 +223,10 @@ export default function NewRecordSection() {
                         </button>
                     </div>
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form
+                        onSubmit={handleSubmit(submitForm)} // ✅ fixed here
+                        className="max-w-7xl mx-auto"
+                    >
                         <div className="p-6 space-y-8">
                             {/* Complainant Section */}
                             <FormSection
@@ -236,7 +239,9 @@ export default function NewRecordSection() {
                                         id="complainant_resident"
                                         placeholder="Enter resident complainant name"
                                         register={register}
-                                        error={errors.complainant_resident?.message}
+                                        error={
+                                            errors.complainant_resident?.message
+                                        }
                                         required
                                     />
                                     <InputField
@@ -244,7 +249,10 @@ export default function NewRecordSection() {
                                         id="complainant_not_resident"
                                         placeholder="Enter non-resident complainant name"
                                         register={register}
-                                        error={errors.complainant_not_resident?.message}
+                                        error={
+                                            errors.complainant_not_resident
+                                                ?.message
+                                        }
                                         required
                                     />
                                 </div>
@@ -255,7 +263,9 @@ export default function NewRecordSection() {
                                     rows={4}
                                     placeholder="Provide detailed statement from the complainant..."
                                     register={register}
-                                    error={errors.complainant_statement?.message}
+                                    error={
+                                        errors.complainant_statement?.message
+                                    }
                                     required
                                 />
                             </FormSection>
@@ -279,7 +289,10 @@ export default function NewRecordSection() {
                                         id="person_involved_resident"
                                         placeholder="Enter resident involved"
                                         register={register}
-                                        error={errors.person_involved_resident?.message}
+                                        error={
+                                            errors.person_involved_resident
+                                                ?.message
+                                        }
                                         required
                                     />
                                     <InputField
@@ -287,7 +300,10 @@ export default function NewRecordSection() {
                                         id="person_involved_not_resident"
                                         placeholder="Enter non-resident involved"
                                         register={register}
-                                        error={errors.person_involved_not_resident?.message}
+                                        error={
+                                            errors.person_involved_not_resident
+                                                ?.message
+                                        }
                                         required
                                     />
                                 </div>
@@ -314,7 +330,9 @@ export default function NewRecordSection() {
                                         id="location_of_incident"
                                         placeholder="Enter specific location"
                                         register={register}
-                                        error={errors.location_of_incident?.message}
+                                        error={
+                                            errors.location_of_incident?.message
+                                        }
                                         required
                                     />
                                     <InputField
@@ -374,7 +392,7 @@ export default function NewRecordSection() {
                             </FormSection>
 
                             {/* Action Buttons */}
-                            <div className=" after:sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4 flex justify-end gap-3 -mx-6 -mb-6">
+                            <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4 flex justify-end gap-3 -mx-6 -mb-6">
                                 <ActionButton
                                     type="button"
                                     onClick={() => setShowModal(false)}
