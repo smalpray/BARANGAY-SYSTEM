@@ -2,6 +2,7 @@ php artisan make:model --controller --migration NameOfTableModelController
 
 php artisan migrate:fresh --seed
 
+php artisan migrate - To migrate the database
 
 git add .
 git commit -m "sample commit"

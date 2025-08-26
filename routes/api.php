@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AddfamilyMembersController;
+use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\BarangayInformationController;
 use App\Http\Controllers\BlotterController;
 
 use App\Http\Controllers\FamiliesController;
+use App\Http\Controllers\FamilyMemberController;
 use App\Http\Controllers\InventoriesController;
 use App\Http\Controllers\PositionController;
 
@@ -20,3 +23,5 @@ Route::resource('positions', PositionController::class);
 Route::resource('blotters', BlotterController::class);
 Route::resource('inventories', InventoriesController::class);
 Route::resource('families', FamiliesController::class);
+Route::resource('family_members', FamilyMemberController::class);
+Route::resource('administrator', AdministratorController::class);

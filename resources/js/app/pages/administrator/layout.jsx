@@ -42,6 +42,7 @@ import {
 } from "lucide-react";
 import { GiFamilyHouse, GiFamilyTree } from "react-icons/gi";
 import { PiCertificateDuotone } from "react-icons/pi";
+import { FaHouseUser } from "react-icons/fa";
 
 export default function Layout({ children }) {
     const isCurrentMain = window.location.pathname.split("/")[2];
@@ -80,10 +81,20 @@ export default function Layout({ children }) {
                     icon: <FcDataRecovery className="h-6 w-6" />,
                     current: isCurrentSub == "official_end_term",
                 },
+            ],
+        },
+        {
+            name: "Resident",
+            href: "#",
+            icon: <FaHouseUser className="h-6 w-6  text-blue-300" />,
+
+            current: isCurrentMain == "resident",
+            children: [
                 {
                     name: "List of Residents",
                     href: "/administrator/resident/list_of_resident",
-                    icon: <FcList className="h-6 w-6" />,
+                    icon: <FcList className="h-6 w-6 " />,
+
                     current: isCurrentSub == "list_of_resident",
                 },
                 {
