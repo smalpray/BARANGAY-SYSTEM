@@ -28,17 +28,17 @@ export default function TableAdministratorUserSection() {
     return (
         <>
             <table className="w-full">
-                <thead className="bg-blue-50 border-b border-gray-200">
+                <thead className="bg-blue-50  border-gray-200">
                     <tr>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-blue-900">Image</th>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-blue-900 cursor-pointer hover:bg-blue-100 transition-colors">
-                            Name ↕️
+                            Name 
                         </th>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-blue-900 cursor-pointer hover:bg-blue-100 transition-colors">
-                            Username ↕️
+                            Username 
                         </th>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-blue-900 cursor-pointer hover:bg-blue-100 transition-colors">
-                            Password ↕️
+                            Password 
                         </th>
                         <th className="px-6 py-3 text-left text-sm font-semibold text-blue-900">Action</th>
                     </tr>

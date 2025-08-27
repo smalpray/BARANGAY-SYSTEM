@@ -7,6 +7,7 @@ use App\Http\Controllers\BlotterController;
 
 use App\Http\Controllers\FamiliesController;
 use App\Http\Controllers\FamilyMemberController;
+use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\InventoriesController;
 use App\Http\Controllers\PositionController;
 
@@ -25,3 +26,4 @@ Route::resource('inventories', InventoriesController::class);
 Route::resource('families', FamiliesController::class);
 Route::resource('family_members', FamilyMemberController::class);
 Route::resource('administrator', AdministratorController::class);
+Route::resource('households', HouseholdController::class);

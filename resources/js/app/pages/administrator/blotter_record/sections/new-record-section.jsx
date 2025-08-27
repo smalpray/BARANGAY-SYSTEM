@@ -172,13 +172,16 @@ export default function NewRecordSection() {
                 timer: 1500,
             });
             reset();
-            onClose(); // ✅ Close modal after success
+            setShowModal(false); // ✅ close modal here
         } catch (error) {
-            console.error("Error saving position:", error);
+            console.error(
+                "Error saving blotter:",
+                error.response?.data || error.message
+            );
             Swal.fire({
                 icon: "error",
                 title: "Something went wrong",
-                text: "Please try again later",
+                text: error.response?.data?.message || "Please try again later",
             });
         }
     };
