@@ -21,16 +21,16 @@ export async function get_inventories_by_id_service(product_code, date) {
     return res;
 }
 
-export function delete_inventories_service(id) {
+export async function delete_inventories_service(id) {
     try {
-        const result = axios.delete(`/api/inventories/${id}`);
+        const result = await axios.delete(`/api/inventories/${id}`);
         return result;
     } catch (error) {}
 }
 
-export function update_inventories_service(data) {
+export async function update_inventories_service(data) {
     try {
-        const result = axios.put(`/api/inventories/${data.id}`, data);
+        const result =await axios.put(`/api/inventories/${data.id}`, data);
         return result;
     } catch (error) {}
 }

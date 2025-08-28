@@ -35,18 +35,18 @@ Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
     })->name('dashboard');
 
 
-    Route::prefix('barangay_official')->group(function () {
+    Route::prefix('barangay_residents')->group(function () {
         Route::get('new_official', function () {
-            return Inertia::render('administrator/barangay_official/new_official/page');
+            return Inertia::render('administrator/barangay_residents/new_official/page');
         });
         Route::get('list_of_official', function () {
-            return Inertia::render('administrator/barangay_official/list_of_official/page');
+            return Inertia::render('administrator/barangay_residents/list_of_official/page');
         });
         Route::get('list_of_official/{id}', function () {
-            return Inertia::render('administrator/barangay_official/list_of_official/id/page');
+            return Inertia::render('administrator/barangay_residents/list_of_official/id/page');
         });
         Route::get('official_end_term', function () {
-            return Inertia::render('administrator/barangay_official/official_end_term/page');
+            return Inertia::render('administrator/barangay_residents/official_end_term/page');
         });
        
     });

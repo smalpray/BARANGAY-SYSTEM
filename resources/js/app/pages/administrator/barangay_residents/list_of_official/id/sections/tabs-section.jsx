@@ -5,8 +5,10 @@ import OtherInfoSection from "./other-info-section";
 import GuardianSection from "./guardian-section";
 import AccountSection from "./account-section";
 import { useForm } from "react-hook-form";
-import { create_barangay_information_service } from "@/app/services/barangay-information-service";
+import { create_barangay_information_service } from "@/app/services/barangay-resident-service";
 import Swal from "sweetalert2";
+import Button from "@/app/_components/button";
+import { router } from "@inertiajs/react";
 
 export default function TabsSection() {
     const [activeTab, setActiveTab] = useState("basic");
@@ -79,18 +81,31 @@ export default function TabsSection() {
                         </button>
                     ))}
                 </div>
-                <div className="py-6 flex items-center justify-end">
-                    <button
+                <div className="py-6 flex items-center justify-between gap-2">
+                    <Button
+                        onClick={() =>
+                            router.visit(
+                                "/administrator/barangay_official/list_of_official"
+                            )
+                        }
+                        variant="secondary"
+                    >
+                        Back
+                    </Button>
+
+                    <Button
                         disabled={isSubmitting}
                         type="submit"
-                        className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center space-x-2"
+                        variat="success"
+                        className=" py-2 px-4 rounded-md transition-colors duration-200 flex items-center space-x-2"
                     >
                         <span className="text-lg">+</span>
                         <span>
                             {isSubmitting ? "Saving..." : "Save Official"}
                         </span>
-                    </button>
+                    </Button>
                 </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <NewOfficialLayout errors={errors} register={register}>
                         {activeTab === "basic" && (

@@ -6,7 +6,7 @@ import AddHouseholdDetailSection from "./sections/add-household-detail-section";
 
 function HouseholdDetailsForm() {
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-9xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
         <div className="flex items-center justify-center w-12 h-12 bg-orange-100 rounded-full">

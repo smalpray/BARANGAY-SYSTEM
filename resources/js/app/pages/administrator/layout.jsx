@@ -59,25 +59,25 @@ export default function Layout({ children }) {
             name: "Barangay Residents",
             href: "#",
             icon: <FcConferenceCall className="h-6 w-6" />,
-            current: isCurrentMain == "barangay_official",
+            current: isCurrentMain == "barangay_residents",
             children: [
                 {
                     name: "New Resident",
 
-                    href: "/administrator/barangay_official/new_official",
+                    href: "/administrator/barangay_residents/new_official",
                     icon: <FcBusinessman className="h-6 w-6" />,
                     current: isCurrentSub == "new_official",
                 },
 
                 {
                     name: "List of Officials",
-                    href: "/administrator/barangay_official/list_of_official",
+                    href: "/administrator/barangay_residents/list_of_official",
                     icon: <FcViewDetails className="h-6 w-6" />,
                     current: isCurrentSub == "list_of_official",
                 },
                 {
                     name: "Officials End Term",
-                    href: "/administrator/barangay_official/official_end_term",
+                    href: "/administrator/barangay_residents/official_end_term",
                     icon: <FcDataRecovery className="h-6 w-6" />,
                     current: isCurrentSub == "official_end_term",
                 },

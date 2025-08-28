@@ -4,11 +4,13 @@ import React from 'react'
 export default function ActionButtonArcSection() {
   return (
     <div>
-      <div className="flex gap-3">
+      <div className="flex gap-3 justify-end">
         <Button>
           Search
         </Button>
-        <Button>
+        <Button
+        variant="danger"
+        >
           Reset
         </Button>
       </div>

@@ -443,7 +443,7 @@ export default function AddHouseholdDetailSection() {
                     <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-green-600 text-white"
+                       
                     >
                         {isSubmitting ? "Saving..." : "Save Household"}
                     </Button>

@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import Button from '@/app/_components/button';
 import { Plus, Edit, Trash2, Package, Search, Filter } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import DeleteSection from './delete-section';
 export default function TableInventorySection() {
+  const { inventories } = useSelector((store) => store.inventories);
   const [items, setItems] = useState([
     {
       id: 1,
@@ -35,58 +38,6 @@ export default function TableInventorySection() {
     }
   ]);
 
-  const [showForm, setShowForm] = useState(false);
-  const [editingItem, setEditingItem] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('All');
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    quantity: '',
-    condition: 'New',
-    location: '',
-    status: 'Active'
-  });
-
-  const conditions = ['New', 'Good', 'Fair', 'Poor'];
-  const statuses = ['Active', 'Damaged', 'Retired'];
-  const statusOptions = ['All', ...statuses];
-
-  const resetForm = () => {
-    setFormData({
-      name: '',
-      description: '',
-      quantity: '',
-      condition: 'New',
-      location: '',
-      status: 'Active'
-    });
-    setEditingItem(null);
-    setShowForm(false);
-  };
-
-  const handleSubmit = () => {
-    if (!formData.name || !formData.quantity) {
-      alert('Please fill in required fields (Name and Quantity)');
-      return;
-    }
-
-    const newItem = {
-      ...formData,
-      quantity: parseInt(formData.quantity),
-      dateAdded: editingItem ? editingItem.dateAdded : new Date().toISOString().split('T')[0]
-    };
-
-    if (editingItem) {
-      setItems(items.map(item =>
-        item.id === editingItem.id ? { ...newItem, id: editingItem.id } : item
-      ));
-    } else {
-      setItems([...items, { ...newItem, id: Date.now() }]);
-    }
-
-    resetForm();
-  };
 
   const handleEdit = (item) => {
     setFormData({
@@ -113,13 +64,6 @@ export default function TableInventorySection() {
     ));
   };
 
-  const filteredItems = items.filter(item => {
-    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = statusFilter === 'All' || item.status === statusFilter;
-    return matchesSearch && matchesFilter;
-  });
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -139,16 +83,17 @@ export default function TableInventorySection() {
       default: return 'text-gray-600';
     }
   };
+  console.log("inventories", inventories);
   return (
     <div>
       <div className="bg-white rounded-lg shadow-sm">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">
-            Inventory Items ({filteredItems.length})
+            Inventory Items ({inventories.length})
           </h2>
         </div>
 
-        {filteredItems.length === 0 ? (
+        {inventories.length === 0 ? (
           <div className="text-center py-12">
             <Package className="mx-auto h-12 w-12 text-gray-400" />
             <h3 className="mt-2 text-sm font-medium text-gray-900">No items found</h3>
@@ -171,7 +116,7 @@ export default function TableInventorySection() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredItems.map((item) => (
+                {inventories?.map((item) => (
                   <tr key={item.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="font-medium text-gray-900">{item.name}</div>
@@ -214,13 +159,7 @@ export default function TableInventorySection() {
 
                         </button>
                       )}
-                      <button
-                        onClick={() => handleDelete(item.id)}
-                        className="text-red-600 hover:text-red-900 inline-flex items-center"
-                        title="Delete Item"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
+                     <DeleteSection data={item}/>
                     </td>
                   </tr>
                 ))}

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddfamilyMembersController;
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\BarangayInformationController;
+use App\Http\Controllers\BarangayResidentController;
 use App\Http\Controllers\BlotterController;
 
 use App\Http\Controllers\FamiliesController;
@@ -19,7 +20,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::resource('barangay_information', BarangayInformationController::class);
+Route::resource('barangay_residents', BarangayResidentController::class);
 Route::resource('positions', PositionController::class);
 Route::resource('blotters', BlotterController::class);
 Route::resource('inventories', InventoriesController::class);

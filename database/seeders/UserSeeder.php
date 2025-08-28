@@ -20,5 +20,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin'),
             'user_type' => 'admin',
         ]);
+        $this->call([
+            BarangayResidentsSeeder::class,
+        ]);
     }
 }

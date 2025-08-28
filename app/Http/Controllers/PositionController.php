@@ -12,4 +12,10 @@ class PositionController extends Controller
         Position::create($request->all());
         return response()->json(['message' => 'Barangay information created successfully'], 200);
     }
+      public function destroy(Request $request,$id)
+    {
+        $positions = Position::find($id);
+        $positions->delete();
+        return response()->json($positions);
+    }
 }

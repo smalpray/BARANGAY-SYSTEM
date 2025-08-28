@@ -5,9 +5,17 @@ export default function ActionButtonSection() {
   return (
     <div>
          {/* Action Buttons */}
-        <div className="flex gap-3">
+        <div className="flex gap-3 justify-end">
          <Button>Search</Button>
-         <Button>Reset</Button>
+
+         <Button
+         variant="danger"
+         >
+          
+          Reset
+          
+          </Button>
+
         </div>
     </div>
   )

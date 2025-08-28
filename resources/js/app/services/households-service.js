@@ -1,39 +1,26 @@
-
-
 import axios from "axios";
 
-export function create_households_service(data) {
-    try {
-        const result = axios.post("/api/households", data);
-        return result;
-    } catch (error) {}
+// Create household
+export async function create_households_service(data) {
+    return await axios.post("/api/households", data);
 }
 
-export function get_households_service() {
-    try {
-        const result = axios.get("/api/households");
-        return result;
-    } catch (error) {}
+// Get all households
+export async function get_households_service() {
+    return await axios.get("/api/households");
 }
 
-export async function get_households_by_id_service(product_code, date) {
-    const res = await axios.get(
-        "/api/households/" + product_code + "?date=" + date
-    );
-    return res;
+// Get household by id
+export async function get_households_by_id_service(id) {
+    return await axios.get(`/api/households/${id}`);
 }
 
-export function delete_households_service(id) {
-    try {
-        const result = axios.delete(`/api/households/${id}`);
-        return result;
-    } catch (error) {}
+// Delete household
+export async function delete_households_service(id) {
+    return await axios.delete(`/api/households/${id}`);
 }
 
-export function update_households_service(data) {
-    try {
-        const result = axios.put(`/api/households/${data.id}`, data);
-        return result;
-    } catch (error) {}
+// Update household
+export async function update_households_service(data) {
+    return await axios.put(`/api/households/${data.id}`, data);
 }
-

@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BarangayInformation extends Model
+class BarangayResident extends Model
 {
-
     protected $fillable = [
 
 

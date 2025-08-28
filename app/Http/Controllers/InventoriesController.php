@@ -13,4 +13,20 @@ class InventoriesController extends Controller
         Inventories::create($request->all());
         return response()->json(['message' => 'New Item created successfully'], 200);
     }
+    public function index()
+    {
+        $inventories = Inventories::all();
+        return response()->json($inventories);
+    }
+    public function update(Request $request,$id)
+    {
+        $inventories = Inventories::find($id);
+        return response()->json($inventories);
+    }
+    public function destroy(Request $request,$id)
+    {
+        $inventories = Inventories::find($id);
+        $inventories->delete();
+        return response()->json($inventories);
+    }
 }

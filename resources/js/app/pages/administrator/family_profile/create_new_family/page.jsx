@@ -15,7 +15,7 @@ function CreateNewFamilyForm() {
   
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
         <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full">
           <Plus className="w-6 h-6 text-blue-600" />

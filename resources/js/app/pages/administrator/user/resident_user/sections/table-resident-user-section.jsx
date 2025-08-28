@@ -88,7 +88,7 @@ export default function TableResidentUserSection() {
     return (
         <div className="overflow-x-auto">
             <table className="w-full">
-                <thead className="bg-blue-50 border-gray-200text-black">
+                <thead className="bg-blue-500 border-gray-200 text-white">
                     <tr>
                         <th className="px-6 py-3 text-left text-sm font-medium">
                             Image

@@ -5,6 +5,8 @@ import { Plus } from "lucide-react";
 import { create_inventories_service } from "../../../../../services/inventories-service";
 // ✅ import real service
 import Swal from "sweetalert2"; // ✅ import real Swal
+import store from "@/app/store/store";
+import { get_inventories_thunk } from "@/app/redux/inventories-thunk";
 
 export default function AddInventorySection() {
     const {
@@ -36,6 +38,7 @@ export default function AddInventorySection() {
     const onSubmit = async (data) => {
         try {
             await create_inventories_service(data); // ✅ will now call Laravel API
+            await store.dispatch(get_inventories_thunk());
             await Swal.fire({
                 icon: "success",
                 title: "Your work has been saved",
@@ -63,8 +66,20 @@ export default function AddInventorySection() {
     };
 
     return (
-        <div className="max-w-7xl mx-auto">
-           
+        <div className="max-w-7xl mx-auto ">
+            <div className="flex justify-end mb-4">
+                <Button
+                    onClick={() => {
+                        setShowForm(true);
+                        setEditingItem(null);
+                    }}
+                    variant="primary"
+                    className="flex items-center gap-2 "
+                >
+                    <Plus className="w-5 h-5" />
+                    Add Inventory
+                </Button>
+            </div>
 
             {showForm && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
