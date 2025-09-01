@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { create_blotters_service } from "@/app/services/blotter-service";
 import Swal from "sweetalert2";
+import store from "@/app/store/store";
+import { get_blotters_thunk } from "@/app/redux/blotter-thunk";
 
 // Moved components outside to prevent redefinition on every render
 const EnhancedModal = ({ isOpen, onClose, children }) => {
@@ -165,6 +167,7 @@ export default function NewRecordSection() {
     const submitForm = async (data) => {
         try {
             await create_blotters_service(data);
+            await store.dispatch(get_blotters_thunk());
             await Swal.fire({
                 icon: "success",
                 title: "Your work has been saved",
@@ -199,6 +202,7 @@ export default function NewRecordSection() {
                     <h1 className="text-xl font-semibold text-gray-800">
                         List of Records
                     </h1>
+
                     <Button onClick={() => setShowModal(true)}>
                         <Plus size={16} />
                         New Record

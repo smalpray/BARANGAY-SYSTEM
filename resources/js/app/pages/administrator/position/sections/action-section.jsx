@@ -22,12 +22,7 @@ export default function ActionSection() {
             >
                 <Pencil size={14} />
             </Button>
-            <Button
-                onClick={() => handleDelete(pos.id)}
-                className="inline-flex items-center gap-1 text-red-600 border border-red-300 hover:bg-red-50 px-3 py-1.5 text-sm"
-            >
-                <Trash2 size={14} />
-            </Button>
+           
         </div>
     )
 }

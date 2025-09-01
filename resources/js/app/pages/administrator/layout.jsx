@@ -1,5 +1,8 @@
 import SidebarSection from "@/app/_sections/sidebar-section";
 import TopbarSection from "@/app/_sections/topbar-section";
+
+import "react-toastify/dist/ReactToastify.css"; // <- global CSS for react-toastify
+
 import {
     FcAssistant,
     FcBusinessman,
@@ -43,6 +46,7 @@ import {
 import { GiFamilyHouse, GiFamilyTree } from "react-icons/gi";
 import { PiCertificateDuotone } from "react-icons/pi";
 import { FaHouseUser } from "react-icons/fa";
+import ToastProvider from "@/app/_components/toast";
 
 export default function Layout({ children }) {
     const isCurrentMain = window.location.pathname.split("/")[2];
@@ -297,6 +301,8 @@ export default function Layout({ children }) {
                     {/* <FloatingButtonSection /> */}
                 </main>
             </div>
+            {/* mount the Toast provider once, globally */}
+            <ToastProvider />
         </>
     );
 }

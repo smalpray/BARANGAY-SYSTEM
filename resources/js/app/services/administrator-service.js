@@ -7,21 +7,21 @@ export function create_administrator_service(data) {
     } catch (error) {}
 }
 
-export function get_administrator_service() {
+export async function get_administrator_service() {
     try {
-        const result = axios.get("/api/administrator");
+        const result = axios.get("/api/administrator"+window.location.search);
         return result;
     } catch (error) {}
 }
 
-export async function get_administrator_by_id_service(product_code, date) {
+export async function get_administrator_by_id_service(id) {
     const res = await axios.get(
-        "/api/administrator/" + product_code + "?date=" + date
+        "/api/administrator/" +id
     );
     return res;
 }
 
-export function delete_administrator_service(id) {
+export async function delete_administrator_service(id) {
     try {
         const result = axios.delete(`/api/administrator/${id}`);
         return result;

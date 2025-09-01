@@ -42,7 +42,6 @@ export default function ButtonAdministratorUserSection() {
         }
     };
 
-
     const onSubmit = async (data) => {
         try {
             await create_administrator_service(data);
@@ -58,7 +57,7 @@ export default function ButtonAdministratorUserSection() {
 
     return (
         <>
-            <div className="mb-6 ">
+            <div className="mb-3 flex justify-end">
                 <Button
                     onClick={() => setShowModal(true)}
                     className="px-4 py-2 rounded-lg flex items-center gap-2 transition-colors justify-end"

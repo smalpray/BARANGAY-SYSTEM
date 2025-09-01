@@ -1,22 +1,20 @@
-"use client";
-
+import { get_administrator_thunk } from "@/app/redux/administrator-thunk";
+import { delete_administrator_service } from "@/app/services/administrator-service";
 import store from "@/app/store/store";
-import React from "react";
+import { data } from "autoprefixer";
 import { Trash2 } from "lucide-react";
+import React from "react";
 import { toast } from "react-toastify";
-
-import { delete_barangay_residents_service } from "@/app/services/barangay-resident-service";
-import { get_barangay_residents_thunk } from "@/app/redux/barangay-resident-thunk";
 
 export default function DeleteSection({ data }) {
     async function handleDelete() {
         try {
-            await delete_barangay_residents_service(data.id);
-            await store.dispatch(get_barangay_residents_thunk());
-            toast.success("Resident deleted successfully");
+            await delete_administrator_service(data.id);
+            await store.dispatch(get_administrator_thunk());
+            toast.success("Administrator deleted successfully");
         } catch (error) {
             console.error(error);
-            toast.error("❌ Failed to delete resident");
+            toast.error("❌ Failed to delete administrator");
         }
     }
 
@@ -24,7 +22,7 @@ export default function DeleteSection({ data }) {
         <button
             onClick={handleDelete}
             className="text-red-600 hover:text-red-900 inline-flex items-center"
-            title="Delete Resident"
+            title="Delete Administrator"
         >
             <Trash2 className="w-4 h-4" />
         </button>

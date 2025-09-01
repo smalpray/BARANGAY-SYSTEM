@@ -150,6 +150,7 @@ export default function TableInventorySection() {
                       >
                         <Edit className="h-4 w-4" />
                       </button>
+                     
                       {item.status !== 'Retired' && (
                         <button
                           onClick={() => handleRetire(item.id)}
@@ -159,7 +160,7 @@ export default function TableInventorySection() {
 
                         </button>
                       )}
-                     <DeleteSection data={item}/>
+                      <DeleteSection data={item}/>
                     </td>
                   </tr>
                 ))}

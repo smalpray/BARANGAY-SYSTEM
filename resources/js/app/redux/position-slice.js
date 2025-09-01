@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const positionsSlice = createSlice({
-    name: "positions",
+    name: "positions",   // better name (was "app")
     initialState: {
         positions: [],   // list of positions
         position: {}     // single position
     },
     reducers: {
-        setPosition: (state, action) => {
-            state.position = action.payload;
-        },
         setPositions: (state, action) => {
             state.positions = action.payload;
+        },
+        setPosition: (state, action) => {
+            state.position = action.payload;
         },
     },
 });
 
-export const { setPosition, setPositions } = positionsSlice.actions;
+export const { setPositions, setPosition } = positionsSlice.actions;
 export default positionsSlice.reducer;
