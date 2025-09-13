@@ -34,7 +34,7 @@ function RecordsTable() {
           {/* Header */}
           <NewRecordSection />
           {/* Controls */}
-          <SearchSection />
+          {/* <SearchSection /> */}
           {/* Table */}
           <TableSection />
           {/* Footer */}

@@ -2,7 +2,7 @@ import SidebarSection from "@/app/_sections/sidebar-section";
 import TopbarSection from "@/app/_sections/topbar-section";
 
 import "react-toastify/dist/ReactToastify.css"; // <- global CSS for react-toastify
-
+import { MdOutlineFamilyRestroom } from "react-icons/md";
 import {
     FcAssistant,
     FcBusinessman,
@@ -174,6 +174,12 @@ export default function Layout({ children }) {
                     href: "/administrator/family_profile/household_details",
                     icon: <HomeIcon className="h-6 w-6  text-blue-600" />,
                     current: isCurrentSub == "household_details",
+                },
+                 {
+                    name: "List of Family",
+                    href: "/administrator/family_profile/list_of_family",
+                    icon: <MdOutlineFamilyRestroom className="h-6 w-6  text-blue-600" />,
+                    current: isCurrentSub == "list_of_family",
                 },
             ],
         },

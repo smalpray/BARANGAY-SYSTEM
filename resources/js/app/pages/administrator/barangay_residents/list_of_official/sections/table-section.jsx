@@ -9,12 +9,13 @@ import {
     Search,
 } from "lucide-react";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function TableSection() {
     const [searchTerm, setSearchTerm] = useState("");
     const [rowsPerPage, setRowsPerPage] = useState(10);
-
-    const officials = [
+    const { officials } = useSelector((store) => store.barangay_residents);
+    const residents = [
         {
             id: 1,
             image: "/api/placeholder/40/40",
@@ -78,14 +79,12 @@ export default function TableSection() {
     ];
 
     const filteredOfficials = officials.filter(
-        (official) =>
-            official.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            official.position.toLowerCase().includes(searchTerm.toLowerCase())
+        (officials) =>
+            officials.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            officials.position.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    function next_page(params) {
-        router.visit("/administrator/barangay_official/list_of_official/2");
-    }
+    
     return (
         <div>
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
@@ -118,9 +117,10 @@ export default function TableSection() {
                 </div>
 
                 <div className="divide-y divide-gray-200">
-                    {filteredOfficials.map((official, index) => (
+                    {/* blotters?.data?.map((blotter, index) => ( */}
+                   {(officials?.data ?? residents).map((official, index) => (
                         <div
-                            key={official.id}
+                            key={officials.id}
                             className={`grid grid-cols-12 gap-4 px-4 py-3 items-center ${
                                 index % 2 === 0 ? "bg-white" : "bg-gray-50"
                             } hover:bg-blue-50 transition-colors`}
@@ -134,37 +134,37 @@ export default function TableSection() {
                             </div>
                             <div className="col-span-2">
                                 <span
-                                    className={`px-3 py-1 rounded-full text-white text-xs font-medium ${official.positionColor}`}
+                                    className={`px-3 py-1 rounded-full text-white text-xs font-medium ${officials.positionColor}`}
                                 >
-                                    {official.position}
+                                    {officials.position}
                                 </span>
                             </div>
                             <div className="col-span-2 text-sm text-gray-700">
-                                {official.officialNumber}
+                                {officials.officialsNumber}
                             </div>
                             <div className="col-span-2 text-sm font-medium text-gray-900">
-                                {official.name}
+                                {officials.name}
                             </div>
                             <div className="col-span-1">
                                 <span className="px-2 py-1 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    {official.pwd}
+                                    {officials.pwd}
                                 </span>
                             </div>
                             <div className="col-span-1">
                                 <span className="px-2 py-1 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    {official.singleParent}
+                                    {officials.singleParent}
                                 </span>
                             </div>
                             <div className="col-span-1">
                                 <span className="px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
-                                    {official.voters}
+                                    {officials.voters}
                                 </span>
                             </div>
                             <div className="col-span-1">
                                 <div className="flex items-center">
                                     <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
                                     <span className="text-sm text-gray-700">
-                                        {official.status}
+                                        {officials.status}
                                     </span>
                                 </div>
                             </div>

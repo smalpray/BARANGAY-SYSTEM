@@ -197,7 +197,7 @@ export default function NewRecordSection() {
 
     return (
         <div>
-            <div className="max-w-7xl mx-auto">
+            <div>
                 <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <h1 className="text-xl font-semibold text-gray-800">
                         List of Records

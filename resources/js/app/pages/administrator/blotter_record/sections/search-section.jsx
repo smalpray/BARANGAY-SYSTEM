@@ -64,31 +64,7 @@ const [searchTerm, setSearchTerm] = useState('');
   return (
 
     <div>
-      <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-      <div className="flex items-center gap-2">
-        <span className="text-gray-600">Show</span>
-        <select
-          value={entriesPerPage}
-          onChange={(e) => setEntriesPerPage(Number(e.target.value))}
-          className="border border-gray-300 rounded px-6 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          {[10, 25, 50, 100].map((n) => (
-            <option key={n} value={n}>{n}</option>
-          ))}
-        </select>
-        <span className="text-gray-600">entries</span>
-      </div>
-      <div className="flex items-center  gap-2">
-        <span className="text-gray-600">Search:</span>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border border-gray-300 rounded px-3 py-1 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Search records..."
-        />
-      </div>
-      </div>
+      
     </div>
   )
 }

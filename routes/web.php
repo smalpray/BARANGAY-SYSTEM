@@ -96,6 +96,9 @@ Route::middleware('auth:sanctum')->prefix('administrator')->group(function () {
         Route::get('household_details', function () {
             return Inertia::render('administrator/family_profile/household_details/page');
         });
+        Route::get('list_of_family', function () {
+            return Inertia::render('administrator/family_profile/list_of_family/page');
+        });
     });
 
 

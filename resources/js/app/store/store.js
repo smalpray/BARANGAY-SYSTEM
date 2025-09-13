@@ -6,6 +6,7 @@ import inventoriesSlice from "../redux/inventories-slice";
 import  positionsSlice  from "../redux/position-slice";
 import  administratorSlice  from "../redux/administrator-slice";
 import  blotterSlice  from "../redux/blotter-slice";
+import  barangayOfficialSlice  from "../redux/barangay-official-slice";
 
 
 const store = configureStore({
@@ -17,6 +18,8 @@ const store = configureStore({
         positions:positionsSlice,
         administrators:administratorSlice,
         blotters:blotterSlice,
+        // barangay_residents:barangayOfficialSlice,
+
      
     },
 });

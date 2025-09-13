@@ -6,7 +6,7 @@ export default function TableSection() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedItems, setSelectedItems] = useState([]);
     const { blotters } = useSelector((store) => store.blotters);
-
+    const [entriesPerPage, setEntriesPerPage] = useState(10);
     const records = [
         {
             id: 1,
@@ -49,6 +49,35 @@ export default function TableSection() {
 
     return (
         <div>
+            <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                    <span className="text-gray-600">Show</span>
+                    <select
+                        value={entriesPerPage}
+                        onChange={(e) =>
+                            setEntriesPerPage(Number(e.target.value))
+                        }
+                        className="border border-gray-300 rounded px-6 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        {[10, 25, 50, 100].map((n) => (
+                            <option key={n} value={n}>
+                                {n}
+                            </option>
+                        ))}
+                    </select>
+                    <span className="text-gray-600">entries</span>
+                </div>
+                <div className="flex items-center  gap-2">
+                    <span className="text-gray-600">Search:</span>
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="border border-gray-300 rounded px-3 py-1 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Search records..."
+                    />
+                </div>
+            </div>
             {/* Header */}
             <div className="bg-blue-700 text-white">
                 <div className="grid grid-cols-12 gap-4 px-4 py-3 text-sm font-medium">
