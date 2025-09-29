@@ -15,6 +15,8 @@ export default function TableSection() {
     const [searchTerm, setSearchTerm] = useState("");
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const { officials } = useSelector((store) => store.barangay_residents);
+
+    // ✅ Static fallback data
     const residents = [
         {
             id: 1,
@@ -78,32 +80,34 @@ export default function TableSection() {
         },
     ];
 
-    const filteredOfficials = officials.filter(
-        (officials) =>
-            officials.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            officials.position.toLowerCase().includes(searchTerm.toLowerCase())
+    // ✅ Normalize officials (whether it's { data: [] }, [], or undefined)
+    const data = Array.isArray(officials?.data)
+        ? officials.data
+        : Array.isArray(officials)
+        ? officials
+        : residents;
+
+    // ✅ Safe filtering
+    const filteredOfficials = data.filter(
+        (o) =>
+            o.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            o.position.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    
     return (
         <div>
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                {/* Table Header */}
                 <div className="bg-blue-600 text-white">
                     <div className="grid grid-cols-12 gap-4 px-4 py-3 text-sm font-medium">
                         <div className="col-span-1">IMAGE</div>
                         <div className="col-span-2">
                             <select className="bg-white/40 border border-gray-600 rounded px-7 py-1 text-xs">
-                                <option className="text-black">
-                                    ALL POSITION
-                                </option>
+                                <option className="text-black">ALL POSITION</option>
                                 <option className="text-black">KAGAWAD</option>
                                 <option className="text-black">CHAIRMAN</option>
-                                <option className="text-black">
-                                    SECRETARY
-                                </option>
-                                <option className="text-black">
-                                    SK KAGAWAD
-                                </option>
+                                <option className="text-black">SECRETARY</option>
+                                <option className="text-black">SK KAGAWAD</option>
                             </select>
                         </div>
                         <div className="col-span-2">OFFICIAL NUMBER</div>
@@ -116,61 +120,57 @@ export default function TableSection() {
                     </div>
                 </div>
 
+                {/* Table Body */}
                 <div className="divide-y divide-gray-200">
-                    {/* blotters?.data?.map((blotter, index) => ( */}
-                   {(officials?.data ?? residents).map((official, index) => (
+                    {filteredOfficials.map((official, index) => (
                         <div
-                            key={officials.id}
+                            key={official.id}
                             className={`grid grid-cols-12 gap-4 px-4 py-3 items-center ${
                                 index % 2 === 0 ? "bg-white" : "bg-gray-50"
                             } hover:bg-blue-50 transition-colors`}
                         >
                             <div className="col-span-1">
                                 <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                                    <span className="text-gray-600 text-xs">
-                                        IMG
-                                    </span>
+                                    <span className="text-gray-600 text-xs">IMG</span>
                                 </div>
                             </div>
                             <div className="col-span-2">
                                 <span
-                                    className={`px-3 py-1 rounded-full text-white text-xs font-medium ${officials.positionColor}`}
+                                    className={`px-3 py-1 rounded-full text-white text-xs font-medium ${official.positionColor}`}
                                 >
-                                    {officials.position}
+                                    {official.position}
                                 </span>
                             </div>
                             <div className="col-span-2 text-sm text-gray-700">
-                                {officials.officialsNumber}
+                                {official.officialNumber}
                             </div>
                             <div className="col-span-2 text-sm font-medium text-gray-900">
-                                {officials.name}
+                                {official.name}
                             </div>
                             <div className="col-span-1">
                                 <span className="px-2 py-1 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    {officials.pwd}
+                                    {official.pwd}
                                 </span>
                             </div>
                             <div className="col-span-1">
                                 <span className="px-2 py-1 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    {officials.singleParent}
+                                    {official.singleParent}
                                 </span>
                             </div>
                             <div className="col-span-1">
                                 <span className="px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
-                                    {officials.voters}
+                                    {official.voters}
                                 </span>
                             </div>
                             <div className="col-span-1">
                                 <div className="flex items-center">
                                     <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                                    <span className="text-sm text-gray-700">
-                                        {officials.status}
-                                    </span>
+                                    <span className="text-sm text-gray-700">{official.status}</span>
                                 </div>
                             </div>
                             <div className="col-span-1 flex space-x-2">
                                 <button
-                                    onClick={() => next_page()}
+                                    onClick={() => console.log("Edit", official.id)}
                                     className="p-1 text-yellow-600 hover:bg-yellow-50 rounded"
                                 >
                                     <Edit2 className="w-4 h-4" />

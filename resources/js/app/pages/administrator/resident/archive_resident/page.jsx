@@ -5,6 +5,8 @@ import Button from '@/app/_components/button';
 import SearchTableArcSection from './sections/search-table-arc-section';
 import ActionButtonArcSection from './sections/action-button-arc-section';
 import TableArcSection from './sections/table-arc-section';
+import Pagination from '@/app/_components/pagination';
+import PaginationSection from './sections/pagination-section';
 
 const ResidentList = () => {
   const [filters, setFilters] = useState({
@@ -122,6 +124,7 @@ const ResidentList = () => {
             ))
           )}
         </div>
+       <div className="mt-4"> <PaginationSection/></div>
       </div>
     </div>
   );

@@ -205,7 +205,7 @@ export default function AddHouseholdDetailSection() {
     );
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-7xl mx-auto">
+        <form onSubmit={handleSubmit} className="">
             <div className="space-y-6">
                 {/* FAMILY SELECTION */}
                 <div className="bg-gray-50 p-4 rounded-lg">

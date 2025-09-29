@@ -3,11 +3,12 @@ import Layout from "../../layout";
 import { Users, Search, Edit, Trash2, X, Plus, Camera } from "lucide-react";
 import SearchAdministratorUserSection from "./sections/search-administrator-user-section";
 import TableAdministratorUserSection from "./sections/table-administrator-user-section";
-import PaginationAdministratorUserSection from "./sections/pagination-administrator-user-section";
+
 
 import ButtonAdministratorUserSection from "./sections/button-administrator-user-section";
 import { get_administrator_thunk } from "@/app/redux/administrator-thunk";
 import store from "@/app/store/store";
+import PaginationSection from "./sections/pagination-section";
 
 export default function Page() {
     useEffect(() => {
@@ -121,8 +122,9 @@ const AdminUserTable = () => {
                     </div>
 
                     {/* Footer */}
-                    <PaginationAdministratorUserSection />
+                    
                 </div>
+                <div className="mt-4"><PaginationSection/></div>
             </div>
         </div>
     );

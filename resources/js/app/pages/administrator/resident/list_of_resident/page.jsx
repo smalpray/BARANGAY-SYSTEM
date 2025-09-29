@@ -8,6 +8,7 @@ import ActionButtonSection from "./sections/action-button-section";
 import TableListResident from "./sections/table-list-resident";
 import store from "@/app/store/store";
 import { get_barangay_residents_thunk } from "@/app/redux/barangay-resident-thunk";
+import PaginationSection from "./sections/pagination-section";
 
 export default function Page() {
     useEffect(() => {
@@ -15,7 +16,7 @@ export default function Page() {
     }, []);
     return (
         <Layout>
-            <div className="bg-gray-50 min-h-screen p-6">
+            <div className="bg-gray-50 min-h-screen p-6 gap-4">
                 <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
                     <SearchTableSection />
                     <ActionButtonSection />
@@ -25,6 +26,9 @@ export default function Page() {
                         <TableListResident />
                     </div>
                 </div>
+                 <div className="mt-4">
+                    <PaginationSection />
+                 </div>
             </div>
         </Layout>
     );

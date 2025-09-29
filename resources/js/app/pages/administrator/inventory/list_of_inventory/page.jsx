@@ -7,6 +7,8 @@ import AddInventorySection from "./sections/add-inventory-section";
 import TableInventorySection from "./sections/table-inventory-section";
 import { get_inventories_thunk } from "@/app/redux/inventories-thunk";
 import store from "@/app/store/store";
+import PaginationSection from "./sections/pagination-section";
+
 
 export default function Page() {
     useEffect(() => {
@@ -35,6 +37,7 @@ export default function Page() {
                 <div className="bg-white rounded-lg shadow-sm">
                     <TableInventorySection />
                 </div>
+              <div className="mt-4"><PaginationSection/></div>  
             </div>
         </Layout>
     );
